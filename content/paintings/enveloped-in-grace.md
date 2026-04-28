@@ -1,9 +1,12 @@
 ---
-type: Painting
 title: Enveloped In Grace
 slug: enveloped-in-grace
-featured_image: /images/Enveloped in Grace.png
-thumbnail_image: /images/Enveloped in Grace.png
+year: "2025"
+medium: TEST
+availability: available
+featured_image: /images/image8.jpeg
+thumbnail_image: /images/image8.jpeg
 sort_order: 4
 featured: true
+type: Painting
 ---
