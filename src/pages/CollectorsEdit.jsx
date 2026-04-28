@@ -1,11 +1,119 @@
-import { motion as Motion } from 'motion/react'
+import { motion as Motion, AnimatePresence } from 'motion/react'
+import { useState, useCallback, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getCollectors, getPage } from '../lib/content'
 import SEOHead from '../components/SEOHead'
+
+function Lightbox({ items, index, onClose, onPrev, onNext }) {
+  const item = items[index]
+  if (!item) return null
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft') onPrev()
+      if (e.key === 'ArrowRight') onNext()
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [onClose, onPrev, onNext])
+
+  return (
+    <Motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 z-10 p-2 text-white/70 hover:text-white transition-colors sm:top-6 sm:right-6"
+        aria-label="Close"
+      >
+        <X size={24} />
+      </button>
+
+      {items.length > 1 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onPrev() }}
+          className="absolute left-2 z-10 p-2 text-white/50 hover:text-white transition-colors sm:left-6"
+          aria-label="Previous image"
+        >
+          <ChevronLeft size={32} />
+        </button>
+      )}
+
+      {items.length > 1 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onNext() }}
+          className="absolute right-2 z-10 p-2 text-white/50 hover:text-white transition-colors sm:right-6"
+          aria-label="Next image"
+        >
+          <ChevronRight size={32} />
+        </button>
+      )}
+
+      <Motion.div
+        key={item.slug}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="relative max-w-[90vw] max-h-[85vh] flex flex-col items-center"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          className="max-h-[75vh] w-auto object-contain select-none"
+        />
+
+        {(item.painting_title || item.caption) && (
+          <div className="mt-4 text-center">
+            {item.painting_title && (
+              <p className="text-white font-serif text-lg sm:text-xl italic">
+                {item.painting_title}
+              </p>
+            )}
+            {item.caption && (
+              <p className="text-white/50 text-xs uppercase tracking-[0.18em] font-sans mt-1">
+                {item.caption}
+              </p>
+            )}
+          </div>
+        )}
+
+        {items.length > 1 && (
+          <p className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-sans mt-3">
+            {index + 1} / {items.length}
+          </p>
+        )}
+      </Motion.div>
+    </Motion.div>
+  )
+}
 
 export default function CollectorsEdit() {
   const collectors = getCollectors()
   const page = getPage('collectors-edit')
+  const [lightboxIndex, setLightboxIndex] = useState(null)
+
+  const openLightbox = useCallback((idx) => setLightboxIndex(idx), [])
+  const closeLightbox = useCallback(() => setLightboxIndex(null), [])
+  const prevImage = useCallback(() => {
+    setLightboxIndex((prev) => (prev > 0 ? prev - 1 : collectors.length - 1))
+  }, [collectors.length])
+  const nextImage = useCallback(() => {
+    setLightboxIndex((prev) => (prev < collectors.length - 1 ? prev + 1 : 0))
+  }, [collectors.length])
 
   return (
     <>
@@ -16,49 +124,69 @@ export default function CollectorsEdit() {
 
       <main className="bg-brand-bg min-h-screen pt-24 md:pt-32 pb-20 md:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="font-serif text-4xl md:text-6xl text-brand-ink tracking-tight mb-6"
-          >
-            The Collectors Edit
-          </Motion.h1>
 
-          {page?.intro && (
-            <Motion.p
-              initial={{ opacity: 0, y: 20 }}
+          <div className="mb-12 md:mb-16">
+            <Motion.h1
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-brand-muted max-w-2xl text-base md:text-lg leading-relaxed mb-16"
+              transition={{ duration: 0.8 }}
+              className="text-3xl font-serif uppercase tracking-[0.1em] text-brand-ink sm:text-4xl md:text-5xl md:tracking-tight"
             >
-              {page.intro}
-            </Motion.p>
-          )}
+              The Collectors Edit
+            </Motion.h1>
+
+            <div className="w-12 h-[1px] bg-brand-ink mt-4 mb-6" />
+
+            {page?.intro && (
+              <Motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-brand-muted max-w-2xl text-sm md:text-base leading-relaxed font-light"
+              >
+                {page.intro}
+              </Motion.p>
+            )}
+          </div>
 
           {collectors.length > 0 ? (
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-              {collectors.map((item) => (
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
+              {collectors.map((item, idx) => (
                 <Motion.div
                   key={item.slug}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="break-inside-avoid"
+                  className="break-inside-avoid cursor-pointer group"
+                  onClick={() => openLightbox(idx)}
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-brand-muted/10">
+                  <div className="relative overflow-hidden bg-brand-muted/10">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
+                    <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20 flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-6 py-3 bg-white text-brand-ink text-[11px] uppercase tracking-[0.2em] font-medium">
+                        View
+                      </span>
+                    </div>
                   </div>
-                  {item.painting_title && (
-                    <p className="mt-3 text-sm text-brand-muted font-sans tracking-wide uppercase">
-                      {item.painting_title}
-                    </p>
+                  {(item.painting_title || item.caption) && (
+                    <div className="mt-3">
+                      {item.painting_title && (
+                        <p className="text-sm font-serif italic text-brand-ink">
+                          {item.painting_title}
+                        </p>
+                      )}
+                      {item.caption && (
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-brand-muted mt-1">
+                          {item.caption}
+                        </p>
+                      )}
+                    </div>
                   )}
                 </Motion.div>
               ))}
@@ -72,13 +200,26 @@ export default function CollectorsEdit() {
           <div className="mt-16">
             <Link
               to="/"
-              className="text-sm text-brand-muted font-sans uppercase tracking-wider hover:text-brand-ink transition-colors"
+              className="inline-block border border-brand-ink text-brand-ink px-8 py-3 text-xs uppercase tracking-widest
+                         hover:bg-brand-ink hover:text-white transition-colors duration-300"
             >
-              ← Back to Home
+              Back to Home
             </Link>
           </div>
         </div>
       </main>
+
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <Lightbox
+            items={collectors}
+            index={lightboxIndex}
+            onClose={closeLightbox}
+            onPrev={prevImage}
+            onNext={nextImage}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }
