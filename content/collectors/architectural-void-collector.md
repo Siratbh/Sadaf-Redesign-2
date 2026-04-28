@@ -1,8 +1,8 @@
 ---
-title: "Architectural Void — Collector's Home"
-slug: architectural-void-collector
-painting_title: "Architectural Void"
-image: /images/architectural-void-collector.jpg
-caption:
+title: "1"
+slug: "1"
+painting_title: "1"
+image: /images/image0.png
+caption: null
 sort_order: 1
 ---
