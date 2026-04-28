@@ -77,6 +77,20 @@ collections:
       - { label: "Description", name: "description", widget: "text", required: false }
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
 
+  - name: "collectors"
+    label: "Collectors Edit"
+    folder: "content/collectors"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "Display title, e.g. 'Nocturnal Whispers — Collector's Home'" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. nocturnal-whispers-collector" }
+      - { label: "Painting Title", name: "painting_title", widget: "string", hint: "Name of the painting as shown in the collector's space" }
+      - { label: "Image", name: "image", widget: "image", hint: "Photo of the painting in the collector's home" }
+      - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Optional caption displayed below the image" }
+      - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+
   - name: "pages"
     label: "Pages"
     files:
@@ -98,6 +112,15 @@ collections:
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Instagram Handle", name: "instagram", widget: "string", required: false }
           - { label: "Response Note", name: "response_note", widget: "string", required: false }
+
+      - label: "Collectors Edit Page"
+        name: "collectors-edit"
+        file: "content/pages/collectors-edit.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Intro Text", name: "intro", widget: "text" }
+          - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
+          - { label: "SEO Description", name: "seo_description", widget: "string", required: false }
 
   - name: "settings"
     label: "Site Settings"
