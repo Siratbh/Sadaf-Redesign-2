@@ -1,97 +1,112 @@
-import { useEffect } from 'react'
+import { motion as Motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 import { getPaintings } from '../lib/content'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 
-gsap.registerPlugin(ScrollTrigger)
-
 export default function Collections() {
-  useEffect(() => {
-    document.body.classList.add('is-light')
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray('.reveal-item').forEach(item => {
-        gsap.fromTo(item,
-          { y: 50, opacity: 0, filter: 'blur(8px)', scale: 0.98 },
-          {
-            scrollTrigger: { trigger: item, start: 'top 85%', toggleActions: 'play none none reverse' },
-            y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.2, ease: 'power3.out',
-          }
-        )
-      })
-    })
-    return () => { ctx.revert(); document.body.classList.remove('is-light') }
-  }, [])
-
   let paintings = []
-  try { paintings = getPaintings() } catch (e) {}
+
+  try {
+    paintings = getPaintings()
+  } catch {
+    paintings = []
+  }
 
   return (
-    <>
+    <div className="min-h-screen bg-brand-bg text-brand-ink">
       <SEOHead title="Collections" description="Explore Sadaf's series of original paintings." />
 
-      {/* Hero */}
-      <section className="min-h-[50vh] flex flex-col justify-end px-6 md:px-24 pt-32 pb-16 md:pb-24 bg-light-bg text-dark-text">
-        <span className="font-label text-[10px] uppercase tracking-[0.4em] text-stone-500 mb-6 block">Works</span>
-        <h1 className="font-headline text-[14vw] md:text-[8vw] leading-[0.85] tracking-tighter">
-          The <i>Collections</i>
-        </h1>
+      <section className="border-b border-gray-100 bg-brand-bg pt-28 pb-16 sm:px-6 md:pt-32 md:pb-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <span className="mb-5 block text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted sm:mb-6">
+            Collections
+          </span>
+          <h1 className="mb-6 text-4xl font-serif leading-[0.95] tracking-tight text-brand-ink sm:text-5xl md:text-6xl lg:text-7xl">
+            The Collections
+          </h1>
+          <p className="max-w-2xl text-sm font-light leading-relaxed text-brand-muted sm:text-[15px] md:text-base">
+            Explore Sadaf&apos;s original paintings — each piece a meditation on spirituality, abstraction, and the human experience.
+          </p>
+        </div>
       </section>
 
-      {/* Grid */}
-      <section className="px-6 md:px-24 py-16 md:py-24 bg-light-bg text-dark-text min-h-screen">
-        {paintings.length === 0 ? (
-          <p className="font-body text-stone-500 text-sm">No paintings yet.</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-            {paintings.map((painting, i) => (
-              <Link
-                key={painting.slug}
-                to={`/paintings/${painting.slug}`}
-                className="group block cursor-none border-b border-stone-200 last:border-b-0 md:odd:border-r md:border-r-stone-200 reveal-item"
-              >
-                <div className="p-8 md:p-12 h-full flex flex-col gap-6">
-                  {/* Cover image */}
-                  <div className="w-full aspect-[4/3] bg-stone-200 overflow-hidden mb-4">
-                    {painting.featured_image ? (
+      <section className="py-16 bg-white md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
+            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">
+              All Works
+            </h2>
+          </div>
+
+          {paintings.length === 0 ? (
+            <p className="text-brand-muted text-sm font-light">No paintings available yet.</p>
+          ) : (
+            <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-14">
+              {paintings.map((painting) => (
+                <Motion.div
+                  key={painting.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="group relative flex flex-col"
+                >
+                  <div className="mb-2 flex items-center justify-between gap-3 sm:mb-3 sm:gap-4">
+                    <span className="text-[9px] uppercase tracking-[0.18em] font-semibold text-brand-muted sm:text-[10px] sm:tracking-[0.2em]">
+                      Sadaf Farasat
+                    </span>
+                    {painting.year && (
+                      <span className="text-[9px] uppercase tracking-[0.18em] font-semibold text-brand-muted sm:text-[10px] sm:tracking-[0.2em]">
+                        {painting.year}
+                      </span>
+                    )}
+                  </div>
+
+                  <Link to={`/paintings/${painting.slug}`} className="relative aspect-[4/5] overflow-hidden bg-gray-100">
+                    {painting.thumbnail_image || painting.featured_image ? (
                       <img
-                        src={painting.featured_image}
+                        src={painting.thumbnail_image || painting.featured_image}
                         alt={painting.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                         loading="lazy"
                       />
                     ) : (
                       <MediaPlaceholder text="View Work" />
                     )}
-                  </div>
-
-                  <div className="flex justify-between items-end">
-                    <div>
-                      <span className="font-label text-[10px] uppercase tracking-[0.3em] text-stone-500 mb-2 block">
-                        Work {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <h2 className="font-headline text-3xl md:text-4xl italic tracking-tight text-dark-text group-hover:translate-x-2 transition-transform duration-500 ease-out">
-                        {painting.title}
-                      </h2>
+                    <div className="absolute inset-0 hidden bg-black/0 transition-colors sm:flex group-hover:bg-black/20 items-center justify-center">
+                      <Motion.span
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="opacity-0 group-hover:opacity-100 px-6 py-3 bg-white text-brand-ink text-[11px] uppercase tracking-[0.2em] font-medium transition-opacity duration-300"
+                      >
+                        View this piece
+                      </Motion.span>
                     </div>
-                    <span className="font-label text-[10px] uppercase tracking-widest text-stone-500 group-hover:text-dark-text transition-colors">
-                      View →
-                    </span>
-                  </div>
+                  </Link>
 
-                  {painting.short_description && (
-                    <p className="font-body text-sm text-stone-600 leading-relaxed max-w-sm">
-                      {painting.short_description}
-                    </p>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+                  <div className="mt-3 flex items-start justify-between gap-3 sm:mt-4 sm:gap-4">
+                    <div className="min-w-0">
+                      <h3 className="text-[15px] font-serif leading-tight text-brand-ink sm:text-xl">{painting.title}</h3>
+                      {painting.medium && (
+                        <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-brand-muted sm:text-xs sm:tracking-[0.18em]">
+                          {painting.medium}
+                        </p>
+                      )}
+                    </div>
+                    <Link
+                      to={`/paintings/${painting.slug}`}
+                      className="shrink-0 text-[9px] uppercase tracking-[0.16em] font-semibold text-brand-ink border-b border-brand-ink pb-1 sm:hidden"
+                    >
+                      View
+                    </Link>
+                  </div>
+                </Motion.div>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
-    </>
+    </div>
   )
 }
