@@ -1,0 +1,115 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: "paintings"
+    label: "Paintings"
+    folder: "content/paintings"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. nocturnal-whispers" }
+      - { label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "slug", display_fields: ["title"], required: false }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Medium", name: "medium", widget: "string" }
+      - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
+      - label: "Availability"
+        name: "availability"
+        widget: "select"
+        options:
+          - { label: "Available", value: "available" }
+          - { label: "Sold", value: "sold" }
+          - { label: "Not for sale", value: "nfs" }
+        default: "available"
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
+      - { label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false }
+      - { label: "Short Description", name: "short_description", widget: "text", required: false }
+      - { label: "Full Description", name: "full_description", widget: "markdown", required: false }
+      - { label: "Inquiry Subject Line", name: "inquiry_subject", widget: "string", required: false }
+      - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
+      - { label: "SEO Description", name: "seo_description", widget: "string", required: false }
+      - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+      - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false }
+
+  - name: "collections"
+    label: "Collections"
+    folder: "content/collections"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. luminous-interiors" }
+      - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
+      - { label: "Intro Text", name: "intro", widget: "text", required: false }
+      - { label: "Series Note / Manifesto", name: "series_note", widget: "text", required: false }
+      - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
+      - { label: "SEO Description", name: "seo_description", widget: "string", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+
+  - name: "exhibitions"
+    label: "Exhibitions"
+    folder: "content/exhibitions"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Venue", name: "venue", widget: "string" }
+      - { label: "City", name: "city", widget: "string", required: false }
+      - label: "Exhibition Type"
+        name: "type"
+        widget: "select"
+        options:
+          - { label: "Solo", value: "Solo" }
+          - { label: "Group", value: "Group" }
+          - { label: "Residency", value: "Residency" }
+          - { label: "Art Fair", value: "Art Fair" }
+      - { label: "Thumbnail / Hero Image", name: "image", widget: "image", required: false }
+      - { label: "External Link", name: "link", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/pages/about.md"
+        fields:
+          - { label: "Portrait Image", name: "portrait_image", widget: "image", required: false }
+          - { label: "Bio Intro", name: "bio_intro", widget: "text" }
+          - { label: "Bio Body", name: "bio_body", widget: "markdown" }
+          - { label: "Artist Statement", name: "artist_statement", widget: "text", required: false }
+          - { label: "Studio Note", name: "studio_note", widget: "string", required: false }
+
+      - label: "Contact"
+        name: "contact"
+        file: "content/pages/contact.md"
+        fields:
+          - { label: "Intro Text", name: "intro", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Instagram Handle", name: "instagram", widget: "string", required: false }
+          - { label: "Response Note", name: "response_note", widget: "string", required: false }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "content/settings/site.json"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Default SEO Title", name: "seo_title", widget: "string" }
+          - { label: "Default SEO Description", name: "seo_description", widget: "text" }
+          - { label: "Inquiry Email", name: "inquiry_email", widget: "string" }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "Footer Text", name: "footer_text", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string", required: false }

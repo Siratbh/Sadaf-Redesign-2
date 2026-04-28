@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-body antialiased min-h-screen flex flex-col;
+  }
+}
+
+@layer utilities {
+  .ambient-shadow {
+    box-shadow: 0 40px 40px -10px rgba(28, 27, 27, 0.06);
+  }
+}
+
+/* Base custom styles to clean up generic `#root` wrappers if any */
+#root {
+  @apply min-h-screen flex flex-col w-full;
+}

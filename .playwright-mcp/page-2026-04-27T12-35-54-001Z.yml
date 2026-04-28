@@ -1,0 +1,91 @@
+- generic [ref=e2]:
+  - generic:
+    - generic: arrow_forward
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "Catalog" [ref=e6] [cursor=pointer]:
+          - /url: /collections
+        - link "About" [ref=e7] [cursor=pointer]:
+          - /url: /about
+        - link "Exhibitions" [ref=e8] [cursor=pointer]:
+          - /url: /exhibitions
+      - link "Sadaf Farasat" [ref=e10] [cursor=pointer]:
+        - /url: /
+      - link "Contact" [ref=e13] [cursor=pointer]:
+        - /url: /contact
+  - generic [ref=e15]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]: About
+        - heading "About the artist" [level=1] [ref=e22]
+        - paragraph [ref=e23]: Sadaf Farasat is a self-taught artist whose work is deeply rooted in Sufism and inspired by the mystical poetry of Rumi.
+      - generic [ref=e25]:
+        - img [ref=e27]
+        - img [ref=e29]
+        - img "Sadaf Farasat portrait" [ref=e31]
+    - generic [ref=e33]:
+      - heading "Biography" [level=2] [ref=e35]
+      - generic [ref=e36]:
+        - heading "About the artist" [level=3] [ref=e38]
+        - generic [ref=e40]:
+          - paragraph [ref=e41]: Sadaf Farasat is a self-taught artist whose work is deeply rooted in Sufism and inspired by the mystical poetry of Rumi. Her artistic journey is one of both creative and spiritual discovery—one that found clarity and purpose through engaging with Rumi’s verses.
+          - paragraph [ref=e42]: Working intuitively, Sadaf has developed her practice through exploration and experimentation, free from the constraints of formal training. Her work is not confined to a single style, yet consistently revolves around themes of spirituality, devotion, and inner transformation. For her, painting is akin to Sema on canvas—a meditative act of movement and surrender.
+          - paragraph [ref=e43]: Her large-scale works are characterised by bold strokes, luminous colours, and rich textures, primarily executed in oil. Using a range of tools—from brushes and palette knives to her hands—she approaches each canvas with a sense of freedom and immediacy. Each painting becomes a personal interpretation of Rumi’s poetry, reflecting her evolving understanding of his words.
+          - paragraph [ref=e44]: Recurring motifs such as Whirling Dervishes and the moon emerge as symbols of love, devotion, and transcendence. Rooted in the Mevlevi tradition, these forms are approached with both reverence and authenticity, informed by guidance from practicing dervishes.
+          - paragraph [ref=e45]: Sadaf’s work is a reflection of her inner journey—an exploration of self, spirit, and the search for the Divine. Through her art, she invites the viewer into a space of contemplation, where beauty, movement, and meaning intersect.
+          - paragraph [ref=e46]: Today, her work resonates with a global audience, connecting her with collectors and seekers who are drawn to its spiritual depth and emotional intensity.
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: Artist statement
+        - blockquote [ref=e51]: “For her, painting is akin to Sema on canvas—a meditative act of movement and surrender.”
+      - generic [ref=e52]:
+        - generic [ref=e53]: Studio note
+        - paragraph [ref=e54]: Her work resonates with collectors and seekers drawn to its spiritual depth and emotional intensity.
+    - generic [ref=e57]:
+      - generic [ref=e58]: Continue
+      - heading "Explore further" [level=2] [ref=e59]
+      - paragraph [ref=e60]: Discover the wider body of work, browse the exhibition archive, or get in touch directly.
+      - generic [ref=e61]:
+        - link "Get in touch" [ref=e62] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=e63]:
+          - link "Explore collections" [ref=e64] [cursor=pointer]:
+            - /url: /collections
+          - link "View exhibitions" [ref=e65] [cursor=pointer]:
+            - /url: /exhibitions
+  - contentinfo [ref=e66]:
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - heading "Sadaf Farasat" [level=1] [ref=e69]
+        - paragraph [ref=e70]: Bringing contemporary excellence to the forefront of the modern art market.
+      - generic [ref=e71]:
+        - heading "Inquiry" [level=4] [ref=e72]
+        - list [ref=e73]:
+          - listitem [ref=e74]:
+            - img [ref=e75]
+            - generic [ref=e78]: inquiry@sadafart.com
+      - generic [ref=e79]:
+        - heading "Explore" [level=4] [ref=e80]
+        - list [ref=e81]:
+          - listitem [ref=e82]:
+            - link "Catalog" [ref=e83] [cursor=pointer]:
+              - /url: /collections
+          - listitem [ref=e84]:
+            - link "About" [ref=e85] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e86]:
+            - link "Exhibitions" [ref=e87] [cursor=pointer]:
+              - /url: /exhibitions
+      - generic [ref=e88]:
+        - heading "Social" [level=4] [ref=e89]
+        - link [ref=e91] [cursor=pointer]:
+          - /url: mailto:inquiry@sadafart.com
+          - img [ref=e92]
+    - generic [ref=e95]:
+      - paragraph [ref=e96]: © 2024 Sadaf. All rights reserved.
+      - generic [ref=e97]:
+        - link "Privacy Policy" [ref=e98] [cursor=pointer]:
+          - /url: /privacy
+        - link "Terms of Service" [ref=e99] [cursor=pointer]:
+          - /url: /terms

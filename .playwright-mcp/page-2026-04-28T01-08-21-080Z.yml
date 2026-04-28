@@ -1,0 +1,62 @@
+- generic [ref=e2]:
+  - generic:
+    - generic: arrow_forward
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "Catalog" [ref=e6] [cursor=pointer]:
+          - /url: /collections
+        - link "About" [ref=e7] [cursor=pointer]:
+          - /url: /about
+        - link "Collectors Edit" [ref=e8] [cursor=pointer]:
+          - /url: /collectors-edit
+        - link "Exhibitions" [ref=e9] [cursor=pointer]:
+          - /url: /exhibitions
+      - link "Sadaf Farasat" [ref=e11] [cursor=pointer]:
+        - /url: /
+      - link "Contact" [ref=e14] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - heading "The Collectors Edit" [level=1] [ref=e18]
+      - paragraph [ref=e19]: Each piece, once part of my studio, now lives within a collector's space.\nThese are glimpses of where the work continues—shaped by light, interiors, and the lives around it.
+      - generic [ref=e21]:
+        - img "Architectural Void — Collector's Home" [ref=e23]
+        - paragraph [ref=e24]: Architectural Void
+      - link "← Back to Home" [ref=e26] [cursor=pointer]:
+        - /url: /
+  - contentinfo [ref=e27]:
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - heading "Sadaf Farasat" [level=1] [ref=e30]
+        - paragraph [ref=e31]: Bringing contemporary excellence to the forefront of the modern art market.
+      - generic [ref=e32]:
+        - heading "Inquiry" [level=4] [ref=e33]
+        - list [ref=e34]:
+          - listitem [ref=e35]:
+            - img [ref=e36]
+            - generic [ref=e39]: inquiry@sadafart.com
+      - generic [ref=e40]:
+        - heading "Explore" [level=4] [ref=e41]
+        - list [ref=e42]:
+          - listitem [ref=e43]:
+            - link "Catalog" [ref=e44] [cursor=pointer]:
+              - /url: /collections
+          - listitem [ref=e45]:
+            - link "About" [ref=e46] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e47]:
+            - link "Exhibitions" [ref=e48] [cursor=pointer]:
+              - /url: /exhibitions
+      - generic [ref=e49]:
+        - heading "Social" [level=4] [ref=e50]
+        - link [ref=e52] [cursor=pointer]:
+          - /url: mailto:inquiry@sadafart.com
+          - img [ref=e53]
+    - generic [ref=e56]:
+      - paragraph [ref=e57]: © 2024 Sadaf. All rights reserved.
+      - generic [ref=e58]:
+        - link "Privacy Policy" [ref=e59] [cursor=pointer]:
+          - /url: /privacy
+        - link "Terms of Service" [ref=e60] [cursor=pointer]:
+          - /url: /terms
