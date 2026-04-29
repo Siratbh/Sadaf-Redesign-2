@@ -300,10 +300,9 @@ export default function PaintingDetail() {
                         <img
                           src={art.thumbnail_image || art.featured_image}
                           alt={art.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                          className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-110"
                           loading="lazy"
-                        />
-                      ) : (
+                        />                      ) : (
                         <MediaPlaceholder text="View Work" />
                       )}
                       <div className="absolute inset-0 hidden bg-black/0 transition-colors sm:flex group-hover:bg-black/20 items-center justify-center">
