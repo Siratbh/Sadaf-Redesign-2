@@ -18,6 +18,7 @@ export default defineStackbitConfig({
         {
           name: 'Painting',
           type: 'data',
+          labelField: 'title',
           filePath: 'content/paintings/{slug}.md',
           fields: [
             { name: 'title', type: 'string', required: true },
@@ -51,6 +52,7 @@ export default defineStackbitConfig({
         {
           name: 'Exhibition',
           type: 'data',
+          labelField: 'title',
           filePath: 'content/exhibitions/{slug}.md',
           fields: [
             { name: 'title', type: 'string', required: true },
@@ -76,6 +78,7 @@ export default defineStackbitConfig({
         {
           name: 'Collection',
           type: 'data',
+          labelField: 'title',
           filePath: 'content/collections/{slug}.md',
           fields: [
             { name: 'title', type: 'string', required: true },
@@ -154,6 +157,7 @@ export default defineStackbitConfig({
         {
           name: 'CollectorItem',
           type: 'data',
+          labelField: 'title',
           filePath: 'content/collectors/{slug}.md',
           fields: [
             { name: 'title', type: 'string', required: true },

@@ -1,6 +1,6 @@
 ---
 title: Mystics Orbit
-slug: architectural-void
+slug: mystics-orbit
 collection: luminous-interiors
 year: "2023"
 medium: Mixed Media
@@ -17,8 +17,8 @@ full_description: >-
 
 
   Layers of gesso, oil, and graphite build a surface that is simultaneously flat and deeply spatial.
-inquiry_subject: "Inquiry: Architectural Void (2023)"
-seo_title: Architectural Void — Sadaf Fine Art
+inquiry_subject: 'Inquiry: Mystics Orbit (2023)'
+seo_title: Mystics Orbit — Sadaf Fine Art
 seo_description: Mixed media, 60 × 80 cm, 2023. An original painting by Sadaf.
 sort_order: 2
 featured: true

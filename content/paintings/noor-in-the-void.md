@@ -1,7 +1,7 @@
 ---
 type: Painting
 title: Noor In The Void
-slug: nocturnal-whispers
+slug: noor-in-the-void
 collection: nocturnal-studies
 year: '2024'
 medium: Oil on Canvas
@@ -21,8 +21,8 @@ full_description: >-
 
   The surface carries the memory of earlier layers, colours that were painted
   over but continue to resonate from beneath.
-inquiry_subject: 'Inquiry: Nocturnal Whispers (2024)'
-seo_title: Nocturnal Whispers — Sadaf Fine Art
+inquiry_subject: 'Inquiry: Noor In The Void (2024)'
+seo_title: Noor In The Void — Sadaf Fine Art
 seo_description: Oil on canvas, 90 × 120 cm, 2024. An original painting by Sadaf.
 sort_order: 1
 featured: true
