@@ -327,7 +327,7 @@ export default function HomeV4() {
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-4 sm:p-6"
                       loading="lazy"
                     />
                   </div>

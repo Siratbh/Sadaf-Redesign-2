@@ -114,10 +114,9 @@ export default function CollectionDetail() {
                     <img
                       src={painting.featured_image}
                       alt={painting.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
+                      className="w-full h-full object-contain p-4 sm:p-6 group-hover:scale-105 transition-transform duration-[2s] ease-out"
                       loading="lazy"
-                    />
-                  ) : (
+                    />                  ) : (
                     <MediaPlaceholder text="Work details" />
                   )}
                 </div>

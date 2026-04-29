@@ -67,7 +67,7 @@ export default function Collections() {
                       <img
                         src={painting.thumbnail_image || painting.featured_image}
                         alt={painting.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                        className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                         loading="lazy"
                       />
                     ) : (
