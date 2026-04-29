@@ -1,0 +1,223 @@
+- generic [ref=e2]:
+  - generic:
+    - generic: arrow_forward
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "Catalog" [ref=e6] [cursor=pointer]:
+          - /url: "#gallery"
+        - link "About" [ref=e7] [cursor=pointer]:
+          - /url: "#about"
+        - link "Collectors Edit" [ref=e8] [cursor=pointer]:
+          - /url: "#collectors"
+        - link "Exhibitions" [ref=e9] [cursor=pointer]:
+          - /url: "#exhibitions"
+      - link "Sadaf Farasat" [ref=e11] [cursor=pointer]:
+        - /url: /
+      - link "Contact" [ref=e14] [cursor=pointer]:
+        - /url: /contact
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - heading "Explore the intersection of spirituality and abstraction" [level=2] [ref=e20]
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Sadaf Farasat is a Lahore-born, Malaysia-based artist with over 17 years of practice and an international exhibition history spanning Dubai, London, Kuala Lumpur, Singapore, New Jersey, and Pakistan.
+          - paragraph [ref=e23]: Her work is held in private collections across multiple regions and is recognized for its distinctive visual language and presence.
+          - paragraph [ref=e24]: She is also the author of Rhythm of a Mystic Heart.
+      - generic [ref=e27]:
+        - img "Noor In The Void" [ref=e28]
+        - generic [ref=e30]:
+          - paragraph [ref=e31]: Featured Work
+          - heading "Noor In The Void" [level=3] [ref=e32]
+    - generic [ref=e34]:
+      - heading "Collections" [level=2] [ref=e36]
+      - generic [ref=e37]:
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - generic [ref=e41]: Sadaf Farasat
+            - generic [ref=e42]: "2024"
+          - link "Noor In The Void View this piece" [ref=e43] [cursor=pointer]:
+            - /url: /paintings/nocturnal-whispers
+            - img "Noor In The Void" [ref=e44]
+            - generic [ref=e46]: View this piece
+          - generic [ref=e48]:
+            - heading "Noor In The Void" [level=3] [ref=e49]
+            - paragraph [ref=e50]: Oil on Canvas
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: Sadaf Farasat
+            - generic [ref=e55]: "2023"
+          - link "Mystics Orbit View this piece" [ref=e56] [cursor=pointer]:
+            - /url: /paintings/architectural-void
+            - img "Mystics Orbit" [ref=e57]
+            - generic [ref=e59]: View this piece
+          - generic [ref=e61]:
+            - heading "Mystics Orbit" [level=3] [ref=e62]
+            - paragraph [ref=e63]: Mixed Media
+        - generic [ref=e65]:
+          - generic [ref=e67]: Sadaf Farasat
+          - link "Enveloped In Grace View this piece" [ref=e68] [cursor=pointer]:
+            - /url: /paintings/enveloped-in-grace
+            - img "Enveloped In Grace" [ref=e69]
+            - generic [ref=e71]: View this piece
+          - heading "Enveloped In Grace" [level=3] [ref=e74]
+        - generic [ref=e76]:
+          - generic [ref=e78]: Sadaf Farasat
+          - link "Rains Of The Beloved View this piece" [ref=e79] [cursor=pointer]:
+            - /url: /paintings/rains-of-the-beloved
+            - img "Rains Of The Beloved" [ref=e80]
+            - generic [ref=e82]: View this piece
+          - heading "Rains Of The Beloved" [level=3] [ref=e85]
+        - generic [ref=e87]:
+          - generic [ref=e89]: Sadaf Farasat
+          - link "Whirling Embers View this piece" [ref=e90] [cursor=pointer]:
+            - /url: /paintings/whirling-embers
+            - img "Whirling Embers" [ref=e91]
+            - generic [ref=e93]: View this piece
+          - heading "Whirling Embers" [level=3] [ref=e96]
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - generic [ref=e100]: Sadaf Farasat
+            - generic [ref=e101]: "2023"
+          - link "Tawhid View this piece" [ref=e102] [cursor=pointer]:
+            - /url: /paintings/tawhid
+            - img "Tawhid" [ref=e103]
+            - generic [ref=e105]: View this piece
+          - generic [ref=e107]:
+            - heading "Tawhid" [level=3] [ref=e108]
+            - paragraph [ref=e109]: Oil on canvas
+      - link "Explore all collections" [ref=e111] [cursor=pointer]:
+        - /url: /collections
+        - generic [ref=e112]: Explore all collections
+        - img [ref=e113]
+    - generic [ref=e116]:
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - img "Atmospheric Art" [ref=e120]
+          - img "Detail Work" [ref=e122]
+          - img "Sadaf Farasat" [ref=e124]
+        - heading "About the artist" [level=2] [ref=e125]
+      - generic [ref=e127]:
+        - heading "About the artist" [level=3] [ref=e129]
+        - generic [ref=e131]:
+          - paragraph [ref=e132]: Sadaf Farasat is a self-taught artist whose work is deeply rooted in Sufism and inspired by the mystical poetry of Rumi. Her artistic journey is one of both creative and spiritual discovery—one that found clarity and purpose through engaging with Rumi’s verses.
+          - paragraph [ref=e133]: Working intuitively, Sadaf has developed her practice through exploration and experimentation, free from the constraints of formal training. Her work is not confined to a single style, yet consistently revolves around themes of spirituality, devotion, and inner transformation. For her, painting is akin to Sema on canvas—a meditative act of movement and surrender.
+          - paragraph [ref=e134]: Her large-scale works are characterised by bold strokes, luminous colours, and rich textures, primarily executed in oil. Using a range of tools—from brushes and palette knives to her hands—she approaches each canvas with a sense of freedom and immediacy. Each painting becomes a personal interpretation of Rumi’s poetry, reflecting her evolving understanding of his words.
+          - link "Read Full Biography" [ref=e135] [cursor=pointer]:
+            - /url: /about
+    - generic [ref=e136]:
+      - generic [ref=e137]:
+        - heading "The Collectors Edit" [level=2] [ref=e138]
+        - paragraph [ref=e139]: Each piece, once part of my studio, now lives within a collector's space.\nThese are glimpses of where the work continues—shaped by light, interiors, and the lives around it.
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - img "Architectural Void — Collector's Home" [ref=e143]
+          - paragraph [ref=e144]: Architectural Void
+        - generic [ref=e145]:
+          - img "Nocturnal Whispers — Collector's Home" [ref=e147]
+          - paragraph [ref=e148]: Nocturnal Whispers
+        - generic [ref=e149]:
+          - img "The Silent Observer — Collector's Living Room" [ref=e151]
+          - paragraph [ref=e152]: The Silent Observer
+        - generic [ref=e153]:
+          - img "Ethereal Shadows — Collector's Study" [ref=e155]
+          - paragraph [ref=e156]: Ethereal Shadows
+      - link "View All" [ref=e158] [cursor=pointer]:
+        - /url: /collectors-edit
+    - generic [ref=e160]:
+      - generic [ref=e161]:
+        - heading "Past Exhibitions" [level=2] [ref=e162]
+        - paragraph [ref=e163]: A complete archive of solo and group exhibitions
+      - generic [ref=e164]:
+        - generic [ref=e165] [cursor=pointer]:
+          - generic [ref=e166]:
+            - heading "Whimsical Ekhos" [level=4] [ref=e167]
+            - paragraph [ref=e168]: Atus Gallery, Dubai, UAE
+          - generic [ref=e169]:
+            - generic [ref=e170]: "2024"
+            - link "View Archive" [ref=e171]:
+              - /url: /exhibitions
+              - generic [ref=e172]: View Archive
+              - img [ref=e173]
+        - generic [ref=e175] [cursor=pointer]:
+          - generic [ref=e176]:
+            - heading "Islamabad Club" [level=4] [ref=e177]
+            - paragraph [ref=e178]: Islamabad Club, Islamabad, Pakistan
+          - generic [ref=e179]:
+            - generic [ref=e180]: "2023"
+            - link "View Archive" [ref=e181]:
+              - /url: /exhibitions
+              - generic [ref=e182]: View Archive
+              - img [ref=e183]
+        - generic [ref=e185] [cursor=pointer]:
+          - generic [ref=e186]:
+            - heading "Jharokay" [level=4] [ref=e187]
+            - paragraph [ref=e188]: ArtOne62, Karachi, Pakistan
+          - generic [ref=e189]:
+            - generic [ref=e190]: "2023"
+            - link "View Archive" [ref=e191]:
+              - /url: /exhibitions
+              - generic [ref=e192]: View Archive
+              - img [ref=e193]
+        - generic [ref=e195] [cursor=pointer]:
+          - generic [ref=e196]:
+            - heading "La Soiree" [level=4] [ref=e197]
+            - paragraph [ref=e198]: Model Town, Lahore, Pakistan
+          - generic [ref=e199]:
+            - generic [ref=e200]: "2023"
+            - link "View Archive" [ref=e201]:
+              - /url: /exhibitions
+              - generic [ref=e202]: View Archive
+              - img [ref=e203]
+        - generic [ref=e205] [cursor=pointer]:
+          - generic [ref=e206]:
+            - heading "La Soiree" [level=4] [ref=e207]
+            - paragraph [ref=e208]: DHA Phase 5, Lahore, Pakistan
+          - generic [ref=e209]:
+            - generic [ref=e210]: "2022"
+            - link "View Archive" [ref=e211]:
+              - /url: /exhibitions
+              - generic [ref=e212]: View Archive
+              - img [ref=e213]
+      - link "Explore Full Archive" [ref=e216] [cursor=pointer]:
+        - /url: /exhibitions
+    - generic [ref=e219]:
+      - heading "Got Inspired?" [level=2] [ref=e220]
+      - paragraph [ref=e221]: Reserve your piece or get in touch for an exclusive appointment at our private showroom.
+      - link "Get in touch" [ref=e222] [cursor=pointer]:
+        - /url: /contact
+  - contentinfo [ref=e223]:
+    - generic [ref=e224]:
+      - generic [ref=e225]:
+        - heading "Sadaf Farasat" [level=1] [ref=e226]
+        - paragraph [ref=e227]: Bringing contemporary excellence to the forefront of the modern art market.
+      - generic [ref=e228]:
+        - heading "Inquiry" [level=4] [ref=e229]
+        - list [ref=e230]:
+          - listitem [ref=e231]:
+            - img [ref=e232]
+            - generic [ref=e235]: inquiry@sadafart.com
+      - generic [ref=e236]:
+        - heading "Explore" [level=4] [ref=e237]
+        - list [ref=e238]:
+          - listitem [ref=e239]:
+            - link "Catalog" [ref=e240] [cursor=pointer]:
+              - /url: /collections
+          - listitem [ref=e241]:
+            - link "About" [ref=e242] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e243]:
+            - link "Exhibitions" [ref=e244] [cursor=pointer]:
+              - /url: /exhibitions
+      - generic [ref=e245]:
+        - heading "Social" [level=4] [ref=e246]
+        - link [ref=e248] [cursor=pointer]:
+          - /url: mailto:inquiry@sadafart.com
+          - img [ref=e249]
+    - generic [ref=e252]:
+      - paragraph [ref=e253]: © 2024 Sadaf. All rights reserved.
+      - generic [ref=e254]:
+        - link "Privacy Policy" [ref=e255] [cursor=pointer]:
+          - /url: /privacy
+        - link "Terms of Service" [ref=e256] [cursor=pointer]:
+          - /url: /terms

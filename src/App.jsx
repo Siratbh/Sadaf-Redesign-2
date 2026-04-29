@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import HomeV4 from './pages/HomeV4'
 import Collections from './pages/Collections'
-import CollectionDetail from './pages/CollectionDetail'
+
 import PaintingDetail from './pages/PaintingDetail'
 import About from './pages/About'
 import Exhibitions from './pages/Exhibitions'
@@ -38,7 +38,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomeV4 />} />
           <Route path="/collections" element={<Collections />} />
-          <Route path="/collections/:slug" element={<CollectionDetail />} />
+
           <Route path="/paintings/:slug" element={<PaintingDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/exhibitions" element={<Exhibitions />} />

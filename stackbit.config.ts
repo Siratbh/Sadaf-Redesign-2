@@ -23,7 +23,6 @@ export default defineStackbitConfig({
           fields: [
             { name: 'title', type: 'string', required: true },
             { name: 'slug', type: 'slug', required: true },
-            { name: 'collection', type: 'string' },
             { name: 'year', type: 'string' },
             { name: 'medium', type: 'string' },
             { name: 'dimensions', type: 'string' },
@@ -74,24 +73,6 @@ export default defineStackbitConfig({
           ],
         },
 
-        // ─── Collections ──────────────────────────────────────────────
-        {
-          name: 'Collection',
-          type: 'data',
-          labelField: 'title',
-          filePath: 'content/collections/{slug}.md',
-          fields: [
-            { name: 'title', type: 'string', required: true },
-            { name: 'slug', type: 'slug', required: true },
-            { name: 'cover_image', type: 'image' },
-            { name: 'intro', type: 'text' },
-            { name: 'series_note', type: 'text' },
-            { name: 'featured', type: 'boolean' },
-            { name: 'seo_title', type: 'string' },
-            { name: 'seo_description', type: 'text' },
-            { name: 'sort_order', type: 'number' },
-          ],
-        },
 
         // ─── About page ───────────────────────────────────────────────
         {

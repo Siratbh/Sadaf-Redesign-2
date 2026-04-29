@@ -1,0 +1,115 @@
+- generic [ref=e2]:
+  - generic:
+    - generic: arrow_forward
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "Catalog" [ref=e6] [cursor=pointer]:
+          - /url: /collections
+        - link "About" [ref=e7] [cursor=pointer]:
+          - /url: /about
+        - link "Collectors Edit" [ref=e8] [cursor=pointer]:
+          - /url: /collectors-edit
+        - link "Exhibitions" [ref=e9] [cursor=pointer]:
+          - /url: /exhibitions
+      - link "Sadaf Farasat" [ref=e11] [cursor=pointer]:
+        - /url: /
+      - link "Contact" [ref=e14] [cursor=pointer]:
+        - /url: /contact
+  - generic [ref=e16]:
+    - generic [ref=e18]:
+      - generic [ref=e19]: Collections
+      - heading "The Collections" [level=1] [ref=e20]
+      - paragraph [ref=e21]: Explore Sadaf's original paintings — each piece a meditation on spirituality, abstraction, and the human experience.
+    - generic [ref=e23]:
+      - heading "All Works" [level=2] [ref=e25]
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: Sadaf Farasat
+            - generic [ref=e30]: "2024"
+          - link "Noor In The Void View this piece" [ref=e31] [cursor=pointer]:
+            - /url: /paintings/nocturnal-whispers
+            - img "Noor In The Void" [ref=e32]
+            - generic [ref=e34]: View this piece
+          - generic [ref=e36]:
+            - heading "Noor In The Void" [level=3] [ref=e37]
+            - paragraph [ref=e38]: Oil on Canvas
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - generic [ref=e41]: Sadaf Farasat
+            - generic [ref=e42]: "2023"
+          - link "Mystics Orbit View this piece" [ref=e43] [cursor=pointer]:
+            - /url: /paintings/architectural-void
+            - img "Mystics Orbit" [ref=e44]
+            - generic [ref=e46]: View this piece
+          - generic [ref=e48]:
+            - heading "Mystics Orbit" [level=3] [ref=e49]
+            - paragraph [ref=e50]: Mixed Media
+        - generic [ref=e51]:
+          - generic [ref=e53]: Sadaf Farasat
+          - link "Enveloped In Grace View this piece" [ref=e54] [cursor=pointer]:
+            - /url: /paintings/enveloped-in-grace
+            - img "Enveloped In Grace" [ref=e55]
+            - generic [ref=e57]: View this piece
+          - heading "Enveloped In Grace" [level=3] [ref=e60]
+        - generic [ref=e61]:
+          - generic [ref=e63]: Sadaf Farasat
+          - link "Rains Of The Beloved View this piece" [ref=e64] [cursor=pointer]:
+            - /url: /paintings/rains-of-the-beloved
+            - img "Rains Of The Beloved" [ref=e65]
+            - generic [ref=e67]: View this piece
+          - heading "Rains Of The Beloved" [level=3] [ref=e70]
+        - generic [ref=e71]:
+          - generic [ref=e73]: Sadaf Farasat
+          - link "Whirling Embers View this piece" [ref=e74] [cursor=pointer]:
+            - /url: /paintings/whirling-embers
+            - img "Whirling Embers" [ref=e75]
+            - generic [ref=e77]: View this piece
+          - heading "Whirling Embers" [level=3] [ref=e80]
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - generic [ref=e83]: Sadaf Farasat
+            - generic [ref=e84]: "2023"
+          - link "Tawhid View this piece" [ref=e85] [cursor=pointer]:
+            - /url: /paintings/tawhid
+            - img "Tawhid" [ref=e86]
+            - generic [ref=e88]: View this piece
+          - generic [ref=e90]:
+            - heading "Tawhid" [level=3] [ref=e91]
+            - paragraph [ref=e92]: Oil on canvas
+  - contentinfo [ref=e93]:
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - heading "Sadaf Farasat" [level=1] [ref=e96]
+        - paragraph [ref=e97]: Bringing contemporary excellence to the forefront of the modern art market.
+      - generic [ref=e98]:
+        - heading "Inquiry" [level=4] [ref=e99]
+        - list [ref=e100]:
+          - listitem [ref=e101]:
+            - img [ref=e102]
+            - generic [ref=e105]: inquiry@sadafart.com
+      - generic [ref=e106]:
+        - heading "Explore" [level=4] [ref=e107]
+        - list [ref=e108]:
+          - listitem [ref=e109]:
+            - link "Catalog" [ref=e110] [cursor=pointer]:
+              - /url: /collections
+          - listitem [ref=e111]:
+            - link "About" [ref=e112] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e113]:
+            - link "Exhibitions" [ref=e114] [cursor=pointer]:
+              - /url: /exhibitions
+      - generic [ref=e115]:
+        - heading "Social" [level=4] [ref=e116]
+        - link [ref=e118] [cursor=pointer]:
+          - /url: mailto:inquiry@sadafart.com
+          - img [ref=e119]
+    - generic [ref=e122]:
+      - paragraph [ref=e123]: © 2024 Sadaf. All rights reserved.
+      - generic [ref=e124]:
+        - link "Privacy Policy" [ref=e125] [cursor=pointer]:
+          - /url: /privacy
+        - link "Terms of Service" [ref=e126] [cursor=pointer]:
+          - /url: /terms

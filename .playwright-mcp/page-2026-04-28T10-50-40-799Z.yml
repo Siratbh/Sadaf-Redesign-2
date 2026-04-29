@@ -1,0 +1,139 @@
+- generic [ref=e2]:
+  - generic:
+    - generic: arrow_forward
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "Catalog" [ref=e6] [cursor=pointer]:
+          - /url: /collections
+        - link "About" [ref=e7] [cursor=pointer]:
+          - /url: /about
+        - link "Collectors Edit" [ref=e8] [cursor=pointer]:
+          - /url: /collectors-edit
+        - link "Exhibitions" [ref=e9] [cursor=pointer]:
+          - /url: /exhibitions
+      - link "Sadaf Farasat" [ref=e11] [cursor=pointer]:
+        - /url: /
+      - link "Contact" [ref=e14] [cursor=pointer]:
+        - /url: /contact
+  - generic [ref=e16]:
+    - link "← Collections" [ref=e18] [cursor=pointer]:
+      - /url: /collections
+    - generic [ref=e21]:
+      - img "Noor In The Void" [ref=e24]
+      - generic [ref=e25]:
+        - generic [ref=e26]: nocturnal studies
+        - generic [ref=e27]:
+          - heading "Noor In The Void" [level=1] [ref=e28]
+          - paragraph [ref=e29]: "2024"
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - generic [ref=e32]: Medium
+            - generic [ref=e33]: Oil on Canvas
+          - generic [ref=e34]:
+            - generic [ref=e35]: Dimensions
+            - generic [ref=e36]: 90 × 120 cm
+          - generic [ref=e37]:
+            - generic [ref=e38]: Year
+            - generic [ref=e39]: "2024"
+          - generic [ref=e40]:
+            - generic [ref=e41]: Availability
+            - generic [ref=e42]: Available
+        - paragraph [ref=e44]: A meditation on the quality of sound in darkness — the way silence itself becomes audible when the world has stilled.
+    - generic [ref=e46]:
+      - heading "Artist's Note" [level=2] [ref=e48]
+      - generic [ref=e49]: Painted over six weeks in the late autumn, this work emerged from a series of nocturnal observations. The dominant deep blues and near-blacks are warmed by traces of amber — moments of artificial light glimpsed through the composition. The surface carries the memory of earlier layers, colours that were painted over but continue to resonate from beneath.
+    - generic [ref=e51]:
+      - heading "Inquire About This Piece" [level=2] [ref=e53]
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e56]: Name
+          - textbox [ref=e57]
+        - generic [ref=e58]:
+          - generic [ref=e59]: Phone
+          - textbox [ref=e60]
+        - generic [ref=e61]:
+          - generic [ref=e62]: Email
+          - textbox [ref=e63]
+        - button "Submit Inquiry" [ref=e64] [cursor=pointer]
+    - generic [ref=e66]:
+      - heading "You may also like" [level=2] [ref=e68]
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - generic [ref=e72]: Sadaf Farasat
+            - generic [ref=e73]: "2023"
+          - link "Mystics Orbit View this piece" [ref=e74] [cursor=pointer]:
+            - /url: /paintings/architectural-void
+            - img "Mystics Orbit" [ref=e75]
+            - generic [ref=e77]: View this piece
+          - generic [ref=e79]:
+            - heading "Mystics Orbit" [level=3] [ref=e80]
+            - paragraph [ref=e81]: Mixed Media
+        - generic [ref=e82]:
+          - generic [ref=e84]: Sadaf Farasat
+          - link "Enveloped In Grace View this piece" [ref=e85] [cursor=pointer]:
+            - /url: /paintings/enveloped-in-grace
+            - img "Enveloped In Grace" [ref=e86]
+            - generic [ref=e88]: View this piece
+          - heading "Enveloped In Grace" [level=3] [ref=e91]
+        - generic [ref=e92]:
+          - generic [ref=e94]: Sadaf Farasat
+          - link "Rains Of The Beloved View this piece" [ref=e95] [cursor=pointer]:
+            - /url: /paintings/rains-of-the-beloved
+            - img "Rains Of The Beloved" [ref=e96]
+            - generic [ref=e98]: View this piece
+          - heading "Rains Of The Beloved" [level=3] [ref=e101]
+        - generic [ref=e102]:
+          - generic [ref=e104]: Sadaf Farasat
+          - link "Whirling Embers View this piece" [ref=e105] [cursor=pointer]:
+            - /url: /paintings/whirling-embers
+            - img "Whirling Embers" [ref=e106]
+            - generic [ref=e108]: View this piece
+          - heading "Whirling Embers" [level=3] [ref=e111]
+        - generic [ref=e112]:
+          - generic [ref=e113]:
+            - generic [ref=e114]: Sadaf Farasat
+            - generic [ref=e115]: "2023"
+          - link "Tawhid View this piece" [ref=e116] [cursor=pointer]:
+            - /url: /paintings/tawhid
+            - img "Tawhid" [ref=e117]
+            - generic [ref=e119]: View this piece
+          - generic [ref=e121]:
+            - heading "Tawhid" [level=3] [ref=e122]
+            - paragraph [ref=e123]: Oil on canvas
+  - contentinfo [ref=e124]:
+    - generic [ref=e125]:
+      - generic [ref=e126]:
+        - heading "Sadaf Farasat" [level=1] [ref=e127]
+        - paragraph [ref=e128]: Bringing contemporary excellence to the forefront of the modern art market.
+      - generic [ref=e129]:
+        - heading "Inquiry" [level=4] [ref=e130]
+        - list [ref=e131]:
+          - listitem [ref=e132]:
+            - img [ref=e133]
+            - generic [ref=e136]: inquiry@sadafart.com
+      - generic [ref=e137]:
+        - heading "Explore" [level=4] [ref=e138]
+        - list [ref=e139]:
+          - listitem [ref=e140]:
+            - link "Catalog" [ref=e141] [cursor=pointer]:
+              - /url: /collections
+          - listitem [ref=e142]:
+            - link "About" [ref=e143] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e144]:
+            - link "Exhibitions" [ref=e145] [cursor=pointer]:
+              - /url: /exhibitions
+      - generic [ref=e146]:
+        - heading "Social" [level=4] [ref=e147]
+        - link [ref=e149] [cursor=pointer]:
+          - /url: mailto:inquiry@sadafart.com
+          - img [ref=e150]
+    - generic [ref=e153]:
+      - paragraph [ref=e154]: © 2024 Sadaf. All rights reserved.
+      - generic [ref=e155]:
+        - link "Privacy Policy" [ref=e156] [cursor=pointer]:
+          - /url: /privacy
+        - link "Terms of Service" [ref=e157] [cursor=pointer]:
+          - /url: /terms

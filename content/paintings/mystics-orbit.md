@@ -1,7 +1,6 @@
 ---
 title: Mystics Orbit
 slug: mystics-orbit
-collection: luminous-interiors
 year: "2023"
 medium: Mixed Media
 dimensions: 60 × 80 cm
