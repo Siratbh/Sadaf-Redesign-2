@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import CustomCursor from './components/CustomCursor'
 import HomeV4 from './pages/HomeV4'
 import Collections from './pages/Collections'
 
@@ -32,7 +31,6 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
       <Nav />
       <div id="page-transition-wrapper">
         <Routes>

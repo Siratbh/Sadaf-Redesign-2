@@ -72,7 +72,7 @@ export default function Contact() {
               <span className={labelClass}>Email</span>
               <a
                 href={`mailto:${contactData.email}`}
-                className="font-body text-base text-dark-text border-b border-stone-300 pb-1 hover:border-dark-text transition-colors cursor-none"
+                className="font-body text-base text-dark-text border-b border-stone-300 pb-1 hover:border-dark-text transition-colors"
               >
                 {contactData.email}
               </a>
@@ -84,7 +84,7 @@ export default function Contact() {
                   href={siteSettings.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body text-base text-dark-text border-b border-stone-300 pb-1 hover:border-dark-text transition-colors cursor-none"
+                  className="font-body text-base text-dark-text border-b border-stone-300 pb-1 hover:border-dark-text transition-colors"
                 >
                   @sadaf
                 </a>
@@ -129,7 +129,7 @@ export default function Contact() {
 
                 <div>
                   <label className={labelClass}>Reason</label>
-                  <select className={`${inputClass} cursor-none`} value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))}>
+                  <select className={`${inputClass}`} value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))}>
                     <option value="">General inquiry</option>
                     <option value="availability">Availability of a work</option>
                     <option value="private-viewing">Private viewing</option>
@@ -153,7 +153,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="self-start bg-dark-text text-white px-12 py-4 font-label text-[10px] uppercase tracking-[0.3em] hover:bg-black transition-colors cursor-none disabled:opacity-50"
+                  className="self-start bg-dark-text text-white px-12 py-4 font-label text-[10px] uppercase tracking-[0.3em] hover:bg-black transition-colors disabled:opacity-50"
                 >
                   {status === 'submitting' ? 'Sending…' : 'Send Message'}
                 </button>

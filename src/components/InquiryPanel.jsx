@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import siteSettings from '../../content/settings/site.json'
 
 export default function InquiryPanel({ isOpen, onClose, paintingTitle }) {
   const [form, setForm] = useState({ name: '', email: '', message: '', reason: '' })
@@ -61,7 +60,7 @@ export default function InquiryPanel({ isOpen, onClose, paintingTitle }) {
             )}
           </div>
           <button
-            className="font-label text-[10px] uppercase tracking-widest text-stone-500 hover:text-white transition-colors cursor-none"
+            className="font-label text-[10px] uppercase tracking-widest text-stone-500 hover:text-white transition-colors"
             onClick={onClose}
           >
             Close
@@ -110,7 +109,7 @@ export default function InquiryPanel({ isOpen, onClose, paintingTitle }) {
               <div>
                 <label className={labelClass}>Reason</label>
                 <select
-                  className={`${inputClass} cursor-none`}
+                  className={`${inputClass}`}
                   value={form.reason}
                   onChange={e => setForm(f => ({ ...f, reason: e.target.value }))}
                 >
@@ -142,7 +141,7 @@ export default function InquiryPanel({ isOpen, onClose, paintingTitle }) {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="mt-auto w-full bg-white text-black py-4 font-label text-xs uppercase tracking-[0.2em] hover:bg-stone-200 transition-colors cursor-none disabled:opacity-50"
+              className="mt-auto w-full bg-white text-black py-4 font-label text-xs uppercase tracking-[0.2em] hover:bg-stone-200 transition-colors disabled:opacity-50"
             >
               {status === 'submitting' ? 'Sending\u2026' : 'Submit Inquiry'}
             </button>

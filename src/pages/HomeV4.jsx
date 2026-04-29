@@ -110,8 +110,6 @@ export default function HomeV4() {
   const paintings = getPaintings();
   const exhibitions = getExhibitions();
   const collectors = getCollectors();
-  const collectorsPage = getPage('collectors-edit');
-  const collectorsIntro = collectorsPage?.intro || '';
   const homeArtist = getPage('home-artist') || {};
   const aboutPage = getPage('about') || {};
   const artistImage = "/images/Sadaf Portrait.png";
@@ -271,27 +269,6 @@ export default function HomeV4() {
 
       {/* ── Collectors Edit Section ────────────────────────────── */}
       <section id="collectors" className="py-20 bg-brand-bg md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="font-serif text-3xl md:text-5xl text-brand-ink tracking-tight mb-4"
-          >
-            The Collectors Edit
-          </Motion.h2>
-
-          <Motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-brand-muted max-w-xl text-base md:text-lg mb-12 leading-relaxed"
-          >
-            {collectorsIntro}
-          </Motion.p>
-        </div>
 
         {collectors.length > 0 ? (
           <>
