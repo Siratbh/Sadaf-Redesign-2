@@ -51,17 +51,6 @@ export default function Collections() {
                   viewport={{ once: true }}
                   className="group relative flex flex-col"
                 >
-                  <div className="mb-2 flex items-center justify-between gap-3 sm:mb-3 sm:gap-4">
-                    <span className="text-[9px] uppercase tracking-[0.18em] font-semibold text-brand-muted sm:text-[10px] sm:tracking-[0.2em]">
-                      Sadaf Farasat
-                    </span>
-                    {painting.year && (
-                      <span className="text-[9px] uppercase tracking-[0.18em] font-semibold text-brand-muted sm:text-[10px] sm:tracking-[0.2em]">
-                        {painting.year}
-                      </span>
-                    )}
-                  </div>
-
                   <Link to={`/paintings/${painting.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
                     {painting.thumbnail_image || painting.featured_image ? (
                       <img
@@ -85,18 +74,10 @@ export default function Collections() {
                     </div>
                   </Link>
 
-                  <div className="mt-3 flex items-start justify-between gap-3 sm:mt-4 sm:gap-4">
-                    <div className="min-w-0">
-                      <h3 className="text-[15px] font-serif leading-tight text-brand-ink sm:text-xl">{painting.title}</h3>
-                      {painting.medium && (
-                        <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-brand-muted sm:text-xs sm:tracking-[0.18em]">
-                          {painting.medium}
-                        </p>
-                      )}
-                    </div>
+                  <div className="mt-4 flex justify-center">
                     <Link
                       to={`/paintings/${painting.slug}`}
-                      className="shrink-0 text-[9px] uppercase tracking-[0.16em] font-semibold text-brand-ink border-b border-brand-ink pb-1 sm:hidden"
+                      className="text-[10px] uppercase tracking-[0.2em] font-semibold text-brand-ink border-b border-brand-ink pb-1 hover:text-brand-accent hover:border-brand-accent transition-colors duration-300"
                     >
                       View
                     </Link>
