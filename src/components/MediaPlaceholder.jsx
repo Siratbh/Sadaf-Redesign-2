@@ -1,7 +1,7 @@
-export default function MediaPlaceholder({ aspect = "square", text = "Image forthcoming" }) {
+export default function MediaPlaceholder({ text = "Image forthcoming" }) {
   // Uses a beautiful abstract Unsplash image as a default placeholder
   return (
-    <div className={`w-full h-full relative overflow-hidden bg-stone-200 flex items-center justify-center`}>
+    <div className={`w-full h-full relative overflow-hidden bg-transparent flex items-center justify-center`}>
       <img 
         src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80" 
         alt="Placeholder"

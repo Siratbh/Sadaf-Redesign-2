@@ -131,7 +131,7 @@ export default function About() {
                         data-sb-field-path="portrait_image"
                       />
                     ) : (
-                      <div className="aspect-[3/4] bg-gray-100">
+                      <div className="aspect-[3/4] bg-transparent">
                         <MediaPlaceholder text="Portrait forthcoming" />
                       </div>
                     )}

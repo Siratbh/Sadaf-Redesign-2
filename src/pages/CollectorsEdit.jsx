@@ -6,15 +6,14 @@ import { getCollectors, getPage } from '../lib/content'
 import SEOHead from '../components/SEOHead'
 
 function Lightbox({ items, index, onClose, onPrev, onNext }) {
-  const item = items[index]
-  if (!item) return null
-
   useEffect(() => {
+    if (!items[index]) return
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
-  }, [])
+  }, [items, index])
 
   useEffect(() => {
+    if (!items[index]) return
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowLeft') onPrev()
@@ -22,7 +21,10 @@ function Lightbox({ items, index, onClose, onPrev, onNext }) {
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [onClose, onPrev, onNext])
+  }, [onClose, onPrev, onNext, items, index])
+
+  const item = items[index]
+  if (!item) return null
 
   return (
     <Motion.div
@@ -161,7 +163,7 @@ export default function CollectorsEdit() {
                   className="break-inside-avoid cursor-pointer group"
                   onClick={() => openLightbox(idx)}
                 >
-                  <div className="relative overflow-hidden bg-brand-muted/10">
+                  <div className="relative overflow-hidden bg-transparent">
                     <img
                       src={item.image}
                       alt={item.title}

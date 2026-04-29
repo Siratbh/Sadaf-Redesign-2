@@ -295,7 +295,7 @@ export default function PaintingDetail() {
                       )}
                     </div>
 
-                    <Link to={`/paintings/${art.slug}`} className="relative aspect-[4/5] overflow-hidden bg-gray-100">
+                    <Link to={`/paintings/${art.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
                       {art.thumbnail_image || art.featured_image ? (
                         <img
                           src={art.thumbnail_image || art.featured_image}

@@ -85,7 +85,7 @@ const GalleryItem = ({ art }) => {
         )}
       </div>
 
-      <Link to={`/paintings/${art.slug}`} className="relative aspect-[4/5] overflow-hidden bg-gray-100">
+      <Link to={`/paintings/${art.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
         <img
           src={image}
           alt={art.title}
@@ -167,7 +167,7 @@ export default function HomeV4() {
 
       {/* Hover reveal for exhibitions */}
       <div ref={revealRef} className="fixed w-[300px] h-[400px] top-0 left-0 pointer-events-none z-[250] opacity-0 overflow-hidden" style={{ transform: 'scale(0.8)' }}>
-        <div ref={revealInnerRef} className="w-full h-full bg-cover bg-center bg-stone-200" />
+        <div ref={revealInnerRef} className="w-full h-full bg-cover bg-center bg-transparent" />
       </div>
 
       {/* Hero Section */}
@@ -323,11 +323,11 @@ export default function HomeV4() {
                   key={item.slug}
                   className="flex-shrink-0 w-[85vw] max-w-lg snap-center"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-brand-muted/10">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-transparent">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-contain p-4 sm:p-6"
+                      className="w-full h-full object-cover"
                       loading="lazy"
                     />
                   </div>

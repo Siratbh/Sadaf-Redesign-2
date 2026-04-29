@@ -62,7 +62,7 @@ export default function Collections() {
                     )}
                   </div>
 
-                  <Link to={`/paintings/${painting.slug}`} className="relative aspect-[4/5] overflow-hidden bg-gray-100">
+                  <Link to={`/paintings/${painting.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
                     {painting.thumbnail_image || painting.featured_image ? (
                       <img
                         src={painting.thumbnail_image || painting.featured_image}

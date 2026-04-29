@@ -86,7 +86,7 @@ export default function Exhibitions() {
 
       {/* Hover reveal */}
       <div ref={revealRef} className="fixed w-[300px] h-[400px] top-0 left-0 pointer-events-none z-[250] opacity-0 overflow-hidden" style={{ transform: 'scale(0.8)' }}>
-        <div ref={revealInnerRef} className="w-full h-full bg-cover bg-center bg-stone-200" />
+        <div ref={revealInnerRef} className="w-full h-full bg-cover bg-center bg-transparent" />
       </div>
 
       {/* Hero Section */}
