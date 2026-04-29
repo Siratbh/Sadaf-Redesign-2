@@ -367,9 +367,9 @@ export default function HomeV4() {
 
           <div className="divide-y divide-gray-100">
             {exhibitions.slice(0, 5).map((ex, i) => (
-              <Motion.div 
+              <Link 
                 key={i}
-                whileHover={{ x: 10 }}
+                to="/exhibitions"
                 className="group py-8 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 cursor-pointer md:py-12"
                 onMouseEnter={() => handleEnter(ex.image)}
               >
@@ -379,12 +379,12 @@ export default function HomeV4() {
                 </div>
                 <div className="text-right flex flex-col items-start md:items-end">
                   <span className="text-brand-ink font-medium tracking-tight mb-2">{ex.year}</span>
-                    <Link to="/exhibitions" className="text-[10px] uppercase font-bold tracking-[0.2em] flex items-center space-x-2 transition-transform md:group-hover:translate-x-2">
+                    <div className="text-[10px] uppercase font-bold tracking-[0.2em] flex items-center space-x-2 transition-transform md:group-hover:translate-x-2">
                       <span>View Archive</span>
                       <ArrowRight size={12} />
-                    </Link>
+                    </div>
                   </div>
-                </Motion.div>
+                </Link>
               ))}
           </div>
 

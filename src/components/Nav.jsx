@@ -9,10 +9,10 @@ export default function Nav() {
   const isHome = location.pathname === '/';
 
   const navItems = [
-    { label: 'Catalog', href: isHome ? '#gallery' : '/collections' },
-    { label: 'About', href: isHome ? '#about' : '/about' },
-    { label: 'Collectors Edit', href: isHome ? '#collectors' : '/collectors-edit' },
-    { label: 'Exhibitions', href: isHome ? '#exhibitions' : '/exhibitions' },
+    { label: 'Collections', href: '/collections' },
+    { label: 'About', href: '/about' },
+    { label: 'Collectors Edit', href: '/collectors-edit' },
+    { label: 'Exhibitions', href: '/exhibitions' },
   ];
 
   return (
@@ -20,15 +20,9 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto flex h-16 items-center justify-between gap-3 px-4 sm:h-20 sm:px-6">
         <div className="hidden flex-1 items-center space-x-8 text-[11px] font-medium uppercase tracking-widest text-brand-muted md:flex">
           {navItems.map((item) => (
-            isHome && item.href.startsWith('#') ? (
-              <a key={item.label} href={item.href} className="transition-colors hover:text-brand-ink">
-                {item.label}
-              </a>
-            ) : (
-              <Link key={item.label} to={item.href} className="transition-colors hover:text-brand-ink">
-                {item.label}
-              </Link>
-            )
+            <Link key={item.label} to={item.href} className="transition-colors hover:text-brand-ink">
+              {item.label}
+            </Link>
           ))}
         </div>
 
@@ -65,15 +59,9 @@ export default function Nav() {
           >
             <div className="flex flex-col space-y-4 p-6 text-[11px] font-medium uppercase tracking-widest">
               {navItems.map((item) => (
-                isHome && item.href.startsWith('#') ? (
-                  <a key={item.label} href={item.href} onClick={() => setIsOpen(false)}>
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link key={item.label} to={item.href} onClick={() => setIsOpen(false)}>
-                    {item.label}
-                  </Link>
-                )
+                <Link key={item.label} to={item.href} onClick={() => setIsOpen(false)}>
+                  {item.label}
+                </Link>
               ))}
               <Link to="/contact" onClick={() => setIsOpen(false)}>
                 Contact

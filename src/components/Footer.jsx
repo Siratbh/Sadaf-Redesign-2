@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="col-span-1">
            <h4 className="uppercase tracking-widest font-bold text-[11px] mb-6">Explore</h4>
            <ul className="space-y-4 text-brand-muted uppercase tracking-widest text-[11px] font-medium">
-             <li><Link to="/collections" className="hover:text-brand-ink transition-colors">Catalog</Link></li>
+             <li><Link to="/collections" className="hover:text-brand-ink transition-colors">Collections</Link></li>
              <li><Link to="/about" className="hover:text-brand-ink transition-colors">About</Link></li>
              <li><Link to="/exhibitions" className="hover:text-brand-ink transition-colors">Exhibitions</Link></li>
            </ul>

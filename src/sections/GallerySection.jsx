@@ -85,7 +85,7 @@ export default function GallerySection({ artworks }) {
             to="/collections" 
             className="inline-flex items-center text-on-surface border-b border-outline-variant pb-1 text-sm tracking-widest uppercase hover:border-on-surface transition-colors"
           >
-            View Catalogue
+            View Collections
             <span className="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
           </Link>
         </div>
