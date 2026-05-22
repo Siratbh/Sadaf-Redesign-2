@@ -2,7 +2,7 @@ import { motion as Motion, AnimatePresence } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { getPaintings, getAvailablePaintings, getExhibitions, getPage, getCollectors } from '../lib/content';
+import { getPaintings, getAvailablePaintings, getPastPaintings, getExhibitions, getPage, getCollectors } from '../lib/content';
 import { gsap } from 'gsap';
 import SEOHead from '../components/SEOHead';
 
@@ -61,10 +61,12 @@ const splitParagraphs = (value = '') =>
     .map((paragraph) => paragraph.trim())
     .filter(Boolean);
 
-const GalleryItem = ({ art }) => {
+const GalleryItem = ({ art, showStatus = false }) => {
   const image = art.thumbnail_image || art.featured_image;
 
   if (!image) return null;
+
+  const statusLabel = art.availability === 'sold' ? 'In Private Collection' : 'Not for Sale';
 
   return (
     <Motion.div
@@ -79,6 +81,11 @@ const GalleryItem = ({ art }) => {
           alt={art.title}
           className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-110"
         />
+        {showStatus && (
+          <span className="absolute top-3 left-3 bg-white/90 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-brand-muted">
+            {statusLabel}
+          </span>
+        )}
         <div className="absolute inset-0 hidden bg-black/0 transition-colors sm:flex group-hover:bg-black/20 items-center justify-center">
           <Motion.span
             initial={{ opacity: 0, scale: 0.9 }}
@@ -109,6 +116,7 @@ export default function HomeV4() {
 
   const paintings = getPaintings();
   const availablePaintings = getAvailablePaintings();
+  const pastPaintings = getPastPaintings();
   const exhibitions = getExhibitions();
   const collectors = getCollectors();
   const homeArtist = getPage('home-artist') || {};
@@ -268,6 +276,39 @@ export default function HomeV4() {
                 </div>
               </div>
           </div>
+        </div>
+      </section>
+
+      {/* Past Works Section */}
+      <section id="past-works" className="py-16 bg-white md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
+            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">Past Works</h2>
+            <p className="mt-3 text-brand-muted text-[11px] uppercase tracking-[0.2em] font-semibold sm:mt-4">
+              An archive of works now in private collections
+            </p>
+          </div>
+
+          {pastPaintings.length === 0 ? (
+            <p className="text-brand-muted text-sm font-light italic">Coming soon.</p>
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-14">
+                {pastPaintings.slice(0, 6).map((art) => (
+                  <div key={art.slug}>
+                    <GalleryItem art={art} showStatus />
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 flex justify-center md:mt-20">
+                <Link to="/past-works" className="group flex w-full items-center justify-center space-x-3 border border-brand-ink px-6 py-4 text-center hover:bg-brand-ink hover:text-brand-bg transition-all duration-300 sm:w-auto sm:px-8">
+                  <span className="text-[12px] uppercase tracking-[0.2em] font-semibold">Browse all past works</span>
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </section>
 
