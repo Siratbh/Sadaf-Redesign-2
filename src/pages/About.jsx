@@ -226,8 +226,8 @@ export default function About() {
               </Link>
 
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
-                <Link to="/collections" className="border-b border-brand-ink pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-ink">
-                  Explore collections
+                <Link to="/available" className="border-b border-brand-ink pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-ink">
+                  View available works
                 </Link>
                 <Link to="/exhibitions" className="border-b border-brand-ink pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-ink">
                   View exhibitions

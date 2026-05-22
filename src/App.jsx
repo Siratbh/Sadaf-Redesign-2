@@ -1,9 +1,10 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import HomeV4 from './pages/HomeV4'
-import Collections from './pages/Collections'
+import Available from './pages/Available'
+import PastWorks from './pages/PastWorks'
 
 import PaintingDetail from './pages/PaintingDetail'
 import About from './pages/About'
@@ -35,7 +36,9 @@ export default function App() {
       <div id="page-transition-wrapper">
         <Routes>
           <Route path="/" element={<HomeV4 />} />
-          <Route path="/collections" element={<Collections />} />
+          <Route path="/available" element={<Available />} />
+          <Route path="/past-works" element={<PastWorks />} />
+          <Route path="/collections" element={<Navigate to="/available" replace />} />
 
           <Route path="/paintings/:slug" element={<PaintingDetail />} />
           <Route path="/about" element={<About />} />

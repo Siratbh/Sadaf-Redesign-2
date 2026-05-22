@@ -2,7 +2,7 @@ import { motion as Motion, AnimatePresence } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { getPaintings, getExhibitions, getPage, getCollectors } from '../lib/content';
+import { getPaintings, getAvailablePaintings, getExhibitions, getPage, getCollectors } from '../lib/content';
 import { gsap } from 'gsap';
 import SEOHead from '../components/SEOHead';
 
@@ -108,6 +108,7 @@ export default function HomeV4() {
   const revealInnerRef = useRef(null);
 
   const paintings = getPaintings();
+  const availablePaintings = getAvailablePaintings();
   const exhibitions = getExhibitions();
   const collectors = getCollectors();
   const homeArtist = getPage('home-artist') || {};
@@ -191,21 +192,24 @@ export default function HomeV4() {
       <section id="gallery" className="py-16 bg-white md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
-            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">Collections</h2>
+            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">Available Works</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-14">
-            {paintings.map((art) => (
+            {availablePaintings.map((art) => (
               <div key={art.slug}>
                 <GalleryItem art={art} />
               </div>
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center md:mt-20">
-            <Link to="/collections" className="group flex w-full items-center justify-center space-x-3 border border-brand-ink px-6 py-4 text-center hover:bg-brand-ink hover:text-brand-bg transition-all duration-300 sm:w-auto sm:px-8">
-              <span className="text-[12px] uppercase tracking-[0.2em] font-semibold">Explore all collections</span>
+          <div className="mt-12 flex flex-col items-center gap-6 md:mt-20">
+            <Link to="/available" className="group flex w-full items-center justify-center space-x-3 border border-brand-ink px-6 py-4 text-center hover:bg-brand-ink hover:text-brand-bg transition-all duration-300 sm:w-auto sm:px-8">
+              <span className="text-[12px] uppercase tracking-[0.2em] font-semibold">View available works</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link to="/past-works" className="text-brand-muted text-[11px] uppercase tracking-[0.2em] font-semibold border-b border-brand-muted pb-1 hover:text-brand-ink hover:border-brand-ink transition-colors">
+              Browse past works →
             </Link>
           </div>
         </div>

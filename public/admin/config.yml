@@ -7,21 +7,25 @@ public_folder: /images
 
 collections:
   - name: "paintings"
-    label: "Paintings"
+    label: "Available Paintings"
+    label_singular: "Available Painting"
     folder: "content/paintings"
     create: true
     slug: "{{slug}}"
     identifier_field: slug
+    filter:
+      field: availability
+      value: available
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. nocturnal-whispers" }
-      - { label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "slug", display_fields: ["title"], required: false }
       - { label: "Year", name: "year", widget: "string" }
       - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
       - label: "Availability"
         name: "availability"
         widget: "select"
+        hint: "Change to 'Sold' or 'Not for sale' to move this piece to Past Works."
         options:
           - { label: "Available", value: "available" }
           - { label: "Sold", value: "sold" }
@@ -37,22 +41,40 @@ collections:
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
       - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false }
 
-  - name: "collections"
-    label: "Collections"
-    folder: "content/collections"
-    create: true
+  - name: "past-works"
+    label: "Past Works"
+    label_singular: "Past Work"
+    folder: "content/paintings"
+    create: false
     slug: "{{slug}}"
     identifier_field: slug
+    filter:
+      field: availability
+      pattern: "sold|nfs"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. luminous-interiors" }
-      - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
-      - { label: "Intro Text", name: "intro", widget: "text", required: false }
-      - { label: "Series Note / Manifesto", name: "series_note", widget: "text", required: false }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. nocturnal-whispers" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Medium", name: "medium", widget: "string" }
+      - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
+      - label: "Availability"
+        name: "availability"
+        widget: "select"
+        hint: "Change to 'Available' to move this piece back to Available Paintings."
+        options:
+          - { label: "Available", value: "available" }
+          - { label: "Sold", value: "sold" }
+          - { label: "Not for sale", value: "nfs" }
+        default: "sold"
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
+      - { label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false }
+      - { label: "Short Description", name: "short_description", widget: "text", required: false }
+      - { label: "Full Description", name: "full_description", widget: "markdown", required: false }
+      - { label: "Inquiry Subject Line", name: "inquiry_subject", widget: "string", required: false }
       - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
       - { label: "SEO Description", name: "seo_description", widget: "string", required: false }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+      - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false }
 
   - name: "exhibitions"
     label: "Exhibitions"

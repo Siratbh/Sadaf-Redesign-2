@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion as Motion } from 'motion/react'
 import SEOHead from '../components/SEOHead'
-import { getPainting, getPaintings } from '../lib/content'
+import { getPainting, getAvailablePaintings } from '../lib/content'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 
 export default function PaintingDetail() {
@@ -11,14 +11,14 @@ export default function PaintingDetail() {
   const [formStatus, setFormStatus] = useState('idle')
 
   let painting = null
-  let allPaintings = []
+  let availablePaintings = []
 
   try {
     painting = getPainting(slug)
-    allPaintings = getPaintings()
+    availablePaintings = getAvailablePaintings()
   } catch {
     painting = null
-    allPaintings = []
+    availablePaintings = []
   }
 
   const handleFormSubmit = async (e) => {
@@ -53,25 +53,21 @@ export default function PaintingDetail() {
       <div className="min-h-screen flex items-center justify-center bg-brand-bg text-brand-ink px-4">
         <div className="text-center">
           <h1 className="text-4xl font-serif italic mb-4">Work not found.</h1>
-          <Link to="/collections" className="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-brand-ink pb-1 text-brand-ink">
-            ← Browse Collections
+          <Link to="/available" className="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-brand-ink pb-1 text-brand-ink">
+            ← Browse Available Works
           </Link>
         </div>
       </div>
     )
   }
 
-  const relatedPaintings = (() => {
-    const others = allPaintings.filter((p) => p.slug !== painting.slug)
-    const sameCollection = painting.collection
-      ? others.filter((p) => p.collection === painting.collection)
-      : []
-    const differentCollection = others
-      .filter((p) => !painting.collection || p.collection !== painting.collection)
-      .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
+  const isPast = painting.availability && painting.availability !== 'available'
+  const backHref = isPast ? '/past-works' : '/available'
+  const backLabel = isPast ? '← Past Works' : '← Available Works'
 
-    return [...sameCollection, ...differentCollection].slice(0, 6)
-  })()
+  const relatedPaintings = availablePaintings
+    .filter((p) => p.slug !== painting.slug)
+    .slice(0, 6)
 
   const pageDescription = painting.seo_description || painting.short_description || painting.full_description
   const pageImage = painting.featured_image || painting.thumbnail_image
@@ -86,8 +82,8 @@ export default function PaintingDetail() {
 
       <div className="min-h-screen bg-brand-bg text-brand-ink">
         <div className="max-w-7xl mx-auto px-4 pt-28 pb-4 sm:px-6 md:pt-32 md:pb-6">
-          <Link to="/collections" className="text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted hover:text-brand-ink transition-colors">
-            ← Collections
+          <Link to={backHref} className="text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted hover:text-brand-ink transition-colors">
+            {backLabel}
           </Link>
         </div>
 
@@ -115,14 +111,6 @@ export default function PaintingDetail() {
               </Motion.div>
 
               <div className="lg:col-span-5 flex flex-col justify-start pt-0 lg:pt-4">
-                {painting.collection && (
-                  <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted">
-                      {painting.collection.replace(/-/g, ' ')}
-                    </span>
-                  </Motion.div>
-                )}
-
                 <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
                   <h1 className="mt-3 text-4xl font-serif leading-[0.95] tracking-tight text-brand-ink sm:text-5xl md:text-6xl">
                     {painting.title}

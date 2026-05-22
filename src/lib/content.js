@@ -111,6 +111,14 @@ export function getFeaturedPaintings() {
   return getPaintings().filter(p => p.featured)
 }
 
+export function getAvailablePaintings() {
+  return getPaintings().filter(p => p.availability === 'available')
+}
+
+export function getPastPaintings() {
+  return getPaintings().filter(p => p.availability && p.availability !== 'available')
+}
+
 
 
 export function getCollectors() {

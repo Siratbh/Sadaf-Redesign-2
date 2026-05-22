@@ -9,10 +9,11 @@ export default function Nav() {
   const isHome = location.pathname === '/';
 
   const navItems = [
-    { label: 'Collections', href: '/collections' },
-    { label: 'About', href: '/about' },
-    { label: 'Collectors Edit', href: '/collectors-edit' },
+    { label: 'Available Works', href: '/available' },
+    { label: 'Past Works', href: '/past-works' },
     { label: 'Exhibitions', href: '/exhibitions' },
+    { label: 'Collectors Edit', href: '/collectors-edit' },
+    { label: 'About', href: '/about' },
   ];
 
   return (

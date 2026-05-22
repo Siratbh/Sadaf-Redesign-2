@@ -1,46 +1,45 @@
 import { motion as Motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
-import { getPaintings } from '../lib/content'
+import { getAvailablePaintings } from '../lib/content'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 
-export default function Collections() {
+export default function Available() {
   let paintings = []
 
   try {
-    paintings = getPaintings()
+    paintings = getAvailablePaintings()
   } catch {
     paintings = []
   }
 
   return (
     <div className="min-h-screen bg-brand-bg text-brand-ink">
-      <SEOHead title="Collections" description="Explore Sadaf's series of original paintings." />
+      <SEOHead
+        title="Available Works"
+        description="Original paintings by Sadaf currently available for acquisition."
+      />
 
       <section className="border-b border-gray-100 bg-brand-bg pt-28 pb-16 sm:px-6 md:pt-32 md:pb-20">
         <div className="max-w-7xl mx-auto px-4">
           <span className="mb-5 block text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted sm:mb-6">
-            Collections
+            Available Works
           </span>
           <h1 className="mb-6 text-4xl font-serif leading-[0.95] tracking-tight text-brand-ink sm:text-5xl md:text-6xl lg:text-7xl">
-            The Collections
+            Available Works
           </h1>
           <p className="max-w-2xl text-sm font-light leading-relaxed text-brand-muted sm:text-[15px] md:text-base">
-            Explore Sadaf&apos;s original paintings — each piece a meditation on spirituality, abstraction, and the human experience.
+            Original paintings currently available for acquisition. Each piece is a meditation on spirituality, abstraction, and the human experience.
           </p>
         </div>
       </section>
 
       <section className="py-16 bg-white md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
-            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">
-              All Works
-            </h2>
-          </div>
-
           {paintings.length === 0 ? (
-            <p className="text-brand-muted text-sm font-light">No paintings available yet.</p>
+            <p className="text-brand-muted text-sm font-light">
+              No works currently available — please check back soon, or get in touch about commissions.
+            </p>
           ) : (
             <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-14">
               {paintings.map((painting) => (
