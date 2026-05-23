@@ -5,8 +5,8 @@ year: "2023"
 medium: Mixed Media
 dimensions: 60 × 80 cm
 availability: sold
-featured_image: /images/architectural-void.jpeg
-thumbnail_image: /images/architectural-void.jpeg
+featured_image: /images/paintings/architectural-void.jpeg
+thumbnail_image: /images/paintings/architectural-void.jpeg
 short_description: The geometry of absence — what a space reveals when it is
   emptied of everything that once defined it.
 full_description: >-

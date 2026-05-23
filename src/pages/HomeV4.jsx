@@ -121,7 +121,7 @@ export default function HomeV4() {
   const collectors = getCollectors();
   const homeArtist = getPage('home-artist') || {};
   const aboutPage = getPage('about') || {};
-  const artistImage = "/images/Sadaf Portrait.png";
+  const artistImage = "/images/about/Sadaf Portrait.png";
   const heroParagraphs = splitParagraphs(homeArtist.hero_subhead);
   const aboutParagraphs = splitParagraphs(aboutPage.bio_body);
   const aboutPreview = aboutParagraphs.slice(0, 3);

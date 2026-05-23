@@ -1,6 +1,6 @@
 ---
 type: HomeArtistSection
-portrait_image: /images/Sadaf Portrait.png
+portrait_image: /images/about/Sadaf Portrait.png
 bio_intro: Sadaf Farasat
 hero_subhead: |
   Sadaf Farasat is a Lahore-born, Malaysia-based artist with over 17 years of practice and an international exhibition history spanning Dubai, London, Kuala Lumpur, Singapore, New Jersey, and Pakistan.

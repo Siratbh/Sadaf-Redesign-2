@@ -1,5 +1,7 @@
 // Derived data + formatting helpers for the exhibitions pages.
 
+import { getPainting } from './content'
+
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 function toDate(value) {
@@ -32,8 +34,8 @@ export function formatDateRange(start, end, yearFallback) {
 }
 
 // Resolve which image to show on an exhibition's archive-grid card.
-// Tries: card_thumbnail → hero_image → first gallery image (skipping video-only items).
-// Returns null if no image is available anywhere on the exhibition.
+// Tries: card_thumbnail → hero_image → first gallery image → first linked painting's image.
+// Returns null if no image is available anywhere.
 export function cardImage(ex) {
   if (!ex) return null
   if (ex.card_thumbnail) return ex.card_thumbnail
@@ -41,6 +43,14 @@ export function cardImage(ex) {
   if (Array.isArray(ex.gallery)) {
     const firstImg = ex.gallery.find(g => g && g.image)
     if (firstImg) return firstImg.image
+  }
+  if (Array.isArray(ex.works_shown)) {
+    for (const slug of ex.works_shown) {
+      const p = getPainting(slug)
+      if (p && (p.featured_image || p.thumbnail_image)) {
+        return p.featured_image || p.thumbnail_image
+      }
+    }
   }
   return null
 }

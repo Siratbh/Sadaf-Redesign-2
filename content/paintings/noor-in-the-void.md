@@ -5,8 +5,8 @@ year: "2024"
 medium: Oil on Canvas
 dimensions: 90 × 120 cm
 availability: available
-featured_image: /images/image0-1-.jpeg
-thumbnail_image: /images/image0-1-.jpeg
+featured_image: /images/paintings/image0-1-.jpeg
+thumbnail_image: /images/paintings/image0-1-.jpeg
 short_description: A meditation on the quality of sound in darkness — the way
   silence itself becomes audible when the world has stilled.
 full_description: >-

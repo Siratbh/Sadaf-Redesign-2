@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
 import Lightbox from '../components/Lightbox'
-import { getExhibition } from '../lib/content'
+import { getExhibition, getPainting } from '../lib/content'
 import { mediaType, extractYouTubeId, youtubeEmbedUrl, vimeoEmbedUrl } from '../lib/media'
 import { formatDateRange } from '../lib/exhibitions'
 
@@ -315,6 +315,50 @@ export default function ExhibitionDetail() {
                 </Motion.figure>
               )
             })}
+          </section>
+        )}
+
+        {Array.isArray(ex.works_shown) && ex.works_shown.length > 0 && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 md:pb-28">
+            <div className="mb-10 border-b border-gray-100 pb-6 md:mb-12 md:pb-8">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-muted mb-3">Works</p>
+              <h2 className="font-serif italic text-brand-ink text-3xl md:text-4xl lg:text-5xl leading-[1.05]">Works Shown</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-14">
+              {ex.works_shown.map((slug) => {
+                const p = getPainting(slug)
+                if (!p) return null
+                const img = p.featured_image || p.thumbnail_image
+                return (
+                  <Link key={slug} to={`/paintings/${p.slug}`} className="group flex flex-col">
+                    <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
+                      {img ? (
+                        <img
+                          src={img}
+                          alt={p.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-brand-muted text-xs uppercase tracking-[0.2em]">
+                          {p.title}
+                        </div>
+                      )}
+                    </div>
+                    <div className="mt-4">
+                      <h3 className="font-serif italic text-brand-ink text-lg md:text-xl leading-[1.15] group-hover:text-brand-accent transition-colors">
+                        {p.title}
+                      </h3>
+                      {p.year && (
+                        <p className="mt-1.5 text-[10px] uppercase tracking-[0.24em] text-brand-muted">
+                          {p.year}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
           </section>
         )}
 

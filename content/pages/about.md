@@ -1,7 +1,7 @@
 ---
 type: AboutPage
 title: 'About '
-portrait_image: /images/Sadaf Portrait.png
+portrait_image: /images/about/Sadaf Portrait.png
 bio_intro: >-
   Sadaf Farasat is a self-taught artist whose work is deeply rooted in Sufism
   and inspired by the mystical poetry of Rumi.

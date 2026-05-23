@@ -31,8 +31,8 @@ collections:
           - { label: "Sold", value: "sold" }
           - { label: "Not for sale", value: "nfs" }
         default: "available"
-      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
-      - { label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false }
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false, media_folder: "/public/images/paintings", public_folder: "/images/paintings" }
+      - { label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false, media_folder: "/public/images/paintings", public_folder: "/images/paintings" }
       - { label: "Short Description", name: "short_description", widget: "text", required: false }
       - { label: "Full Description", name: "full_description", widget: "markdown", required: false }
       - { label: "Inquiry Subject Line", name: "inquiry_subject", widget: "string", required: false }
@@ -66,8 +66,8 @@ collections:
           - { label: "Sold", value: "sold" }
           - { label: "Not for sale", value: "nfs" }
         default: "sold"
-      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
-      - { label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false }
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false, media_folder: "/public/images/paintings", public_folder: "/images/paintings" }
+      - { label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false, media_folder: "/public/images/paintings", public_folder: "/images/paintings" }
       - { label: "Short Description", name: "short_description", widget: "text", required: false }
       - { label: "Full Description", name: "full_description", widget: "markdown", required: false }
       - { label: "Inquiry Subject Line", name: "inquiry_subject", widget: "string", required: false }
@@ -98,9 +98,9 @@ collections:
           - { label: "Group", value: "Group" }
           - { label: "Residency", value: "Residency" }
           - { label: "Art Fair", value: "Art Fair" }
-      - { label: "Hero Image", name: "hero_image", widget: "image", required: false, hint: "Full-bleed image at the top of the detail page and the default image for featured slots on the listing." }
-      - { label: "Card Thumbnail", name: "card_thumbnail", widget: "image", required: false, hint: "Optional. Image used on the archive grid card. Falls back to Hero Image, then the first Gallery image if blank." }
-      - { label: "Hero Video", name: "hero_video", widget: "file", required: false, hint: "Optional. Upload an MP4 or paste a YouTube / Vimeo / Cloudinary URL. Replaces the Hero Image when set." }
+      - { label: "Hero Image", name: "hero_image", widget: "image", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions", hint: "Full-bleed image at the top of the detail page and the default image for featured slots on the listing." }
+      - { label: "Card Thumbnail", name: "card_thumbnail", widget: "image", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions", hint: "Optional. Image used on the archive grid card. Falls back to Hero Image, then the first Gallery image if blank." }
+      - { label: "Hero Video", name: "hero_video", widget: "file", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions", hint: "Optional. Upload an MP4 or paste a YouTube / Vimeo / Cloudinary URL. Replaces the Hero Image when set." }
       - { label: "Short Description", name: "description", widget: "text", required: false, hint: "Plain text. Shown as a teaser on the listing row." }
       - { label: "Body", name: "body", widget: "markdown", required: false, hint: "Long-form editorial content. Inline images use ![alt](url). Inline videos use the same syntax — paste any MP4, YouTube, Vimeo, or Cloudinary URL and it renders as a video." }
       - label: "Gallery"
@@ -109,9 +109,19 @@ collections:
         required: false
         summary: "{{fields.caption}}"
         fields:
-          - { label: "Image", name: "image", widget: "image", required: false }
-          - { label: "Video", name: "video", widget: "file", required: false, hint: "Upload MP4 or paste YouTube / Vimeo / Cloudinary URL. Replaces Image when set." }
+          - { label: "Image", name: "image", widget: "image", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions" }
+          - { label: "Video", name: "video", widget: "file", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions", hint: "Upload MP4 or paste YouTube / Vimeo / Cloudinary URL. Replaces Image when set." }
           - { label: "Caption", name: "caption", widget: "string", required: false }
+      - label: "Works Shown"
+        name: "works_shown"
+        widget: "relation"
+        collection: "all-paintings-reference"
+        search_fields: ["title", "year"]
+        value_field: "slug"
+        display_fields: ["title", "year"]
+        multiple: true
+        required: false
+        hint: "Pick paintings shown at this exhibition. They appear as a 'Works Shown' grid on the exhibition page, linking to each painting's detail page."
       - { label: "External Link", name: "link", widget: "string", required: false, hint: "Optional press link, gallery page, catalogue PDF." }
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
 
@@ -125,9 +135,24 @@ collections:
       - { label: "Title", name: "title", widget: "string", hint: "Display title, e.g. 'Nocturnal Whispers — Collector's Home'" }
       - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. nocturnal-whispers-collector" }
       - { label: "Painting Title", name: "painting_title", widget: "string", hint: "Name of the painting as shown in the collector's space" }
-      - { label: "Image", name: "image", widget: "image", hint: "Photo of the painting in the collector's home" }
+      - { label: "Image", name: "image", widget: "image", media_folder: "/public/images/collectors", public_folder: "/images/collectors", hint: "Photo of the painting in the collector's home" }
       - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Optional caption displayed below the image" }
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+
+  - name: "all-paintings-reference"
+    label: "All Paintings (reference only)"
+    description: "This collection exists only so 'Works Shown' relations on exhibitions can target any painting regardless of availability. Edit paintings through 'Available Paintings' or 'Past Works'."
+    folder: "content/paintings"
+    create: false
+    identifier_field: slug
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false, media_folder: "/public/images/paintings", public_folder: "/images/paintings" }
+      - { label: "Availability", name: "availability", widget: "string", required: false }
 
   - name: "pages"
     label: "Pages"
@@ -136,7 +161,7 @@ collections:
         name: "about"
         file: "content/pages/about.md"
         fields:
-          - { label: "Portrait Image", name: "portrait_image", widget: "image", required: false }
+          - { label: "Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
           - { label: "Bio Intro", name: "bio_intro", widget: "text" }
           - { label: "Bio Body", name: "bio_body", widget: "markdown" }
           - { label: "Artist Statement", name: "artist_statement", widget: "text", required: false }

@@ -5,8 +5,8 @@ year: "2023"
 medium: Oil on canvas
 dimensions: 12013x120o
 availability: available
-featured_image: /images/1.png
-thumbnail_image: /images/1.png
+featured_image: /images/paintings/1.png
+thumbnail_image: /images/paintings/1.png
 short_description: In the arms of god
 full_description: |
   In the arms of god
