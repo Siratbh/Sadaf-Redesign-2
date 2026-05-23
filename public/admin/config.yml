@@ -81,22 +81,38 @@ collections:
     folder: "content/exhibitions"
     create: true
     slug: "{{year}}-{{slug}}"
+    identifier_field: title
     fields:
       - { label: "Year", name: "year", widget: "string" }
+      - { label: "Start Date", name: "start_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, hint: "Optional. Leave blank to show year only." }
+      - { label: "End Date", name: "end_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false, required: false, hint: "Tick to highlight this exhibition at the top of /exhibitions. Up to two featured exhibitions show as Hero + NEXT; if fewer than two are flagged, the page auto-fills with the most recent exhibitions that have images." }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Venue", name: "venue", widget: "string" }
       - { label: "City", name: "city", widget: "string", required: false }
       - label: "Exhibition Type"
-        name: "type"
+        name: "exhibition_type"
         widget: "select"
         options:
           - { label: "Solo", value: "Solo" }
           - { label: "Group", value: "Group" }
           - { label: "Residency", value: "Residency" }
           - { label: "Art Fair", value: "Art Fair" }
-      - { label: "Thumbnail / Hero Image", name: "image", widget: "image", required: false }
-      - { label: "External Link", name: "link", widget: "string", required: false }
-      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Hero Image", name: "hero_image", widget: "image", required: false, hint: "Full-bleed image at the top of the detail page and the default image for featured slots on the listing." }
+      - { label: "Card Thumbnail", name: "card_thumbnail", widget: "image", required: false, hint: "Optional. Image used on the archive grid card. Falls back to Hero Image, then the first Gallery image if blank." }
+      - { label: "Hero Video", name: "hero_video", widget: "file", required: false, hint: "Optional. Upload an MP4 or paste a YouTube / Vimeo / Cloudinary URL. Replaces the Hero Image when set." }
+      - { label: "Short Description", name: "description", widget: "text", required: false, hint: "Plain text. Shown as a teaser on the listing row." }
+      - { label: "Body", name: "body", widget: "markdown", required: false, hint: "Long-form editorial content. Inline images use ![alt](url). Inline videos use the same syntax — paste any MP4, YouTube, Vimeo, or Cloudinary URL and it renders as a video." }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        summary: "{{fields.caption}}"
+        fields:
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Video", name: "video", widget: "file", required: false, hint: "Upload MP4 or paste YouTube / Vimeo / Cloudinary URL. Replaces Image when set." }
+          - { label: "Caption", name: "caption", widget: "string", required: false }
+      - { label: "External Link", name: "link", widget: "string", required: false, hint: "Optional press link, gallery page, catalogue PDF." }
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
 
   - name: "collectors"

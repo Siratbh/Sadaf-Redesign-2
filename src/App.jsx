@@ -9,6 +9,7 @@ import PastWorks from './pages/PastWorks'
 import PaintingDetail from './pages/PaintingDetail'
 import About from './pages/About'
 import Exhibitions from './pages/Exhibitions'
+import ExhibitionDetail from './pages/ExhibitionDetail'
 import Contact from './pages/Contact'
 import CollectorsEdit from './pages/CollectorsEdit'
 
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/paintings/:slug" element={<PaintingDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
+          <Route path="/exhibitions/:slug" element={<ExhibitionDetail />} />
           <Route path="/collectors-edit" element={<CollectorsEdit />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

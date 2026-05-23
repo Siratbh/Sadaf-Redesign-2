@@ -14,6 +14,74 @@
   }
 }
 
+/* Editorial typography for the exhibition detail markdown body */
+.prose-exhibition {
+  color: #444842;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.prose-exhibition > * + * { margin-top: 1.25em; }
+.prose-exhibition h1,
+.prose-exhibition h2,
+.prose-exhibition h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: #1a1a1a;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.prose-exhibition h1 { font-size: 2.25rem; margin-top: 2em; }
+.prose-exhibition h2 { font-size: 1.75rem; margin-top: 2em; }
+/* h3 is treated as an eyebrow / preheader */
+.prose-exhibition h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: #757575;
+  margin-top: 2.25em;
+  margin-bottom: -0.5em;
+}
+.prose-exhibition p { font-size: 1rem; }
+.prose-exhibition a { color: #1a1a1a; border-bottom: 1px solid #c5c7c0; }
+.prose-exhibition a:hover { border-color: #1a1a1a; }
+.prose-exhibition blockquote {
+  border-left: 2px solid #1a1a1a;
+  padding: 0.25em 0 0.25em 1.25em;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.45;
+  color: #1a1a1a;
+  margin: 2em 0;
+}
+.prose-exhibition ul,
+.prose-exhibition ol { padding-left: 1.25em; }
+.prose-exhibition ul { list-style: disc; }
+.prose-exhibition ol { list-style: decimal; }
+.prose-exhibition li + li { margin-top: 0.4em; }
+.prose-exhibition img {
+  width: 100%;
+  height: auto;
+  margin: 2em 0;
+  cursor: zoom-in;
+}
+.prose-exhibition hr {
+  border: 0;
+  border-top: 1px solid #e5e2e1;
+  margin: 3em auto;
+  width: 60%;
+}
+.prose-exhibition strong { color: #1a1a1a; font-weight: 600; }
+.prose-exhibition em { font-style: italic; }
+@media (min-width: 768px) {
+  .prose-exhibition { font-size: 17px; }
+  .prose-exhibition h1 { font-size: 2.75rem; }
+  .prose-exhibition h2 { font-size: 2.1rem; }
+  .prose-exhibition blockquote { font-size: 1.6rem; }
+}
+
 /* Base custom styles to clean up generic `#root` wrappers if any */
 #root {
   @apply min-h-screen flex flex-col w-full;
