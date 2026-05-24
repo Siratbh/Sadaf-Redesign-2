@@ -372,6 +372,16 @@ export default function HomeV4() {
 
       {/* ── Collectors Edit Section ────────────────────────────── */}
       <section id="collectors" className="py-20 bg-brand-bg md:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
+            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl" data-sb-field-path="collectors_title">
+              {home.collectors_title || 'Collectors Edit'}
+            </h2>
+            <p className="mt-3 text-brand-muted text-[11px] uppercase tracking-[0.2em] font-semibold sm:mt-4" data-sb-field-path="collectors_subhead">
+              {home.collectors_subhead || 'A glimpse of these works in the homes of their collectors'}
+            </p>
+          </div>
+        </div>
 
         {visibleCollectors.length > 0 ? (
           <>

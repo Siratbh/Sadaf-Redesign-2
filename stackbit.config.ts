@@ -168,6 +168,8 @@ export default defineStackbitConfig({
             { name: 'past_works_cta', type: 'string', group: 'Past Works' },
 
             // Collectors
+            { name: 'collectors_title', type: 'string', group: 'Collectors', description: 'Section heading (e.g. "Collectors Edit").' },
+            { name: 'collectors_subhead', type: 'string', group: 'Collectors', description: 'Small subheading under the section heading.' },
             { name: 'collectors_cta', type: 'string', group: 'Collectors', description: 'Button label below the collectors carousel.' },
 
             // Exhibitions

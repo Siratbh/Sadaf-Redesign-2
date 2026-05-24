@@ -11,6 +11,8 @@ about_cta: Read Full Biography
 past_works_title: Past Works
 past_works_subhead: An archive of works now in private collections
 past_works_cta: Browse all past works
+collectors_title: Collectors Edit
+collectors_subhead: A glimpse of these works in the homes of their collectors
 collectors_cta: View All
 exhibitions_title: Past Exhibitions
 exhibitions_subhead: A complete archive of solo and group exhibitions

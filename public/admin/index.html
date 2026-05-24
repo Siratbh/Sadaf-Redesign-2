@@ -366,6 +366,10 @@
 
           /* ── Collectors ───────────────────────────────── */
           h('section', { className: 'home-preview-section' },
+            h('div', { className: 'home-preview-section-header' },
+              h('h2', { className: 'home-preview-section-title' }, blank(g('collectors_title'), 'Section title')),
+              h('p', { className: 'home-preview-section-subhead' }, blank(g('collectors_subhead'), 'Section subhead'))
+            ),
             h('div', { className: 'home-preview-carousel-placeholder' },
               h('span', { className: 'home-preview-tile-hint' }, 'Collector cards scroll horizontally here')
             ),

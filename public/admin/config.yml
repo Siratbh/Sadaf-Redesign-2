@@ -176,6 +176,8 @@ collections:
           - { label: "Past Works — Subhead", name: "past_works_subhead", widget: "string" }
           - { label: "Past Works — CTA", name: "past_works_cta", widget: "string" }
           # ── Collectors ───────────────────────────────────────────
+          - { label: "Collectors — Title", name: "collectors_title", widget: "string", hint: "Section heading (e.g. 'Collectors Edit')." }
+          - { label: "Collectors — Subhead", name: "collectors_subhead", widget: "string", hint: "Small subheading under the section heading." }
           - { label: "Collectors — CTA", name: "collectors_cta", widget: "string", hint: "Button label below the collectors carousel." }
           # ── Exhibitions ──────────────────────────────────────────
           - { label: "Exhibitions — Title", name: "exhibitions_title", widget: "string" }
