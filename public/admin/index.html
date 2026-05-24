@@ -514,6 +514,127 @@
     // Page-level entry uses a different key from the 'past-works' FOLDER collection
     // (which is already registered above as PaintingPreview for individual sold paintings).
     CMS.registerPreviewTemplate('past-works-page', PastWorksPagePreview);
+
+    /* ---------------- Painting detail chrome preview ---------------- */
+    // Renders a styled mock of a painting detail page using the chrome labels
+    // + a fake painting, so the editor sees where each label appears in context.
+    var PaintingDetailChromePreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var g = function (k) { return data.get(k) || ''; };
+
+        return h('div', { className: 'painting-chrome-preview' },
+          // Back link
+          h('div', { className: 'painting-chrome-back' },
+            h('span', { className: 'preview-eyebrow-light' }, g('back_to_available') || '← Available Works'),
+            h('span', { className: 'painting-chrome-back-alt' }, '(sold pieces show: ', g('back_to_past') || '← Past Works', ')')
+          ),
+
+          // Hero mock
+          h('section', { className: 'painting-chrome-hero' },
+            h('div', { className: 'painting-chrome-image-placeholder' },
+              h('span', { className: 'home-preview-tile-hint' }, g('image_forthcoming_label') || 'Image Forthcoming')
+            ),
+            h('div', { className: 'painting-chrome-meta' },
+              h('h1', { className: 'painting-preview-title' }, '— Painting title —'),
+              h('p', { className: 'painting-preview-year' }, '— Year —'),
+              h('dl', { className: 'painting-preview-specs' },
+                h('dt', { key: 'm-l' }, g('spec_label_medium') || 'Medium'),
+                h('dd', { key: 'm-v' }, '— per-painting —'),
+                h('dt', { key: 'd-l' }, g('spec_label_dimensions') || 'Dimensions'),
+                h('dd', { key: 'd-v' }, '— per-painting —'),
+                h('dt', { key: 'y-l' }, g('spec_label_year') || 'Year'),
+                h('dd', { key: 'y-v' }, '— per-painting —'),
+                h('dt', { key: 'a-l' }, g('spec_label_availability') || 'Availability'),
+                h('dd', { key: 'a-v' }, (g('availability_available') || 'Available'), ' / ', (g('availability_sold') || 'Sold'))
+              )
+            )
+          ),
+
+          // Artist's note section
+          h('section', { className: 'painting-chrome-section' },
+            h('div', { className: 'preview-section-header' },
+              h('h2', null, g('artist_note_title') || "Artist's Note")
+            ),
+            h('p', { className: 'painting-chrome-placeholder' }, "— Long-form description per painting —")
+          ),
+
+          // Inquire section
+          h('section', { className: 'painting-chrome-section painting-chrome-section-light' },
+            h('div', { className: 'preview-section-header' },
+              h('h2', null, g('inquire_title_available') || 'Inquire About This Piece')
+            ),
+            h('p', { className: 'painting-chrome-helper' },
+              'Sold pieces show: ',
+              h('strong', null, g('inquire_title_sold') || 'Inquire About Similar Works')
+            ),
+            h('p', { className: 'painting-chrome-placeholder' },
+              g('inquire_sold_note') || 'This work is in a private collection. Inquire about similar pieces below.'
+            ),
+
+            // Form mock
+            h('div', { className: 'painting-chrome-form' },
+              h('div', { className: 'painting-chrome-field' },
+                h('label', null, g('form_label_name') || 'Name'),
+                h('div', { className: 'painting-chrome-input' })
+              ),
+              h('div', { className: 'painting-chrome-field' },
+                h('label', null, g('form_label_phone') || 'Phone'),
+                h('div', { className: 'painting-chrome-input' })
+              ),
+              h('div', { className: 'painting-chrome-field' },
+                h('label', null, g('form_label_email') || 'Email'),
+                h('div', { className: 'painting-chrome-input' })
+              ),
+              h('span', { className: 'painting-chrome-submit' }, g('form_submit') || 'Submit Inquiry'),
+              h('p', { className: 'painting-chrome-helper' },
+                'While submitting: ', h('strong', null, g('form_submitting') || 'Sending…'), '. ',
+                'On error: ', h('em', null, g('form_error') || 'Something went wrong. Please try again.')
+              )
+            ),
+
+            // Form success mock
+            h('div', { className: 'painting-chrome-success' },
+              h('span', { className: 'preview-eyebrow-light' }, 'After successful submission:'),
+              h('h3', null, g('form_success_title') || 'Thank you.'),
+              h('p', null, g('form_success_body') || 'Your inquiry has been received. A response will follow within a few days.')
+            )
+          ),
+
+          // Related section
+          h('section', { className: 'painting-chrome-section' },
+            h('div', { className: 'preview-section-header' },
+              h('h2', null, g('related_title') || 'You may also like')
+            ),
+            h('div', { className: 'painting-chrome-related-grid' },
+              h('div', { className: 'listing-preview-tile' },
+                h('span', { className: 'home-preview-tile-hint' }, g('related_tile_hover') || 'View this piece')
+              ),
+              h('div', { className: 'listing-preview-tile' },
+                h('span', { className: 'home-preview-tile-hint' }, g('related_tile_hover') || 'View this piece')
+              ),
+              h('div', { className: 'listing-preview-tile' },
+                h('span', { className: 'home-preview-tile-hint' }, g('related_tile_hover') || 'View this piece')
+              )
+            ),
+            h('p', { className: 'painting-chrome-helper' },
+              'Under each tile: ', h('strong', null, g('related_tile_view') || 'View')
+            )
+          ),
+
+          // Not-found state
+          h('section', { className: 'painting-chrome-section painting-chrome-section-light' },
+            h('span', { className: 'preview-eyebrow-light' }, 'Not-found page (when a painting URL is invalid)'),
+            h('h2', { className: 'painting-chrome-notfound-title' }, g('not_found_title') || 'Work not found.'),
+            h('p', { className: 'painting-chrome-helper' },
+              h('strong', null, g('not_found_cta') || '← Browse Available Works')
+            )
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('painting-detail-chrome', PaintingDetailChromePreview);
   </script>
 </body>
 </html>

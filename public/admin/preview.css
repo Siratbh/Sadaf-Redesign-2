@@ -459,6 +459,141 @@ body {
   font-weight: 300;
 }
 
+/* ---------- Painting detail chrome preview ---------- */
+.painting-chrome-preview {
+  background: var(--brand-bg);
+  color: var(--brand-ink);
+  padding: 2rem 1.5rem 3rem;
+}
+.painting-chrome-back {
+  max-width: 80rem;
+  margin: 0 auto 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.painting-chrome-back-alt {
+  font-size: 11px;
+  color: var(--brand-muted);
+  font-style: italic;
+}
+
+.painting-chrome-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 80rem;
+  margin: 0 auto 3rem;
+}
+@media (min-width: 768px) {
+  .painting-chrome-hero { grid-template-columns: 1.2fr 1fr; gap: 4rem; }
+}
+.painting-chrome-image-placeholder {
+  background: #ececec;
+  border: 1px dashed #c8c8c8;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.painting-chrome-meta { padding-top: 0.5rem; }
+
+.painting-chrome-section {
+  max-width: 60rem;
+  margin: 0 auto 3rem;
+  padding: 0 0.5rem;
+}
+.painting-chrome-section-light {
+  background: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 2px;
+  max-width: 60rem;
+}
+.painting-chrome-placeholder {
+  font-style: italic;
+  color: var(--brand-muted);
+  margin: 0 0 1rem;
+}
+.painting-chrome-helper {
+  font-size: 12px;
+  color: var(--brand-muted);
+  margin: 0.5rem 0 1.5rem;
+}
+.painting-chrome-helper strong {
+  color: var(--brand-ink);
+  font-weight: 600;
+}
+
+.painting-chrome-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.painting-chrome-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.painting-chrome-field label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: var(--brand-muted);
+}
+.painting-chrome-input {
+  height: 2.25rem;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+}
+.painting-chrome-submit {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  background: var(--brand-ink);
+  color: var(--brand-bg);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-weight: 700;
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+.painting-chrome-success {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #eee;
+}
+.painting-chrome-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--brand-ink);
+  margin: 0.5rem 0;
+}
+.painting-chrome-success p {
+  font-size: 0.9rem;
+  color: var(--brand-muted);
+  margin: 0;
+}
+
+.painting-chrome-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0 0 1rem;
+}
+
+.painting-chrome-notfound-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--brand-ink);
+  margin: 0.5rem 0;
+}
+
 /* ---------- Collectors Edit (page) preview ---------- */
 .collectors-edit-preview {
   padding: 2rem 1.5rem 4rem;

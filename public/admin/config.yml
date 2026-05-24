@@ -211,6 +211,44 @@ collections:
           - { label: "SEO — Browser Tab Title", name: "seo_title", widget: "string", required: false }
           - { label: "SEO — Meta Description", name: "seo_description", widget: "text", required: false }
 
+      - label: "Painting Detail — Shared Labels"
+        name: "painting-detail-chrome"
+        file: "content/pages/painting-detail-chrome.md"
+        fields:
+          # ── Back Link ────────────────────────────────────────────
+          - { label: "Back Link — Available", name: "back_to_available", widget: "string", hint: "Back link shown on Available pieces (e.g. '← Available Works')." }
+          - { label: "Back Link — Past", name: "back_to_past", widget: "string", hint: "Back link shown on Sold pieces (e.g. '← Past Works')." }
+          # ── Spec Labels ──────────────────────────────────────────
+          - { label: "Spec Label — Medium", name: "spec_label_medium", widget: "string" }
+          - { label: "Spec Label — Dimensions", name: "spec_label_dimensions", widget: "string" }
+          - { label: "Spec Label — Year", name: "spec_label_year", widget: "string" }
+          - { label: "Spec Label — Availability", name: "spec_label_availability", widget: "string" }
+          - { label: "Availability — Available text", name: "availability_available", widget: "string", hint: "Value shown when painting is available." }
+          - { label: "Availability — Sold text", name: "availability_sold", widget: "string", hint: "Value shown when painting is sold." }
+          # ── Artist's Note ────────────────────────────────────────
+          - { label: "Artist's Note — Section Title", name: "artist_note_title", widget: "string" }
+          # ── Inquire Section ──────────────────────────────────────
+          - { label: "Inquire — Title (Available)", name: "inquire_title_available", widget: "string", hint: "Heading shown for available pieces." }
+          - { label: "Inquire — Title (Sold)", name: "inquire_title_sold", widget: "string", hint: "Heading shown for sold pieces." }
+          - { label: "Inquire — Sold note", name: "inquire_sold_note", widget: "text", hint: "Extra paragraph shown only on sold pieces." }
+          # ── Form ─────────────────────────────────────────────────
+          - { label: "Form — Name label", name: "form_label_name", widget: "string" }
+          - { label: "Form — Phone label", name: "form_label_phone", widget: "string" }
+          - { label: "Form — Email label", name: "form_label_email", widget: "string" }
+          - { label: "Form — Submit button", name: "form_submit", widget: "string" }
+          - { label: "Form — Submitting button", name: "form_submitting", widget: "string", hint: "Button label while the form is sending." }
+          - { label: "Form — Success title", name: "form_success_title", widget: "string", hint: "Heading shown after a successful inquiry." }
+          - { label: "Form — Success body", name: "form_success_body", widget: "text" }
+          - { label: "Form — Error message", name: "form_error", widget: "string" }
+          # ── Related Works ────────────────────────────────────────
+          - { label: "Related Works — Title", name: "related_title", widget: "string" }
+          - { label: "Related Works — Tile hover", name: "related_tile_hover", widget: "string" }
+          - { label: "Related Works — Tile View link", name: "related_tile_view", widget: "string" }
+          # ── States ───────────────────────────────────────────────
+          - { label: "Not Found — Title", name: "not_found_title", widget: "string" }
+          - { label: "Not Found — CTA", name: "not_found_cta", widget: "string" }
+          - { label: "Image Forthcoming Label", name: "image_forthcoming_label", widget: "string", hint: "Placeholder text shown when a painting has no image yet." }
+
       - label: "Past Works (page)"
         name: "past-works-page"
         file: "content/pages/past-works.md"

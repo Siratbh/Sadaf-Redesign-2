@@ -232,6 +232,66 @@ export default defineStackbitConfig({
           ],
         },
 
+        // ─── Painting detail page — shared chrome ─────────────────────
+        // Shared labels/headings used on EVERY /paintings/:slug page.
+        // Per-painting fields (title, year, medium, image, etc.) live on
+        // the Painting model — this file is for the chrome that wraps them.
+        {
+          name: 'PaintingDetailChrome',
+          type: 'data',
+          filePath: 'content/pages/painting-detail-chrome.md',
+          fieldGroups: [
+            { name: 'Back Link', label: 'Back Link' },
+            { name: 'Specs', label: 'Spec Labels' },
+            { name: 'Artist Note', label: 'Artist Note Section' },
+            { name: 'Inquire', label: 'Inquire Section' },
+            { name: 'Form', label: 'Inquiry Form' },
+            { name: 'Related', label: 'Related Works Section' },
+            { name: 'States', label: 'Empty / Error States' },
+          ],
+          fields: [
+            // Back link
+            { name: 'back_to_available', type: 'string', group: 'Back Link', description: 'Back link shown on Available pieces (e.g. "← Available Works").' },
+            { name: 'back_to_past', type: 'string', group: 'Back Link', description: 'Back link shown on Sold pieces (e.g. "← Past Works").' },
+
+            // Spec labels
+            { name: 'spec_label_medium', type: 'string', group: 'Specs', description: 'Label for the Medium row.' },
+            { name: 'spec_label_dimensions', type: 'string', group: 'Specs', description: 'Label for the Dimensions row.' },
+            { name: 'spec_label_year', type: 'string', group: 'Specs', description: 'Label for the Year row.' },
+            { name: 'spec_label_availability', type: 'string', group: 'Specs', description: 'Label for the Availability row.' },
+            { name: 'availability_available', type: 'string', group: 'Specs', description: 'Value shown when painting is available (e.g. "Available").' },
+            { name: 'availability_sold', type: 'string', group: 'Specs', description: 'Value shown when painting is sold (e.g. "Sold").' },
+
+            // Artist note
+            { name: 'artist_note_title', type: 'string', group: 'Artist Note', description: 'Heading for the long-form description section (e.g. "Artist\'s Note").' },
+
+            // Inquire
+            { name: 'inquire_title_available', type: 'string', group: 'Inquire', description: 'Heading shown for available pieces (e.g. "Inquire About This Piece").' },
+            { name: 'inquire_title_sold', type: 'string', group: 'Inquire', description: 'Heading shown for sold pieces (e.g. "Inquire About Similar Works").' },
+            { name: 'inquire_sold_note', type: 'text', group: 'Inquire', description: 'Extra note shown only on sold pieces.' },
+
+            // Form
+            { name: 'form_label_name', type: 'string', group: 'Form' },
+            { name: 'form_label_phone', type: 'string', group: 'Form' },
+            { name: 'form_label_email', type: 'string', group: 'Form' },
+            { name: 'form_submit', type: 'string', group: 'Form', description: 'Submit button label.' },
+            { name: 'form_submitting', type: 'string', group: 'Form', description: 'Submit button label while sending.' },
+            { name: 'form_success_title', type: 'string', group: 'Form', description: 'Heading shown after a successful submission.' },
+            { name: 'form_success_body', type: 'text', group: 'Form' },
+            { name: 'form_error', type: 'string', group: 'Form', description: 'Error message shown if submission fails.' },
+
+            // Related works
+            { name: 'related_title', type: 'string', group: 'Related', description: 'Heading for the "You may also like" section.' },
+            { name: 'related_tile_hover', type: 'string', group: 'Related', description: 'Label shown when hovering a related painting tile.' },
+            { name: 'related_tile_view', type: 'string', group: 'Related', description: 'Small "View" link under each related tile.' },
+
+            // Empty / error states
+            { name: 'not_found_title', type: 'string', group: 'States', description: 'Heading shown when a painting URL is invalid.' },
+            { name: 'not_found_cta', type: 'string', group: 'States', description: 'Link shown on the not-found page.' },
+            { name: 'image_forthcoming_label', type: 'string', group: 'States', description: 'Placeholder text shown when a painting has no image yet.' },
+          ],
+        },
+
         // ─── Contact page ─────────────────────────────────────────────
         {
           name: 'ContactPage',
