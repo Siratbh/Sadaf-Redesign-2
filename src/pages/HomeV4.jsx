@@ -119,12 +119,53 @@ const GalleryItem = ({ art, showStatus = false }) => {
 export default function HomeV4() {
   const revealRef = useRef(null);
   const revealInnerRef = useRef(null);
+  const collectorsScrollRef = useRef(null);
+
+  // Click-and-drag horizontal scroll for the Collectors Edit carousel.
+  // (Native overflow-x is keyboard / touch / trackpad scrollable already;
+  // this adds desktop-mouse drag-to-scroll on top.)
+  useEffect(() => {
+    const el = collectorsScrollRef.current;
+    if (!el) return;
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeftStart = 0;
+
+    const onDown = (e) => {
+      isDown = true;
+      startX = e.pageX - el.offsetLeft;
+      scrollLeftStart = el.scrollLeft;
+    };
+    const onMove = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - el.offsetLeft;
+      el.scrollLeft = scrollLeftStart - (x - startX);
+    };
+    const onUp = () => { isDown = false; };
+
+    el.addEventListener('mousedown', onDown);
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('mouseup', onUp);
+    el.addEventListener('mouseleave', onUp);
+
+    return () => {
+      el.removeEventListener('mousedown', onDown);
+      el.removeEventListener('mousemove', onMove);
+      el.removeEventListener('mouseup', onUp);
+      el.removeEventListener('mouseleave', onUp);
+    };
+  }, []);
 
   const paintings = getPaintings();
   const availablePaintings = getAvailablePaintings();
   const pastPaintings = getPastPaintings();
   const exhibitions = getExhibitions();
   const collectors = getCollectors();
+  // Skip collector entries that have no usable image — otherwise the homepage
+  // carousel renders a broken thumbnail. Entry stays in Decap so it can be fixed.
+  const visibleCollectors = collectors.filter((c) => c.image);
   const home = getPage('home') || {};
   const homeArtist = getPage('home-artist') || {};
   const aboutPage = getPage('about') || {};
@@ -332,14 +373,16 @@ export default function HomeV4() {
       {/* ── Collectors Edit Section ────────────────────────────── */}
       <section id="collectors" className="py-20 bg-brand-bg md:py-32">
 
-        {collectors.length > 0 ? (
+        {visibleCollectors.length > 0 ? (
           <>
             <div
+              ref={collectorsScrollRef}
+              data-lenis-prevent
               className="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 px-4 sm:px-6 pb-4
-                         scrollbar-hide"
+                         scrollbar-hide cursor-grab active:cursor-grabbing select-none"
               style={{ WebkitOverflowScrolling: 'touch', scrollPaddingLeft: '1rem' }}
             >
-              {collectors.map((item) => (
+              {visibleCollectors.map((item) => (
                 <div
                   key={item.slug}
                   className="flex-shrink-0 w-[85vw] max-w-lg snap-center"
@@ -349,8 +392,9 @@ export default function HomeV4() {
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover pointer-events-none"
                       loading="lazy"
+                      draggable={false}
                       data-sb-field-path="image"
                     />
                   </div>
