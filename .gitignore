@@ -6,3 +6,4 @@ dist/
 .env
 .env.local
 sadaf-redesign-standalone/
+.stackbit/

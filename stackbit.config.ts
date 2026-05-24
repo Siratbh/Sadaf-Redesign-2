@@ -3,6 +3,17 @@ import { GitContentSource } from '@stackbit/cms-git'
 
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
+  ssgName: 'custom',
+  nodeVersion: '22',
+  devCommand: 'node ./node_modules/.bin/vite --port {PORT} --host {HOSTNAME} --strictPort',
+  experimental: {
+    ssg: {
+      name: 'vite',
+      logPatterns: { up: ['Local:', 'ready in'] },
+      proxyWebsockets: true,
+      passthrough: ['/@vite/**', '/@fs/**', '/@id/**', '/node_modules/**'],
+    },
+  },
   contentSources: [
     new GitContentSource({
       rootPath: process.cwd(),
@@ -90,16 +101,69 @@ export default defineStackbitConfig({
           ],
         },
 
-        // ─── Homepage "The Artist" section ────────────────────────────
+        // ─── Homepage (owns / URL path) ───────────────────────────────
+        // All editable copy for HomeV4.jsx. Lists (paintings, exhibitions,
+        // collectors) come from their own collections — not modeled here.
         {
-          name: 'HomeArtistSection',
+          name: 'HomePage',
           type: 'page',
           urlPath: '/',
+          filePath: 'content/pages/home.md',
+          fieldGroups: [
+            { name: 'Hero', label: 'Hero' },
+            { name: 'Available Works', label: 'Available Works' },
+            { name: 'About', label: 'About' },
+            { name: 'Past Works', label: 'Past Works' },
+            { name: 'Collectors', label: 'Collectors' },
+            { name: 'Exhibitions', label: 'Exhibitions' },
+            { name: 'Contact', label: 'Contact' },
+          ],
+          fields: [
+            // Hero
+            { name: 'hero_headline_line1', type: 'string', group: 'Hero', description: 'First line of the big headline (e.g. "Explore the intersection").' },
+            { name: 'hero_headline_line2', type: 'string', group: 'Hero', description: 'Second line of the big headline (e.g. "of spirituality and abstraction").' },
+            { name: 'hero_slideshow_label', type: 'string', group: 'Hero', description: 'Small label on the slideshow caption (e.g. "Featured Work").' },
+
+            // Available Works
+            { name: 'available_title', type: 'string', group: 'Available Works' },
+            { name: 'available_cta', type: 'string', group: 'Available Works', description: 'Primary button label (e.g. "View available works").' },
+            { name: 'available_secondary_cta', type: 'string', group: 'Available Works', description: 'Secondary link label (e.g. "Browse past works →").' },
+
+            // About
+            { name: 'about_big_title', type: 'string', group: 'About' },
+            { name: 'about_section_label', type: 'string', group: 'About', description: 'Small heading on the left column.' },
+            { name: 'about_cta', type: 'string', group: 'About', description: 'Link label (e.g. "Read Full Biography").' },
+
+            // Past Works
+            { name: 'past_works_title', type: 'string', group: 'Past Works' },
+            { name: 'past_works_subhead', type: 'string', group: 'Past Works' },
+            { name: 'past_works_cta', type: 'string', group: 'Past Works' },
+
+            // Collectors
+            { name: 'collectors_cta', type: 'string', group: 'Collectors', description: 'Button label below the collectors carousel.' },
+
+            // Exhibitions
+            { name: 'exhibitions_title', type: 'string', group: 'Exhibitions' },
+            { name: 'exhibitions_subhead', type: 'string', group: 'Exhibitions' },
+            { name: 'exhibitions_cta', type: 'string', group: 'Exhibitions' },
+
+            // Contact
+            { name: 'contact_headline', type: 'string', group: 'Contact' },
+            { name: 'contact_body', type: 'text', group: 'Contact' },
+            { name: 'contact_cta', type: 'string', group: 'Contact' },
+          ],
+        },
+
+        // ─── Homepage "The Artist" data block (portrait + hero paragraphs) ──
+        // Read by HomeV4 hero (hero_subhead). Not the page-of-record any more.
+        {
+          name: 'HomeArtistSection',
+          type: 'data',
           filePath: 'content/pages/home-artist.md',
           fields: [
             { name: 'portrait_image', type: 'image' },
-            { name: 'bio_intro', type: 'text' },
-            { name: 'bio_body', type: 'text' },
+            { name: 'bio_intro', type: 'string', description: 'Artist name shown above the hero paragraphs.' },
+            { name: 'hero_subhead', type: 'text', description: 'Hero paragraphs under the big headline. Separate paragraphs with a blank line.' },
           ],
         },
 

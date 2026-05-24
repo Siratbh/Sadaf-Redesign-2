@@ -155,14 +155,66 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
+      - label: "Homepage"
+        name: "home"
+        file: "content/pages/home.md"
+        fields:
+          # ── Hero ─────────────────────────────────────────────────
+          - { label: "Hero — Headline (line 1)", name: "hero_headline_line1", widget: "string", hint: "First line of the big headline (e.g. 'Explore the intersection')." }
+          - { label: "Hero — Headline (line 2)", name: "hero_headline_line2", widget: "string", hint: "Second line of the big headline (e.g. 'of spirituality and abstraction')." }
+          - { label: "Hero — Slideshow Label", name: "hero_slideshow_label", widget: "string", hint: "Small label on the slideshow caption (e.g. 'Featured Work')." }
+          # ── Available Works ──────────────────────────────────────
+          - { label: "Available Works — Title", name: "available_title", widget: "string" }
+          - { label: "Available Works — Primary CTA", name: "available_cta", widget: "string", hint: "Primary button label (e.g. 'View available works')." }
+          - { label: "Available Works — Secondary CTA", name: "available_secondary_cta", widget: "string", hint: "Secondary link label (e.g. 'Browse past works →')." }
+          # ── About ────────────────────────────────────────────────
+          - { label: "About — Big Title", name: "about_big_title", widget: "string" }
+          - { label: "About — Section Label", name: "about_section_label", widget: "string", hint: "Small heading on the left column." }
+          - { label: "About — CTA", name: "about_cta", widget: "string", hint: "Link label (e.g. 'Read Full Biography')." }
+          # ── Past Works ───────────────────────────────────────────
+          - { label: "Past Works — Title", name: "past_works_title", widget: "string" }
+          - { label: "Past Works — Subhead", name: "past_works_subhead", widget: "string" }
+          - { label: "Past Works — CTA", name: "past_works_cta", widget: "string" }
+          # ── Collectors ───────────────────────────────────────────
+          - { label: "Collectors — CTA", name: "collectors_cta", widget: "string", hint: "Button label below the collectors carousel." }
+          # ── Exhibitions ──────────────────────────────────────────
+          - { label: "Exhibitions — Title", name: "exhibitions_title", widget: "string" }
+          - { label: "Exhibitions — Subhead", name: "exhibitions_subhead", widget: "string" }
+          - { label: "Exhibitions — CTA", name: "exhibitions_cta", widget: "string" }
+          # ── Contact ──────────────────────────────────────────────
+          - { label: "Contact — Headline", name: "contact_headline", widget: "string" }
+          - { label: "Contact — Body", name: "contact_body", widget: "text" }
+          - { label: "Contact — CTA", name: "contact_cta", widget: "string" }
+
+      - label: "Home — Artist Block"
+        name: "home-artist"
+        file: "content/pages/home-artist.md"
+        fields:
+          - { label: "Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
+          - { label: "Artist Name (above hero paragraphs)", name: "bio_intro", widget: "string" }
+          - { label: "Hero Paragraphs", name: "hero_subhead", widget: "text", hint: "Hero paragraphs under the big headline. Separate paragraphs with a blank line." }
+
       - label: "About"
         name: "about"
         file: "content/pages/about.md"
         fields:
           - { label: "Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
-          - { label: "Bio Intro", name: "bio_intro", widget: "text" }
-          - { label: "Bio Body", name: "bio_body", widget: "markdown" }
-          - { label: "Artist Statement", name: "artist_statement", widget: "text", required: false }
+          - label: "Bio Intro"
+            name: "bio_intro"
+            widget: "markdown"
+            hint: "Short intro paragraph. Inline emphasis only — bold, italic, and links."
+            buttons: ["bold", "italic", "link"]
+            editor_components: []
+            modes: ["rich_text", "raw"]
+          - { label: "Bio Body", name: "bio_body", widget: "markdown", hint: "Full biography. Use headings, paragraphs, lists, blockquotes — all rendered on the live page." }
+          - label: "Artist Statement"
+            name: "artist_statement"
+            widget: "markdown"
+            required: false
+            hint: "Short, quotable statement. Inline emphasis only — bold, italic, links."
+            buttons: ["bold", "italic", "link"]
+            editor_components: []
+            modes: ["rich_text", "raw"]
           - { label: "Studio Note", name: "studio_note", widget: "string", required: false }
 
       - label: "Contact"
@@ -179,7 +231,13 @@ collections:
         file: "content/pages/collectors-edit.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Intro Text", name: "intro", widget: "text" }
+          - label: "Intro Text"
+            name: "intro"
+            widget: "markdown"
+            hint: "Short intro paragraph. Inline emphasis only — bold, italic, and links."
+            buttons: ["bold", "italic", "link"]
+            editor_components: []
+            modes: ["rich_text", "raw"]
           - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
           - { label: "SEO Description", name: "seo_description", widget: "string", required: false }
 

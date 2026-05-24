@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "stackbit": "stackbit dev --port 5173"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@stackbit/cli": "^0.3.136",
     "@stackbit/cms-git": "^1.0.37",
     "@stackbit/types": "^2.1.15",
     "@types/react": "^19.2.14",

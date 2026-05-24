@@ -7,7 +7,7 @@ import { gsap } from 'gsap';
 import SEOHead from '../components/SEOHead';
 
 // --- Hero Slideshow Component ---
-const HeroSlideshow = ({ paintings }) => {
+const HeroSlideshow = ({ paintings, slideshowLabel }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -20,6 +20,8 @@ const HeroSlideshow = ({ paintings }) => {
 
   if (paintings.length === 0) return null;
 
+  const current = paintings[currentIndex];
+
   return (
     <div className="w-full h-full relative">
       <AnimatePresence mode="wait">
@@ -30,16 +32,18 @@ const HeroSlideshow = ({ paintings }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
           className="absolute inset-0"
+          {...(current._id ? { 'data-sb-object-id': current._id } : {})}
         >
           <img
-            src={paintings[currentIndex].featured_image}
-            alt={paintings[currentIndex].title}
+            src={current.featured_image}
+            alt={current.title}
             className="w-full h-full object-cover"
+            data-sb-field-path="featured_image"
           />
           <div className="absolute inset-0 bg-black/20" />
           <div className="absolute inset-x-0 bottom-0 z-10 p-4 text-white md:bottom-8 md:left-8 md:right-auto md:p-0">
-            <p className="text-[10px] uppercase tracking-[0.2em] font-semibold opacity-70 mb-1">Featured Work</p>
-            <h3 className="text-base font-serif italic sm:text-lg md:text-xl">{paintings[currentIndex].title}</h3>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-semibold opacity-70 mb-1">{slideshowLabel}</p>
+            <h3 className="text-base font-serif italic sm:text-lg md:text-xl" data-sb-field-path="title">{current.title}</h3>
           </div>
         </Motion.div>
       </AnimatePresence>
@@ -74,12 +78,14 @@ const GalleryItem = ({ art, showStatus = false }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className="group relative flex flex-col"
+      {...(art._id ? { 'data-sb-object-id': art._id } : {})}
     >
       <Link to={`/paintings/${art.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
         <img
           src={image}
           alt={art.title}
           className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-110"
+          data-sb-field-path={art.thumbnail_image ? 'thumbnail_image' : 'featured_image'}
         />
         {showStatus && (
           <span className="absolute top-3 left-3 bg-white/90 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-brand-muted">
@@ -119,9 +125,10 @@ export default function HomeV4() {
   const pastPaintings = getPastPaintings();
   const exhibitions = getExhibitions();
   const collectors = getCollectors();
+  const home = getPage('home') || {};
   const homeArtist = getPage('home-artist') || {};
   const aboutPage = getPage('about') || {};
-  const artistImage = "/images/about/Sadaf Portrait.png";
+  const artistImage = homeArtist.portrait_image || "/images/about/Sadaf Portrait.png";
   const heroParagraphs = splitParagraphs(homeArtist.hero_subhead);
   const aboutParagraphs = splitParagraphs(aboutPage.bio_body);
   const aboutPreview = aboutParagraphs.slice(0, 3);
@@ -151,7 +158,7 @@ export default function HomeV4() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg">
+    <div className="min-h-screen bg-brand-bg" {...(home._id ? { 'data-sb-object-id': home._id } : {})}>
       <SEOHead title="Home" />
 
       {/* Hover reveal for exhibitions */}
@@ -163,22 +170,23 @@ export default function HomeV4() {
       <section className="max-w-7xl mx-auto px-4 pt-28 pb-16 sm:px-6 md:pt-32 md:pb-20">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 md:mb-16">
           <div className="max-w-2xl">
-            <Motion.h2 
+            <Motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-3xl font-serif leading-tight mb-6 sm:text-4xl md:text-5xl md:mb-8"
             >
-              Explore the intersection
-              <span className="block md:inline"> of spirituality and abstraction</span>
+              <span data-sb-field-path="hero_headline_line1">{home.hero_headline_line1 || 'Explore the intersection'}</span>
+              <span className="block md:inline" data-sb-field-path="hero_headline_line2"> {home.hero_headline_line2 || 'of spirituality and abstraction'}</span>
             </Motion.h2>
-            <Motion.div 
+            <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="max-w-2xl space-y-4 text-brand-muted"
+              {...(homeArtist._id ? { 'data-sb-object-id': homeArtist._id } : {})}
             >
               {heroParagraphs.map((paragraph, index) => (
-                <p key={index} className="leading-relaxed font-light text-sm sm:text-[15px]">
+                <p key={index} className="leading-relaxed font-light text-sm sm:text-[15px]" data-sb-field-path="hero_subhead">
                   {paragraph}
                 </p>
               ))}
@@ -186,13 +194,16 @@ export default function HomeV4() {
           </div>
         </div>
 
-        <Motion.div 
+        <Motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
           className="w-full h-[48vh] overflow-hidden relative sm:h-[56vh] md:h-[60vh]"
         >
-          <HeroSlideshow paintings={paintings.filter(p => p.featured)} />
+          <HeroSlideshow
+            paintings={paintings.filter(p => p.featured)}
+            slideshowLabel={home.hero_slideshow_label || 'Featured Work'}
+          />
         </Motion.div>
       </section>
 
@@ -200,7 +211,7 @@ export default function HomeV4() {
       <section id="gallery" className="py-16 bg-white md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
-            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">Available Works</h2>
+            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl" data-sb-field-path="available_title">{home.available_title || 'Available Works'}</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-14">
@@ -213,11 +224,11 @@ export default function HomeV4() {
 
           <div className="mt-12 flex flex-col items-center gap-6 md:mt-20">
             <Link to="/available" className="group flex w-full items-center justify-center space-x-3 border border-brand-ink px-6 py-4 text-center hover:bg-brand-ink hover:text-brand-bg transition-all duration-300 sm:w-auto sm:px-8">
-              <span className="text-[12px] uppercase tracking-[0.2em] font-semibold">View available works</span>
+              <span className="text-[12px] uppercase tracking-[0.2em] font-semibold" data-sb-field-path="available_cta">{home.available_cta || 'View available works'}</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link to="/past-works" className="text-brand-muted text-[11px] uppercase tracking-[0.2em] font-semibold border-b border-brand-muted pb-1 hover:text-brand-ink hover:border-brand-ink transition-colors">
-              Browse past works →
+            <Link to="/past-works" className="text-brand-muted text-[11px] uppercase tracking-[0.2em] font-semibold border-b border-brand-muted pb-1 hover:text-brand-ink hover:border-brand-ink transition-colors" data-sb-field-path="available_secondary_cta">
+              {home.available_secondary_cta || 'Browse past works →'}
             </Link>
           </div>
         </div>
@@ -243,21 +254,25 @@ export default function HomeV4() {
                   className="w-full grayscale brightness-50 transition-all duration-700 hover:brightness-100"
                 />
               </div>
-              <div className="relative z-20 w-[78%] sm:w-[62%] md:w-[38%] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)]">
-                <img 
-                  src={artistImage} 
-                  alt="Sadaf Farasat" 
+              <div className="relative z-20 w-[78%] sm:w-[62%] md:w-[38%] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)]"
+                {...(homeArtist._id ? { 'data-sb-object-id': homeArtist._id } : {})}
+              >
+                <img
+                  src={artistImage}
+                  alt="Sadaf Farasat"
                   className="w-full"
+                  data-sb-field-path="portrait_image"
                 />
               </div>
             </div>
 
-            <Motion.h2 
+            <Motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="text-3xl font-serif text-center leading-[1.1] max-w-5xl tracking-tight sm:text-4xl md:text-5xl lg:text-7xl"
+              data-sb-field-path="about_big_title"
             >
-              About the artist
+              {home.about_big_title || 'About the artist'}
             </Motion.h2>
           </div>
 
@@ -265,14 +280,16 @@ export default function HomeV4() {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
             <div className="md:col-span-4">
-                <h3 className="text-[14px] md:text-[16px] uppercase tracking-[0.1em] font-black">About the artist</h3>
+                <h3 className="text-[14px] md:text-[16px] uppercase tracking-[0.1em] font-black" data-sb-field-path="about_section_label">{home.about_section_label || 'About the artist'}</h3>
               </div>
               <div className="md:col-span-8">
                 <div className="max-w-2xl text-[14px] md:text-[15px] font-normal text-white/60 leading-[1.7] space-y-6 md:space-y-8">
-                  {aboutPreview.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
-                  <Link to="/about" className="inline-block text-white border-b border-white pb-1 text-[12px] uppercase tracking-[0.2em] font-bold">Read Full Biography</Link>
+                  <div {...(aboutPage._id ? { 'data-sb-object-id': aboutPage._id } : {})} className="space-y-6 md:space-y-8">
+                    {aboutPreview.map((paragraph, index) => (
+                      <p key={index} data-sb-field-path="bio_body">{paragraph}</p>
+                    ))}
+                  </div>
+                  <Link to="/about" className="inline-block text-white border-b border-white pb-1 text-[12px] uppercase tracking-[0.2em] font-bold" data-sb-field-path="about_cta">{home.about_cta || 'Read Full Biography'}</Link>
                 </div>
               </div>
           </div>
@@ -283,9 +300,9 @@ export default function HomeV4() {
       <section id="past-works" className="py-16 bg-white md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
-            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">Past Works</h2>
-            <p className="mt-3 text-brand-muted text-[11px] uppercase tracking-[0.2em] font-semibold sm:mt-4">
-              An archive of works now in private collections
+            <h2 className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl" data-sb-field-path="past_works_title">{home.past_works_title || 'Past Works'}</h2>
+            <p className="mt-3 text-brand-muted text-[11px] uppercase tracking-[0.2em] font-semibold sm:mt-4" data-sb-field-path="past_works_subhead">
+              {home.past_works_subhead || 'An archive of works now in private collections'}
             </p>
           </div>
 
@@ -303,7 +320,7 @@ export default function HomeV4() {
 
               <div className="mt-12 flex justify-center md:mt-20">
                 <Link to="/past-works" className="group flex w-full items-center justify-center space-x-3 border border-brand-ink px-6 py-4 text-center hover:bg-brand-ink hover:text-brand-bg transition-all duration-300 sm:w-auto sm:px-8">
-                  <span className="text-[12px] uppercase tracking-[0.2em] font-semibold">Browse all past works</span>
+                  <span className="text-[12px] uppercase tracking-[0.2em] font-semibold" data-sb-field-path="past_works_cta">{home.past_works_cta || 'Browse all past works'}</span>
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -326,6 +343,7 @@ export default function HomeV4() {
                 <div
                   key={item.slug}
                   className="flex-shrink-0 w-[85vw] max-w-lg snap-center"
+                  {...(item._id ? { 'data-sb-object-id': item._id } : {})}
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-transparent">
                     <img
@@ -333,10 +351,11 @@ export default function HomeV4() {
                       alt={item.title}
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      data-sb-field-path="image"
                     />
                   </div>
                   {item.painting_title && (
-                    <p className="mt-3 text-sm text-brand-muted font-sans tracking-wide uppercase">
+                    <p className="mt-3 text-sm text-brand-muted font-sans tracking-wide uppercase" data-sb-field-path="painting_title">
                       {item.painting_title}
                     </p>
                   )}
@@ -349,8 +368,9 @@ export default function HomeV4() {
                 to="/collectors-edit"
                 className="inline-block border border-brand-ink text-brand-ink px-8 py-3 text-xs uppercase tracking-widest
                            hover:bg-brand-ink hover:text-white transition-colors duration-300"
+                data-sb-field-path="collectors_cta"
               >
-                View All
+                {home.collectors_cta || 'View All'}
               </Link>
             </div>
           </>
@@ -365,24 +385,25 @@ export default function HomeV4() {
       <section id="exhibitions" className="py-20 px-4 bg-white sm:px-6 md:py-32" onMouseLeave={handleLeave}>
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 md:mb-20">
-            <h2 className="text-2xl font-serif mb-4 uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">Past Exhibitions</h2>
-            <p className="text-brand-muted tracking-widest text-[11px] uppercase font-semibold">A complete archive of solo and group exhibitions</p>
+            <h2 className="text-2xl font-serif mb-4 uppercase tracking-[0.1em] sm:text-3xl md:text-4xl" data-sb-field-path="exhibitions_title">{home.exhibitions_title || 'Past Exhibitions'}</h2>
+            <p className="text-brand-muted tracking-widest text-[11px] uppercase font-semibold" data-sb-field-path="exhibitions_subhead">{home.exhibitions_subhead || 'A complete archive of solo and group exhibitions'}</p>
           </div>
 
           <div className="divide-y divide-gray-100">
             {exhibitions.slice(0, 5).map((ex, i) => (
-              <Link 
+              <Link
                 key={i}
                 to="/exhibitions"
                 className="group py-8 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 cursor-pointer md:py-12"
                 onMouseEnter={() => handleEnter(ex.image)}
+                {...(ex._id ? { 'data-sb-object-id': ex._id } : {})}
               >
                 <div>
-                  <h4 className="text-xl font-serif mb-2 group-hover:text-brand-accent transition-colors sm:text-2xl">{ex.title}</h4>
-                  <p className="text-brand-muted text-xs uppercase tracking-widest sm:text-sm">{ex.venue}, {ex.city}</p>
+                  <h4 className="text-xl font-serif mb-2 group-hover:text-brand-accent transition-colors sm:text-2xl" data-sb-field-path="title">{ex.title}</h4>
+                  <p className="text-brand-muted text-xs uppercase tracking-widest sm:text-sm"><span data-sb-field-path="venue">{ex.venue}</span>{ex.city ? <>, <span data-sb-field-path="city">{ex.city}</span></> : ''}</p>
                 </div>
                 <div className="text-right flex flex-col items-start md:items-end">
-                  <span className="text-brand-ink font-medium tracking-tight mb-2">{ex.year}</span>
+                  <span className="text-brand-ink font-medium tracking-tight mb-2" data-sb-field-path="year">{ex.year}</span>
                     <div className="text-[10px] uppercase font-bold tracking-[0.2em] flex items-center space-x-2 transition-transform md:group-hover:translate-x-2">
                       <span>View Archive</span>
                       <ArrowRight size={12} />
@@ -393,7 +414,7 @@ export default function HomeV4() {
           </div>
 
           <div className="mt-12">
-            <Link to="/exhibitions" className="text-brand-ink border-b border-brand-ink pb-1 text-[11px] uppercase tracking-[0.2em] font-bold">Explore Full Archive</Link>
+            <Link to="/exhibitions" className="text-brand-ink border-b border-brand-ink pb-1 text-[11px] uppercase tracking-[0.2em] font-bold" data-sb-field-path="exhibitions_cta">{home.exhibitions_cta || 'Explore Full Archive'}</Link>
           </div>
         </div>
       </section>
@@ -406,15 +427,16 @@ export default function HomeV4() {
             whileInView={{ opacity: 1, scale: 1 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl font-serif mb-6 uppercase tracking-[0.1em] sm:text-4xl md:text-6xl md:mb-8">Got Inspired?</h2>
-            <p className="text-brand-muted text-base font-light mb-10 sm:text-lg md:mb-12">
-              Reserve your piece or get in touch for an exclusive appointment at our private showroom.
+            <h2 className="text-3xl font-serif mb-6 uppercase tracking-[0.1em] sm:text-4xl md:text-6xl md:mb-8" data-sb-field-path="contact_headline">{home.contact_headline || 'Got Inspired?'}</h2>
+            <p className="text-brand-muted text-base font-light mb-10 sm:text-lg md:mb-12" data-sb-field-path="contact_body">
+              {home.contact_body || 'Reserve your piece or get in touch for an exclusive appointment at our private showroom.'}
             </p>
-            <Link 
+            <Link
               to="/contact"
               className="inline-block w-full bg-brand-ink px-8 py-4 text-brand-bg text-[12px] uppercase tracking-[0.3em] font-bold hover:bg-brand-accent transition-all duration-300 sm:w-auto sm:px-12 sm:py-5"
+              data-sb-field-path="contact_cta"
             >
-              Get in touch
+              {home.contact_cta || 'Get in touch'}
             </Link>
           </Motion.div>
         </div>
