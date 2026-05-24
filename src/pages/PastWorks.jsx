@@ -60,7 +60,7 @@ export default function PastWorks() {
                       <MediaPlaceholder text="View Work" />
                     )}
                     <span className="absolute top-3 left-3 bg-white/90 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-brand-muted">
-                      {painting.availability === 'sold' ? 'In Private Collection' : 'Not for Sale'}
+                      In Private Collection
                     </span>
                     <div className="absolute inset-0 hidden bg-black/0 transition-colors sm:flex group-hover:bg-black/20 items-center justify-center">
                       <Motion.span

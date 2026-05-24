@@ -66,7 +66,7 @@ const GalleryItem = ({ art, showStatus = false }) => {
 
   if (!image) return null;
 
-  const statusLabel = art.availability === 'sold' ? 'In Private Collection' : 'Not for Sale';
+  const statusLabel = 'In Private Collection';
 
   return (
     <Motion.div

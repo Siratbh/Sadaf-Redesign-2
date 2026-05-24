@@ -133,11 +133,7 @@ export default function PaintingDetail() {
                     { label: 'Year', value: painting.year },
                     {
                       label: 'Availability',
-                      value: painting.availability === 'available'
-                        ? 'Available'
-                        : painting.availability === 'sold'
-                          ? 'Sold'
-                          : 'Enquire',
+                      value: painting.availability === 'available' ? 'Available' : 'Sold',
                     },
                   ].filter((row) => row.value).map((row) => (
                     <div key={row.label} className="flex justify-between items-baseline gap-6">
