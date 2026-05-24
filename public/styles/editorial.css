@@ -1,0 +1,85 @@
+/* Editorial typography — single source of truth.
+   Loaded by both index.html (live site) and public/admin/index.html
+   (Decap CMS preview iframe) so editor previews match published pages
+   exactly. Pure CSS — no Tailwind directives — so it works in either
+   context regardless of build pipeline. */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap');
+
+.prose-editorial {
+  color: #444842;
+  font-size: 16px;
+  line-height: 1.75;
+  font-family: 'Manrope', sans-serif;
+}
+
+.prose-editorial > * + * { margin-top: 1.25em; }
+
+.prose-editorial h1,
+.prose-editorial h2,
+.prose-editorial h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: #1a1a1a;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.prose-editorial h1 { font-size: 2.25rem; margin-top: 2em; }
+.prose-editorial h2 { font-size: 1.75rem; margin-top: 2em; }
+
+/* h3 acts as an eyebrow / preheader */
+.prose-editorial h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: #757575;
+  margin-top: 2.25em;
+  margin-bottom: -0.5em;
+}
+
+.prose-editorial p { font-size: 1rem; }
+.prose-editorial a { color: #1a1a1a; border-bottom: 1px solid #c5c7c0; text-decoration: none; }
+.prose-editorial a:hover { border-color: #1a1a1a; }
+
+.prose-editorial blockquote {
+  border-left: 2px solid #1a1a1a;
+  padding: 0.25em 0 0.25em 1.25em;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.45;
+  color: #1a1a1a;
+  margin: 2em 0;
+}
+
+.prose-editorial ul,
+.prose-editorial ol { padding-left: 1.25em; }
+.prose-editorial ul { list-style: disc; }
+.prose-editorial ol { list-style: decimal; }
+.prose-editorial li + li { margin-top: 0.4em; }
+
+.prose-editorial img {
+  width: 100%;
+  height: auto;
+  margin: 2em 0;
+  display: block;
+}
+
+.prose-editorial hr {
+  border: 0;
+  border-top: 1px solid #e5e2e1;
+  margin: 3em auto;
+  width: 60%;
+}
+
+.prose-editorial strong { color: #1a1a1a; font-weight: 600; }
+.prose-editorial em { font-style: italic; }
+
+@media (min-width: 768px) {
+  .prose-editorial { font-size: 17px; }
+  .prose-editorial h1 { font-size: 2.75rem; }
+  .prose-editorial h2 { font-size: 2.1rem; }
+  .prose-editorial blockquote { font-size: 1.6rem; }
+}

@@ -9,5 +9,410 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // WYSIWYG: feed the live site's editorial styles into Decap's preview iframe,
+    // and render every collection's preview with the same DOM structure as the
+    // live page so editors see what visitors will see.
+    CMS.registerPreviewStyle('/styles/editorial.css');
+    CMS.registerPreviewStyle('/admin/preview.css');
+
+    var h = window.h;
+    var createClass = window.createClass;
+
+    function resolveAsset(getAsset, value) {
+      if (!value) return null;
+      var str = typeof value === 'string' ? value : value.toString();
+      if (/^https?:\/\//i.test(str)) return str;
+      try { return getAsset(str).toString(); } catch (e) { return str; }
+    }
+
+    function isVideoUrl(url) {
+      if (!url) return false;
+      return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url) || /cloudinary\.com\/.+\/video\//i.test(url);
+    }
+
+    function availabilityLabel(value) {
+      if (value === 'available') return 'Available';
+      if (value === 'sold') return 'Sold';
+      if (value === 'nfs') return 'Not for sale';
+      return value || '';
+    }
+
+    /* ---------------- Exhibition preview ---------------- */
+    var ExhibitionPreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var data = entry.get('data');
+        var widgetFor = this.props.widgetFor;
+        var getAsset = this.props.getAsset;
+
+        var title = data.get('title') || '';
+        var venue = data.get('venue') || '';
+        var city = data.get('city') || '';
+        var year = data.get('year') || '';
+        var exhibitionType = data.get('exhibition_type') || '';
+        var heroImage = resolveAsset(getAsset, data.get('hero_image'));
+        var heroVideo = resolveAsset(getAsset, data.get('hero_video'));
+
+        var metaBits = [];
+        if (exhibitionType) metaBits.push(exhibitionType + ' Exhibition');
+        if (year) metaBits.push(year);
+        var metaPrefix = metaBits.join(' · ');
+        var venueLine = venue + (city ? ', ' + city : '');
+
+        var heroNode = null;
+        if (heroVideo && isVideoUrl(heroVideo)) {
+          heroNode = h('video', {
+            className: 'preview-hero preview-hero-video',
+            src: heroVideo,
+            controls: true,
+            preload: 'metadata',
+            playsInline: true,
+          });
+        } else if (heroVideo) {
+          heroNode = h('iframe', {
+            className: 'preview-hero',
+            src: heroVideo,
+            allow: 'autoplay; fullscreen; picture-in-picture',
+            allowFullScreen: true,
+            style: { aspectRatio: '16/9', border: 0 },
+          });
+        } else if (heroImage) {
+          heroNode = h('img', { className: 'preview-hero', src: heroImage, alt: title });
+        }
+
+        return h('div', { className: 'exhibition-preview' },
+          heroNode,
+          h('header', { className: 'preview-header' },
+            metaPrefix ? h('p', { className: 'preview-eyebrow' }, metaPrefix) : null,
+            h('h1', { className: 'preview-title' }, title),
+            venueLine ? h('p', { className: 'preview-venue' }, venueLine) : null
+          ),
+          h('article', { className: 'prose-editorial' }, widgetFor('body'))
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('exhibitions', ExhibitionPreview);
+
+    /* ---------------- Painting preview ---------------- */
+    var PaintingPreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var data = entry.get('data');
+        var widgetFor = this.props.widgetFor;
+        var getAsset = this.props.getAsset;
+
+        var title = data.get('title') || '';
+        var year = data.get('year') || '';
+        var medium = data.get('medium') || '';
+        var dimensions = data.get('dimensions') || '';
+        var availability = availabilityLabel(data.get('availability'));
+        var image = resolveAsset(getAsset, data.get('featured_image') || data.get('thumbnail_image'));
+        var shortDescription = data.get('short_description') || '';
+        var hasFullDescription = !!(data.get('full_description') && data.get('full_description').length);
+
+        var specRows = [];
+        if (medium) specRows.push(h('dt', { key: 'mlabel' }, 'Medium'), h('dd', { key: 'm' }, medium));
+        if (dimensions) specRows.push(h('dt', { key: 'dlabel' }, 'Dimensions'), h('dd', { key: 'd' }, dimensions));
+        if (year) specRows.push(h('dt', { key: 'ylabel' }, 'Year'), h('dd', { key: 'y' }, year));
+        if (availability) specRows.push(h('dt', { key: 'alabel' }, 'Availability'), h('dd', { key: 'a' }, availability));
+
+        return h('div', { className: 'painting-preview' },
+          h('div', { className: 'painting-preview-grid' },
+            h('div', { className: 'painting-preview-image' },
+              image ? h('img', { src: image, alt: title }) : null
+            ),
+            h('div', { className: 'painting-preview-meta' },
+              h('h1', { className: 'painting-preview-title' }, title),
+              year ? h('p', { className: 'painting-preview-year' }, year) : null,
+              specRows.length ? h('dl', { className: 'painting-preview-specs' }, specRows) : null,
+              shortDescription ? h('p', { className: 'painting-preview-short' }, shortDescription) : null
+            )
+          ),
+          hasFullDescription
+            ? h('section', { className: 'painting-preview-note' },
+                h('h2', null, "Artist's Note"),
+                h('article', { className: 'prose-editorial' }, widgetFor('full_description'))
+              )
+            : null
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('paintings', PaintingPreview);
+    CMS.registerPreviewTemplate('past-works', PaintingPreview);
+
+    /* ---------------- About page preview ---------------- */
+    var AboutPreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var data = entry.get('data');
+        var widgetFor = this.props.widgetFor;
+        var getAsset = this.props.getAsset;
+
+        var portrait = resolveAsset(getAsset, data.get('portrait_image'));
+        var hasIntro = !!(data.get('bio_intro') && data.get('bio_intro').length);
+        var hasBody = !!(data.get('bio_body') && data.get('bio_body').length);
+        var hasStatement = !!(data.get('artist_statement') && data.get('artist_statement').length);
+        var studioNote = data.get('studio_note') || '';
+
+        return h('div', { className: 'about-preview' },
+          h('section', { className: 'about-preview-hero' },
+            h('div', null,
+              h('span', { className: 'preview-eyebrow' }, 'About'),
+              h('h1', { className: 'preview-title' }, 'About the artist'),
+              hasIntro
+                ? h('div', { className: 'about-preview-intro' }, widgetFor('bio_intro'))
+                : null
+            ),
+            portrait ? h('img', { className: 'about-preview-portrait', src: portrait, alt: 'Portrait' }) : null
+          ),
+          hasBody
+            ? h('section', { className: 'about-preview-bio' },
+                h('div', { className: 'preview-section-header' }, h('h2', null, 'Biography')),
+                h('article', { className: 'prose-editorial' }, widgetFor('bio_body'))
+              )
+            : null,
+          hasStatement
+            ? h('section', { className: 'about-preview-statement' },
+                h('span', { className: 'preview-eyebrow-light' }, 'Artist statement'),
+                h('blockquote', { className: 'about-preview-blockquote prose-editorial' },
+                  '“', widgetFor('artist_statement'), '”'
+                )
+              )
+            : null,
+          studioNote
+            ? h('section', { className: 'about-preview-studio-note' },
+                h('span', { className: 'preview-eyebrow-light' }, 'Studio note'),
+                h('p', null, studioNote)
+              )
+            : null
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('about', AboutPreview);
+
+    /* ---------------- Collectors Edit (page) preview ---------------- */
+    var CollectorsEditPagePreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var data = entry.get('data');
+        var widgetFor = this.props.widgetFor;
+
+        var title = data.get('title') || '';
+        var hasIntro = !!(data.get('intro') && data.get('intro').length);
+
+        return h('div', { className: 'collectors-edit-preview' },
+          h('h1', { className: 'preview-title' }, title),
+          h('div', { className: 'preview-rule' }),
+          hasIntro
+            ? h('div', { className: 'prose-editorial' }, widgetFor('intro'))
+            : null
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('collectors-edit', CollectorsEditPagePreview);
+
+    /* ---------------- Single collector card preview ---------------- */
+    var CollectorPreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var data = entry.get('data');
+        var getAsset = this.props.getAsset;
+
+        var image = resolveAsset(getAsset, data.get('image'));
+        var paintingTitle = data.get('painting_title') || '';
+        var caption = data.get('caption') || '';
+        var title = data.get('title') || '';
+
+        return h('div', { className: 'collector-preview' },
+          h('figure', { className: 'collector-preview-figure' },
+            image ? h('img', { src: image, alt: title }) : null,
+            h('figcaption', null,
+              paintingTitle ? h('p', { className: 'collector-preview-painting-title' }, paintingTitle) : null,
+              caption ? h('p', { className: 'collector-preview-caption' }, caption) : null
+            )
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('collectors', CollectorPreview);
+
+    /* ---------------- Helpers shared by the homepage previews ---------------- */
+    function blank(value, fallback) {
+      var s = (value || '').toString().trim();
+      if (s) return s;
+      return h('span', { className: 'home-preview-empty' }, fallback || '—');
+    }
+
+    function splitParagraphs(value) {
+      var s = (value || '').toString();
+      return s.split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean);
+    }
+
+    /* ---------------- Homepage preview ---------------- */
+    var HomePagePreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var g = function (k) { return data.get(k) || ''; };
+
+        // Build placeholder tiles (3-up)
+        function placeholderTiles(count, hint) {
+          var items = [];
+          for (var i = 0; i < count; i++) {
+            items.push(h('div', { key: 'tile-' + i, className: 'home-preview-tile' },
+              h('span', { className: 'home-preview-tile-hint' }, hint)
+            ));
+          }
+          return items;
+        }
+
+        // Build placeholder exhibition rows (3 rows)
+        function exhibitionRows() {
+          var rows = [];
+          var samples = [
+            { title: 'Exhibition title', meta: 'Venue, City', year: 'Year' },
+            { title: 'Exhibition title', meta: 'Venue, City', year: 'Year' },
+            { title: 'Exhibition title', meta: 'Venue, City', year: 'Year' }
+          ];
+          for (var i = 0; i < samples.length; i++) {
+            rows.push(h('div', { key: 'ex-' + i, className: 'home-preview-exhibition-row' },
+              h('div', { className: 'home-preview-exhibition-row-main' },
+                h('h4', { className: 'home-preview-exhibition-row-title' }, samples[i].title),
+                h('p', { className: 'home-preview-exhibition-row-meta' }, samples[i].meta)
+              ),
+              h('div', { className: 'home-preview-exhibition-row-year' }, samples[i].year)
+            ));
+          }
+          return rows;
+        }
+
+        return h('div', { className: 'home-preview' },
+
+          /* ── Hero ─────────────────────────────────────── */
+          h('section', { className: 'home-preview-hero' },
+            h('div', { className: 'home-preview-hero-copy' },
+              h('h1', { className: 'home-preview-hero-headline' },
+                blank(g('hero_headline_line1'), 'Headline line 1'),
+                h('br'),
+                blank(g('hero_headline_line2'), 'Headline line 2')
+              )
+            ),
+            h('div', { className: 'home-preview-hero-slideshow' },
+              h('span', { className: 'home-preview-tile-hint' },
+                'Featured paintings slideshow — “', blank(g('hero_slideshow_label'), 'Slideshow label'), '”'
+              )
+            )
+          ),
+
+          /* ── Available Works ──────────────────────────── */
+          h('section', { className: 'home-preview-section home-preview-section-light' },
+            h('div', { className: 'home-preview-section-header' },
+              h('h2', { className: 'home-preview-section-title' }, blank(g('available_title'), 'Section title'))
+            ),
+            h('div', { className: 'home-preview-grid-placeholder' }, placeholderTiles(3, 'Available painting')),
+            h('div', { className: 'home-preview-cta-row' },
+              h('span', { className: 'home-preview-cta-primary' }, blank(g('available_cta'), 'Primary CTA')),
+              h('span', { className: 'home-preview-cta-link' }, blank(g('available_secondary_cta'), 'Secondary CTA'))
+            )
+          ),
+
+          /* ── About ────────────────────────────────────── */
+          h('section', { className: 'home-preview-section home-preview-section-dark' },
+            h('h2', { className: 'home-preview-about-title' }, blank(g('about_big_title'), 'About big title')),
+            h('hr', { className: 'home-preview-dark-rule' }),
+            h('div', { className: 'home-preview-about-grid' },
+              h('h3', { className: 'home-preview-about-label' }, blank(g('about_section_label'), 'Section label')),
+              h('div', { className: 'home-preview-about-body' },
+                h('p', { className: 'home-preview-about-placeholder' }, 'Bio paragraphs (first 3) render here — pulled from About page → Bio Body.'),
+                h('span', { className: 'home-preview-cta-link home-preview-cta-link-light' }, blank(g('about_cta'), 'About CTA'))
+              )
+            )
+          ),
+
+          /* ── Past Works ───────────────────────────────── */
+          h('section', { className: 'home-preview-section home-preview-section-light' },
+            h('div', { className: 'home-preview-section-header' },
+              h('h2', { className: 'home-preview-section-title' }, blank(g('past_works_title'), 'Section title')),
+              h('p', { className: 'home-preview-section-subhead' }, blank(g('past_works_subhead'), 'Section subhead'))
+            ),
+            h('div', { className: 'home-preview-grid-placeholder' }, placeholderTiles(3, 'Past painting')),
+            h('div', { className: 'home-preview-cta-row' },
+              h('span', { className: 'home-preview-cta-primary' }, blank(g('past_works_cta'), 'Past Works CTA'))
+            )
+          ),
+
+          /* ── Collectors ───────────────────────────────── */
+          h('section', { className: 'home-preview-section' },
+            h('div', { className: 'home-preview-carousel-placeholder' },
+              h('span', { className: 'home-preview-tile-hint' }, 'Collector cards scroll horizontally here')
+            ),
+            h('div', { className: 'home-preview-cta-row' },
+              h('span', { className: 'home-preview-cta-outline' }, blank(g('collectors_cta'), 'Collectors CTA'))
+            )
+          ),
+
+          /* ── Exhibitions ──────────────────────────────── */
+          h('section', { className: 'home-preview-section home-preview-section-light' },
+            h('div', { className: 'home-preview-section-header' },
+              h('h2', { className: 'home-preview-section-title' }, blank(g('exhibitions_title'), 'Section title')),
+              h('p', { className: 'home-preview-section-subhead' }, blank(g('exhibitions_subhead'), 'Section subhead'))
+            ),
+            h('div', { className: 'home-preview-exhibition-list' }, exhibitionRows()),
+            h('div', { className: 'home-preview-cta-row' },
+              h('span', { className: 'home-preview-cta-link' }, blank(g('exhibitions_cta'), 'Exhibitions CTA'))
+            )
+          ),
+
+          /* ── Contact ──────────────────────────────────── */
+          h('section', { className: 'home-preview-section home-preview-contact' },
+            h('h2', { className: 'home-preview-contact-headline' }, blank(g('contact_headline'), 'Contact headline')),
+            h('p', { className: 'home-preview-contact-body' }, blank(g('contact_body'), 'Contact body copy')),
+            h('span', { className: 'home-preview-contact-cta' }, blank(g('contact_cta'), 'Contact CTA'))
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('home', HomePagePreview);
+
+    /* ---------------- Home — Artist Block preview ---------------- */
+    var HomeArtistPreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
+
+        var portrait = resolveAsset(getAsset, data.get('portrait_image'));
+        var bioIntro = data.get('bio_intro') || '';
+        var paragraphs = splitParagraphs(data.get('hero_subhead'));
+
+        return h('div', { className: 'home-artist-preview' },
+          h('div', { className: 'home-artist-preview-grid' },
+            h('div', { className: 'home-artist-preview-copy' },
+              h('span', { className: 'preview-eyebrow' }, 'Hero — Artist Block'),
+              h('h1', { className: 'home-artist-preview-name' }, blank(bioIntro, 'Artist name')),
+              paragraphs.length
+                ? h('div', { className: 'home-artist-preview-paragraphs' },
+                    paragraphs.map(function (p, i) { return h('p', { key: 'p-' + i }, p); })
+                  )
+                : h('p', { className: 'home-preview-empty' }, 'Hero paragraphs go here.')
+            ),
+            portrait
+              ? h('img', { className: 'home-artist-preview-portrait', src: portrait, alt: bioIntro || 'Artist portrait' })
+              : h('div', { className: 'home-artist-preview-portrait home-artist-preview-portrait-empty' },
+                  h('span', { className: 'home-preview-tile-hint' }, 'Portrait image')
+                )
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('home-artist', HomeArtistPreview);
+  </script>
 </body>
 </html>
