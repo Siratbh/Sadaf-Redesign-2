@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Celestial Herd
 slug: celestial-herd
 year: "2021"

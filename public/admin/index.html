@@ -430,6 +430,88 @@
     });
 
     CMS.registerPreviewTemplate('home-artist', HomeArtistPreview);
+
+    /* ---------------- Painting listing previews (Available + Past Works) ---------------- */
+    function paintingListingPreview(options) {
+      // options: { defaultEyebrow, defaultTitle, defaultDescription, defaultHover, defaultView, defaultEmpty, statusFieldKey, defaultStatus }
+      return createClass({
+        render: function () {
+          var data = this.props.entry.get('data');
+          var g = function (k) { return data.get(k) || ''; };
+
+          // Build 6 placeholder tiles
+          var tiles = [];
+          for (var i = 0; i < 6; i++) {
+            var tileChildren = [
+              h('span', { key: 'h', className: 'home-preview-tile-hint' }, 'Painting')
+            ];
+            if (options.statusFieldKey) {
+              tileChildren.push(
+                h('span', {
+                  key: 's',
+                  className: 'listing-preview-tile-status',
+                  'data-sb-field-path': options.statusFieldKey,
+                }, g(options.statusFieldKey) || options.defaultStatus)
+              );
+            }
+            tiles.push(h('div', { key: 'tile-' + i, className: 'listing-preview-tile' }, tileChildren));
+          }
+
+          return h('div', { className: 'listing-preview' },
+            // Hero
+            h('section', { className: 'listing-preview-hero' },
+              h('span', { className: 'preview-eyebrow' }, g('hero_eyebrow') || options.defaultEyebrow),
+              h('h1', { className: 'listing-preview-title' }, g('hero_title') || options.defaultTitle),
+              h('p', { className: 'listing-preview-description' }, g('hero_description') || options.defaultDescription)
+            ),
+
+            // Grid placeholder + tile labels
+            h('section', { className: 'listing-preview-grid-section' },
+              h('div', { className: 'listing-preview-grid' }, tiles),
+              h('div', { className: 'listing-preview-tile-labels' },
+                h('div', null,
+                  h('span', { className: 'preview-eyebrow-light' }, 'Tile hover label'),
+                  h('p', { className: 'listing-preview-label-value' }, g('tile_hover_label') || options.defaultHover)
+                ),
+                h('div', null,
+                  h('span', { className: 'preview-eyebrow-light' }, 'Tile "View" link'),
+                  h('p', { className: 'listing-preview-label-value' }, g('tile_view_label') || options.defaultView)
+                )
+              )
+            ),
+
+            // Empty state preview
+            h('section', { className: 'listing-preview-empty-section' },
+              h('span', { className: 'preview-eyebrow-light' }, 'Empty state (shown when no paintings)'),
+              h('p', { className: 'listing-preview-empty' }, g('empty_state') || options.defaultEmpty)
+            )
+          );
+        },
+      });
+    }
+
+    var AvailablePagePreview = paintingListingPreview({
+      defaultEyebrow: 'Available Works',
+      defaultTitle: 'Available Works',
+      defaultDescription: 'Original paintings currently available for acquisition. Each piece is a meditation on spirituality, abstraction, and the human experience.',
+      defaultHover: 'View this piece',
+      defaultView: 'View',
+      defaultEmpty: 'No works currently available — please check back soon, or get in touch about commissions.',
+    });
+
+    var PastWorksPagePreview = paintingListingPreview({
+      defaultEyebrow: 'Past Works',
+      defaultTitle: 'Past Works',
+      defaultDescription: 'An archive of original paintings now in private collections. To inquire about commissioning a similar piece, please get in touch.',
+      defaultHover: 'View work',
+      defaultView: 'View',
+      defaultEmpty: 'No archived works yet.',
+      statusFieldKey: 'tile_status_label',
+      defaultStatus: 'In Private Collection',
+    });
+
+    CMS.registerPreviewTemplate('available', AvailablePagePreview);
+    CMS.registerPreviewTemplate('past-works', PastWorksPagePreview);
   </script>
 </body>
 </html>

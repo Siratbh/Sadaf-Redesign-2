@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Three Souls In Surrender
 slug: three-souls-in-surrender
 year: "2024"

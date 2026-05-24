@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Two Flames Of The Spirit
 slug: two-flames-of-the-spirit
 year: "2026"

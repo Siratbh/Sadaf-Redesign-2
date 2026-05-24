@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Consumed By Rememberance
 slug: consumed-by-rememberance
 year: "2026"

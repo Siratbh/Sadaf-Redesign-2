@@ -195,6 +195,43 @@ export default defineStackbitConfig({
           ],
         },
 
+        // ─── Available Works listing page ─────────────────────────────
+        {
+          name: 'AvailablePage',
+          type: 'page',
+          urlPath: '/available',
+          filePath: 'content/pages/available.md',
+          fields: [
+            { name: 'hero_eyebrow', type: 'string', description: 'Small label above the big heading.' },
+            { name: 'hero_title', type: 'string', description: 'Big page heading.' },
+            { name: 'hero_description', type: 'text', description: 'Intro paragraph under the heading.' },
+            { name: 'tile_hover_label', type: 'string', description: 'Label shown when hovering a painting tile (e.g. "View this piece").' },
+            { name: 'tile_view_label', type: 'string', description: 'Label on the small underlined link under each tile (e.g. "View").' },
+            { name: 'empty_state', type: 'text', description: 'Message shown when no paintings are currently available.' },
+            { name: 'seo_title', type: 'string', description: 'Browser tab title.' },
+            { name: 'seo_description', type: 'text', description: 'SEO meta description.' },
+          ],
+        },
+
+        // ─── Past Works listing page ──────────────────────────────────
+        {
+          name: 'PastWorksPage',
+          type: 'page',
+          urlPath: '/past-works',
+          filePath: 'content/pages/past-works.md',
+          fields: [
+            { name: 'hero_eyebrow', type: 'string', description: 'Small label above the big heading.' },
+            { name: 'hero_title', type: 'string', description: 'Big page heading.' },
+            { name: 'hero_description', type: 'text', description: 'Intro paragraph under the heading.' },
+            { name: 'tile_status_label', type: 'string', description: 'Badge label on each tile (e.g. "In Private Collection").' },
+            { name: 'tile_hover_label', type: 'string', description: 'Label shown when hovering a painting tile (e.g. "View work").' },
+            { name: 'tile_view_label', type: 'string', description: 'Label on the small underlined link under each tile (e.g. "View").' },
+            { name: 'empty_state', type: 'text', description: 'Message shown when there are no past works yet.' },
+            { name: 'seo_title', type: 'string', description: 'Browser tab title.' },
+            { name: 'seo_description', type: 'text', description: 'SEO meta description.' },
+          ],
+        },
+
         // ─── Contact page ─────────────────────────────────────────────
         {
           name: 'ContactPage',

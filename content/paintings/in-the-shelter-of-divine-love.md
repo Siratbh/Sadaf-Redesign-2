@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: In the Shelter of Divine Love
 slug: in-the-shelter-of-divine-love
 year: "2024"

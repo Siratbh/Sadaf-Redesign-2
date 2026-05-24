@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Seeker Beneath the Pattern
 slug: seeker-beneath-the-pattern
 year: "2024"

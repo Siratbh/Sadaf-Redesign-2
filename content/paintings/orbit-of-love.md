@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Orbit Of Love
 slug: orbit-of-love
 year: "2024"

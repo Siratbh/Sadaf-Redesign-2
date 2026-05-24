@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Soul Unbound
 slug: soul-unbound
 year: "2023"

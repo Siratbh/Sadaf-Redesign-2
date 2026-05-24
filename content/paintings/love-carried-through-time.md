@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Love Carried Through Time
 slug: love-carried-through-time
 year: "2025"

@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Radiance Within
 slug: radiance-within
 year: "2024"

@@ -194,6 +194,41 @@ collections:
           - { label: "Artist Name (above hero paragraphs)", name: "bio_intro", widget: "string" }
           - { label: "Hero Paragraphs", name: "hero_subhead", widget: "text", hint: "Hero paragraphs under the big headline. Separate paragraphs with a blank line." }
 
+      - label: "Available Works (page)"
+        name: "available"
+        file: "content/pages/available.md"
+        fields:
+          # ── Hero ─────────────────────────────────────────────────
+          - { label: "Hero — Eyebrow", name: "hero_eyebrow", widget: "string", hint: "Small label above the big heading." }
+          - { label: "Hero — Title", name: "hero_title", widget: "string", hint: "Big page heading." }
+          - { label: "Hero — Description", name: "hero_description", widget: "text", hint: "Intro paragraph under the heading." }
+          # ── Tiles ────────────────────────────────────────────────
+          - { label: "Tile — Hover Label", name: "tile_hover_label", widget: "string", hint: "Label shown when hovering a painting tile (e.g. 'View this piece')." }
+          - { label: "Tile — View Link Label", name: "tile_view_label", widget: "string", hint: "Label on the small underlined link under each tile (e.g. 'View')." }
+          # ── Empty state ──────────────────────────────────────────
+          - { label: "Empty State Message", name: "empty_state", widget: "text", hint: "Message shown when no paintings are currently available." }
+          # ── SEO ──────────────────────────────────────────────────
+          - { label: "SEO — Browser Tab Title", name: "seo_title", widget: "string", required: false }
+          - { label: "SEO — Meta Description", name: "seo_description", widget: "text", required: false }
+
+      - label: "Past Works (page)"
+        name: "past-works"
+        file: "content/pages/past-works.md"
+        fields:
+          # ── Hero ─────────────────────────────────────────────────
+          - { label: "Hero — Eyebrow", name: "hero_eyebrow", widget: "string", hint: "Small label above the big heading." }
+          - { label: "Hero — Title", name: "hero_title", widget: "string", hint: "Big page heading." }
+          - { label: "Hero — Description", name: "hero_description", widget: "text", hint: "Intro paragraph under the heading." }
+          # ── Tiles ────────────────────────────────────────────────
+          - { label: "Tile — Status Badge", name: "tile_status_label", widget: "string", hint: "Badge label on each tile (e.g. 'In Private Collection')." }
+          - { label: "Tile — Hover Label", name: "tile_hover_label", widget: "string", hint: "Label shown when hovering a painting tile (e.g. 'View work')." }
+          - { label: "Tile — View Link Label", name: "tile_view_label", widget: "string", hint: "Label on the small underlined link under each tile (e.g. 'View')." }
+          # ── Empty state ──────────────────────────────────────────
+          - { label: "Empty State Message", name: "empty_state", widget: "text", hint: "Message shown when there are no past works yet." }
+          # ── SEO ──────────────────────────────────────────────────
+          - { label: "SEO — Browser Tab Title", name: "seo_title", widget: "string", required: false }
+          - { label: "SEO — Meta Description", name: "seo_description", widget: "text", required: false }
+
       - label: "About"
         name: "about"
         file: "content/pages/about.md"

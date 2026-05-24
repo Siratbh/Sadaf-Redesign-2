@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Turning Of Light
 slug: turning-of-light
 year: "2022"

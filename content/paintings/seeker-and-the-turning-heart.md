@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Seeker & The Turning Heart
 slug: seeker-and-the-turning-heart
 year: "2026"

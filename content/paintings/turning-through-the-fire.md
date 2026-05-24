@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Turning Through The Fire
 slug: turning-through-the-fire
 year: "2021"

@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Letters Of The Beloved
 slug: letters-of-the-beloved
 year: "2024"

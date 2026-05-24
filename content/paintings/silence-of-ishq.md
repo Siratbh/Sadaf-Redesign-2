@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Silence Of Ishq
 slug: silence-of-ishq
 year: "2023"

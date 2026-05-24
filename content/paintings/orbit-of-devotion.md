@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Orbit Of Devotion
 slug: orbit-of-devotion
 year: "2022"

@@ -1,4 +1,5 @@
 ---
+type: Painting
 title: Lovers Of The Infinite
 slug: lovers-of-the-infinite
 year: "2024"
