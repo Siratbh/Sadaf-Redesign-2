@@ -7,6 +7,7 @@ city: Dubai, UAE
 exhibition_type: Solo
 hero_image: /images/6d683dd7-f8de-436e-a556-7e8813dbffd5.jpg
 card_thumbnail: /images/6d683dd7-f8de-436e-a556-7e8813dbffd5.jpg
+hero_video: https://res.cloudinary.com/dxjv01x2t/video/upload/v1779603837/5906cf87-9160-4b2d-9861-93b5ced88b22_jd1s2f.mp4
 gallery:
   - image: /images/79f1f3be-be77-4df2-baf1-82d90e7c2120.jpg
   - image: /images/2edb1fda-520f-435f-b1a4-f54e36379e88.jpg
