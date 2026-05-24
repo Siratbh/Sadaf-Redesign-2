@@ -212,7 +212,7 @@ collections:
           - { label: "SEO — Meta Description", name: "seo_description", widget: "text", required: false }
 
       - label: "Past Works (page)"
-        name: "past-works"
+        name: "past-works-page"
         file: "content/pages/past-works.md"
         fields:
           # ── Hero ─────────────────────────────────────────────────

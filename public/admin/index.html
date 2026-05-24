@@ -511,7 +511,9 @@
     });
 
     CMS.registerPreviewTemplate('available', AvailablePagePreview);
-    CMS.registerPreviewTemplate('past-works', PastWorksPagePreview);
+    // Page-level entry uses a different key from the 'past-works' FOLDER collection
+    // (which is already registered above as PaintingPreview for individual sold paintings).
+    CMS.registerPreviewTemplate('past-works-page', PastWorksPagePreview);
   </script>
 </body>
 </html>
