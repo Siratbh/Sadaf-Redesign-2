@@ -3,7 +3,7 @@ title: Noor In The Void
 slug: noor-in-the-void
 year: "2024"
 medium: Oil on Canvas
-dimensions: 90 × 120 cm
+dimensions: 40x60 Inches
 availability: available
 featured_image: /images/paintings/image0-1-.jpeg
 thumbnail_image: /images/paintings/image0-1-.jpeg
