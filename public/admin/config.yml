@@ -50,7 +50,7 @@ collections:
     identifier_field: slug
     filter:
       field: availability
-      pattern: "sold|nfs"
+      values: ["sold", "nfs"]
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. nocturnal-whispers" }
