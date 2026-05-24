@@ -198,16 +198,24 @@ collections:
         name: "about"
         file: "content/pages/about.md"
         fields:
-          - { label: "Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
-          - label: "Bio Intro"
+          # ── Hero ─────────────────────────────────────────────────
+          - { label: "Hero — Eyebrow", name: "hero_eyebrow", widget: "string", hint: "Small label above the big heading (e.g. 'About')." }
+          - { label: "Hero — Title", name: "hero_title", widget: "string", hint: "Big page heading (e.g. 'About the artist')." }
+          - label: "Hero — Intro paragraph"
             name: "bio_intro"
             widget: "markdown"
-            hint: "Short intro paragraph. Inline emphasis only — bold, italic, and links."
+            hint: "Short intro paragraph under the heading. Inline emphasis only — bold, italic, and links."
             buttons: ["bold", "italic", "link"]
             editor_components: []
             modes: ["rich_text", "raw"]
-          - { label: "Bio Body", name: "bio_body", widget: "markdown", hint: "Full biography. Use headings, paragraphs, lists, blockquotes — all rendered on the live page." }
-          - label: "Artist Statement"
+          - { label: "Hero — Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
+          # ── Biography ────────────────────────────────────────────
+          - { label: "Biography — Section title", name: "biography_title", widget: "string", hint: "Section heading (e.g. 'Biography')." }
+          - { label: "Biography — Subhead", name: "biography_subhead", widget: "string", hint: "Small heading in the left column (e.g. 'About the artist')." }
+          - { label: "Biography — Body", name: "bio_body", widget: "markdown", hint: "Long-form biography. Use headings, paragraphs, lists, blockquotes — all rendered on the live page." }
+          # ── Statement ────────────────────────────────────────────
+          - { label: "Statement — Eyebrow", name: "statement_label", widget: "string", required: false, hint: "Eyebrow label (e.g. 'Artist statement')." }
+          - label: "Statement — Artist Statement"
             name: "artist_statement"
             widget: "markdown"
             required: false
@@ -215,7 +223,17 @@ collections:
             buttons: ["bold", "italic", "link"]
             editor_components: []
             modes: ["rich_text", "raw"]
-          - { label: "Studio Note", name: "studio_note", widget: "string", required: false }
+          - { label: "Statement — Studio Eyebrow", name: "studio_label", widget: "string", required: false, hint: "Eyebrow label (e.g. 'Studio note')." }
+          - { label: "Statement — Studio Note", name: "studio_note", widget: "string", required: false }
+          # ── Closing CTA ──────────────────────────────────────────
+          - { label: "CTA — Eyebrow", name: "cta_eyebrow", widget: "string", hint: "Small label above the CTA heading (e.g. 'Continue')." }
+          - { label: "CTA — Title", name: "cta_title", widget: "string", hint: "CTA heading (e.g. 'Explore further')." }
+          - { label: "CTA — Body", name: "cta_body", widget: "text", hint: "CTA paragraph copy." }
+          - { label: "CTA — Contact Button", name: "cta_contact_button", widget: "string", hint: "Primary button label (e.g. 'Get in touch')." }
+          - { label: "CTA — Available Works Link", name: "cta_available_link", widget: "string" }
+          - { label: "CTA — Exhibitions Link", name: "cta_exhibitions_link", widget: "string" }
+          # ── SEO / Meta ───────────────────────────────────────────
+          - { label: "SEO — Browser Tab Title", name: "title", widget: "string", required: false, hint: "Appears in the browser tab and as the SEO title." }
 
       - label: "Contact"
         name: "contact"

@@ -1,62 +1,15 @@
 import { motion as Motion } from 'motion/react'
 import { Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 import { getPage, getPaintings } from '../lib/content'
 
-const splitParagraphs = (value = '') =>
-  value
-    .split(/\n\s*\n/)
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean)
-
-function renderInlineMarkdown(text) {
-  const tokens = []
-  const regex = /(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\(https?:\/\/[^)]+\))/g
-  let lastIndex = 0
-  let match
-
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      tokens.push(text.slice(lastIndex, match.index))
-    }
-
-    const token = match[0]
-
-    if (token.startsWith('**')) {
-      tokens.push(<strong key={`strong-${match.index}`}>{token.slice(2, -2)}</strong>)
-    } else if (token.startsWith('*')) {
-      tokens.push(<em key={`em-${match.index}`}>{token.slice(1, -1)}</em>)
-    } else {
-      const linkMatch = token.match(/^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/)
-      if (linkMatch) {
-        tokens.push(
-          <a
-            key={`link-${match.index}`}
-            href={linkMatch[2]}
-            target="_blank"
-            rel="noreferrer"
-            className="underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-ink"
-          >
-            {linkMatch[1]}
-          </a>
-        )
-      }
-    }
-
-    lastIndex = match.index + token.length
-  }
-
-  if (lastIndex < text.length) {
-    tokens.push(text.slice(lastIndex))
-  }
-
-  return tokens.length > 0 ? tokens : [text]
-}
+const INLINE_ELEMENTS = ['strong', 'em', 'a']
 
 export default function About() {
   const a = getPage('about') || {}
-  const biographyParagraphs = splitParagraphs(a.bio_body)
   const pageTitle = a.title?.trim() || 'About'
   const decorativePaintings = getPaintings().slice(0, 2)
   const leftLayer = decorativePaintings[0]?.thumbnail_image || decorativePaintings[0]?.featured_image || null
@@ -79,15 +32,17 @@ export default function About() {
           <div className="flex flex-col gap-10 lg:gap-14">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:items-end">
               <Motion.div {...revealUp} className="max-w-3xl">
-                <span className="mb-5 block text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted sm:mb-6">
-                  About
+                <span className="mb-5 block text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted sm:mb-6" data-sb-field-path="hero_eyebrow">
+                  {a.hero_eyebrow || 'About'}
                 </span>
-                <h1 className="mb-6 text-4xl font-serif leading-[0.95] tracking-tight text-brand-ink sm:text-5xl md:text-6xl lg:text-7xl">
-                  About the artist
+                <h1 className="mb-6 text-4xl font-serif leading-[0.95] tracking-tight text-brand-ink sm:text-5xl md:text-6xl lg:text-7xl" data-sb-field-path="hero_title">
+                  {a.hero_title || 'About the artist'}
                 </h1>
-                <p className="max-w-2xl text-sm font-light leading-relaxed text-brand-muted sm:text-[15px] md:text-base" data-sb-field-path="bio_intro">
-                  {a.bio_intro}
-                </p>
+                <div className="max-w-2xl text-sm font-light leading-relaxed text-brand-muted sm:text-[15px] md:text-base" data-sb-field-path="bio_intro">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} allowedElements={INLINE_ELEMENTS} unwrapDisallowed>
+                    {a.bio_intro || ''}
+                  </ReactMarkdown>
+                </div>
               </Motion.div>
 
               <Motion.div
@@ -147,24 +102,22 @@ export default function About() {
       <section className="bg-white py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-10 border-b border-gray-100 pb-6 md:mb-16 md:pb-8">
-            <Motion.h2 {...revealUp} className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl">
-              Biography
+            <Motion.h2 {...revealUp} className="text-2xl font-serif uppercase tracking-[0.1em] sm:text-3xl md:text-4xl" data-sb-field-path="biography_title">
+              {a.biography_title || 'Biography'}
             </Motion.h2>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
             <Motion.div {...revealUp} className="md:col-span-4">
-              <h3 className="text-[14px] font-black uppercase tracking-[0.1em] text-brand-ink md:text-[16px]">
-                About the artist
+              <h3 className="text-[14px] font-black uppercase tracking-[0.1em] text-brand-ink md:text-[16px]" data-sb-field-path="biography_subhead">
+                {a.biography_subhead || 'About the artist'}
               </h3>
             </Motion.div>
 
             <Motion.div {...revealUp} className="md:col-span-8">
-              <div className="max-w-3xl space-y-6 text-[15px] leading-[1.8] text-brand-muted md:space-y-8 md:text-[17px]">
-                {biographyParagraphs.map((para, i) => (
-                  <p key={i} data-sb-field-path="bio_body">{renderInlineMarkdown(para)}</p>
-                ))}
-              </div>
+              <article className="prose-editorial max-w-3xl" data-sb-field-path="bio_body">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{a.bio_body || ''}</ReactMarkdown>
+              </article>
             </Motion.div>
           </div>
         </div>
@@ -176,11 +129,15 @@ export default function About() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             {a.artist_statement && (
               <Motion.div {...revealUp} className="max-w-5xl">
-                <span className="mb-8 block text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 md:mb-10">
-                  Artist statement
+                <span className="mb-8 block text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 md:mb-10" data-sb-field-path="statement_label">
+                  {a.statement_label || 'Artist statement'}
                 </span>
                 <blockquote className="text-3xl font-serif leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl" data-sb-field-path="artist_statement">
-                  &ldquo;{a.artist_statement}&rdquo;
+                  &ldquo;
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} allowedElements={INLINE_ELEMENTS} unwrapDisallowed>
+                    {a.artist_statement}
+                  </ReactMarkdown>
+                  &rdquo;
                 </blockquote>
               </Motion.div>
             )}
@@ -191,8 +148,8 @@ export default function About() {
                 transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
                 className={`${a.artist_statement ? 'mt-12 border-t border-white/10 pt-8 md:mt-16 md:pt-10' : ''}`}
               >
-                <span className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45">
-                  Studio note
+                <span className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45" data-sb-field-path="studio_label">
+                  {a.studio_label || 'Studio note'}
                 </span>
                 <p className="max-w-3xl text-sm leading-relaxed text-white/68 sm:text-[15px]" data-sb-field-path="studio_note">
                   {a.studio_note}
@@ -207,30 +164,31 @@ export default function About() {
       <section className="border-t border-gray-100 bg-white py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <Motion.div {...revealUp} className="mx-auto max-w-3xl text-center">
-            <span className="mb-5 block text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted md:mb-6">
-              Continue
+            <span className="mb-5 block text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted md:mb-6" data-sb-field-path="cta_eyebrow">
+              {a.cta_eyebrow || 'Continue'}
             </span>
-            <h2 className="mb-6 text-3xl font-serif uppercase tracking-[0.1em] text-brand-ink sm:text-4xl md:mb-8 md:text-5xl">
-              Explore further
+            <h2 className="mb-6 text-3xl font-serif uppercase tracking-[0.1em] text-brand-ink sm:text-4xl md:mb-8 md:text-5xl" data-sb-field-path="cta_title">
+              {a.cta_title || 'Explore further'}
             </h2>
-            <p className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-brand-muted sm:text-[15px] md:mb-12">
-              Discover the wider body of work, browse the exhibition archive, or get in touch directly.
+            <p className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-brand-muted sm:text-[15px] md:mb-12" data-sb-field-path="cta_body">
+              {a.cta_body || 'Discover the wider body of work, browse the exhibition archive, or get in touch directly.'}
             </p>
 
             <div className="flex flex-col items-center gap-6">
               <Link
                 to="/contact"
                 className="inline-block w-full bg-brand-ink px-8 py-4 text-[12px] font-bold uppercase tracking-[0.3em] text-brand-bg transition-all duration-300 hover:bg-brand-accent sm:w-auto sm:px-12 sm:py-5"
+                data-sb-field-path="cta_contact_button"
               >
-                Get in touch
+                {a.cta_contact_button || 'Get in touch'}
               </Link>
 
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
-                <Link to="/available" className="border-b border-brand-ink pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-ink">
-                  View available works
+                <Link to="/available" className="border-b border-brand-ink pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-ink" data-sb-field-path="cta_available_link">
+                  {a.cta_available_link || 'View available works'}
                 </Link>
-                <Link to="/exhibitions" className="border-b border-brand-ink pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-ink">
-                  View exhibitions
+                <Link to="/exhibitions" className="border-b border-brand-ink pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-ink" data-sb-field-path="cta_exhibitions_link">
+                  {a.cta_exhibitions_link || 'View exhibitions'}
                 </Link>
               </div>
             </div>

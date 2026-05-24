@@ -1,6 +1,18 @@
 ---
 type: AboutPage
 title: 'About '
+hero_eyebrow: About
+hero_title: About the artist
+biography_title: Biography
+biography_subhead: About the artist
+statement_label: Artist statement
+studio_label: Studio note
+cta_eyebrow: Continue
+cta_title: Explore further
+cta_body: Discover the wider body of work, browse the exhibition archive, or get in touch directly.
+cta_contact_button: Get in touch
+cta_available_link: View available works
+cta_exhibitions_link: View exhibitions
 portrait_image: /images/about/Sadaf Portrait.png
 bio_intro: >-
   Sadaf Farasat is a self-taught artist whose work is deeply rooted in Sufism

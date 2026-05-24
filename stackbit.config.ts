@@ -91,13 +91,41 @@ export default defineStackbitConfig({
           type: 'page',
           urlPath: '/about',
           filePath: 'content/pages/about.md',
+          fieldGroups: [
+            { name: 'Hero', label: 'Hero' },
+            { name: 'Biography', label: 'Biography' },
+            { name: 'Statement', label: 'Statement' },
+            { name: 'CTA', label: 'Closing CTA' },
+            { name: 'SEO', label: 'SEO / Meta' },
+          ],
           fields: [
-            { name: 'title', type: 'string' },
-            { name: 'portrait_image', type: 'image' },
-            { name: 'bio_intro', type: 'text' },
-            { name: 'bio_body', type: 'markdown' },
-            { name: 'artist_statement', type: 'text' },
-            { name: 'studio_note', type: 'text' },
+            // SEO / Meta
+            { name: 'title', type: 'string', group: 'SEO', description: 'Browser tab title (also used as fallback page heading).' },
+
+            // Hero
+            { name: 'hero_eyebrow', type: 'string', group: 'Hero', description: 'Small label above the big heading (e.g. "About").' },
+            { name: 'hero_title', type: 'string', group: 'Hero', description: 'Big page heading (e.g. "About the artist").' },
+            { name: 'bio_intro', type: 'text', group: 'Hero', description: 'Short intro paragraph(s) under the heading. Supports inline markdown (**bold**, *italic*, [link](url)).' },
+            { name: 'portrait_image', type: 'image', group: 'Hero' },
+
+            // Biography
+            { name: 'biography_title', type: 'string', group: 'Biography', description: 'Section heading (e.g. "Biography").' },
+            { name: 'biography_subhead', type: 'string', group: 'Biography', description: 'Small heading in the left column (e.g. "About the artist").' },
+            { name: 'bio_body', type: 'markdown', group: 'Biography', description: 'Long-form biography. Full markdown supported.' },
+
+            // Statement
+            { name: 'statement_label', type: 'string', group: 'Statement', description: 'Eyebrow label (e.g. "Artist statement").' },
+            { name: 'artist_statement', type: 'text', group: 'Statement', description: 'Big quoted statement. Supports inline markdown.' },
+            { name: 'studio_label', type: 'string', group: 'Statement', description: 'Eyebrow label (e.g. "Studio note").' },
+            { name: 'studio_note', type: 'text', group: 'Statement' },
+
+            // CTA
+            { name: 'cta_eyebrow', type: 'string', group: 'CTA', description: 'Small label above the CTA heading (e.g. "Continue").' },
+            { name: 'cta_title', type: 'string', group: 'CTA', description: 'CTA heading (e.g. "Explore further").' },
+            { name: 'cta_body', type: 'text', group: 'CTA', description: 'CTA paragraph copy.' },
+            { name: 'cta_contact_button', type: 'string', group: 'CTA', description: 'Primary button label (e.g. "Get in touch").' },
+            { name: 'cta_available_link', type: 'string', group: 'CTA', description: 'Secondary link label (e.g. "View available works").' },
+            { name: 'cta_exhibitions_link', type: 'string', group: 'CTA', description: 'Secondary link label (e.g. "View exhibitions").' },
           ],
         },
 

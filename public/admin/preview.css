@@ -286,6 +286,76 @@ body {
   font-style: italic;
 }
 
+.about-preview-bio-subhead {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 900;
+  color: var(--brand-ink);
+  margin: 0 0 1.5rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-preview-cta {
+  max-width: 48rem;
+  margin: 4rem auto 0;
+  padding: 3rem 0 1rem;
+  border-top: 1px solid #efefef;
+  text-align: center;
+}
+.about-preview-cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-ink);
+  margin: 0 0 1.25rem;
+}
+.about-preview-cta-body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--brand-muted);
+  margin: 0 auto 2rem;
+  max-width: 36rem;
+  font-weight: 300;
+}
+.about-preview-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.about-preview-cta-primary {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--brand-ink);
+  color: var(--brand-bg);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-weight: 700;
+}
+.about-preview-cta-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.about-preview-cta-link {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: var(--brand-ink);
+  border-bottom: 1px solid var(--brand-ink);
+  padding-bottom: 2px;
+}
+
 /* ---------- Collectors Edit (page) preview ---------- */
 .collectors-edit-preview {
   padding: 2rem 1.5rem 4rem;

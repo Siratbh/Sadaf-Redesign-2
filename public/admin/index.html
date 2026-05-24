@@ -151,18 +151,19 @@
         var data = entry.get('data');
         var widgetFor = this.props.widgetFor;
         var getAsset = this.props.getAsset;
+        var g = function (k) { return data.get(k) || ''; };
 
         var portrait = resolveAsset(getAsset, data.get('portrait_image'));
         var hasIntro = !!(data.get('bio_intro') && data.get('bio_intro').length);
         var hasBody = !!(data.get('bio_body') && data.get('bio_body').length);
         var hasStatement = !!(data.get('artist_statement') && data.get('artist_statement').length);
-        var studioNote = data.get('studio_note') || '';
+        var studioNote = g('studio_note');
 
         return h('div', { className: 'about-preview' },
           h('section', { className: 'about-preview-hero' },
             h('div', null,
-              h('span', { className: 'preview-eyebrow' }, 'About'),
-              h('h1', { className: 'preview-title' }, 'About the artist'),
+              h('span', { className: 'preview-eyebrow' }, g('hero_eyebrow') || 'About'),
+              h('h1', { className: 'preview-title' }, g('hero_title') || 'About the artist'),
               hasIntro
                 ? h('div', { className: 'about-preview-intro' }, widgetFor('bio_intro'))
                 : null
@@ -171,13 +172,14 @@
           ),
           hasBody
             ? h('section', { className: 'about-preview-bio' },
-                h('div', { className: 'preview-section-header' }, h('h2', null, 'Biography')),
+                h('div', { className: 'preview-section-header' }, h('h2', null, g('biography_title') || 'Biography')),
+                h('h3', { className: 'about-preview-bio-subhead' }, g('biography_subhead') || 'About the artist'),
                 h('article', { className: 'prose-editorial' }, widgetFor('bio_body'))
               )
             : null,
           hasStatement
             ? h('section', { className: 'about-preview-statement' },
-                h('span', { className: 'preview-eyebrow-light' }, 'Artist statement'),
+                h('span', { className: 'preview-eyebrow-light' }, g('statement_label') || 'Artist statement'),
                 h('blockquote', { className: 'about-preview-blockquote prose-editorial' },
                   '“', widgetFor('artist_statement'), '”'
                 )
@@ -185,10 +187,25 @@
             : null,
           studioNote
             ? h('section', { className: 'about-preview-studio-note' },
-                h('span', { className: 'preview-eyebrow-light' }, 'Studio note'),
+                h('span', { className: 'preview-eyebrow-light' }, g('studio_label') || 'Studio note'),
                 h('p', null, studioNote)
               )
-            : null
+            : null,
+
+          /* ── Closing CTA ──────────────────────────────── */
+          h('section', { className: 'about-preview-cta' },
+            h('span', { className: 'preview-eyebrow' }, g('cta_eyebrow') || 'Continue'),
+            h('h2', { className: 'about-preview-cta-title' }, g('cta_title') || 'Explore further'),
+            h('p', { className: 'about-preview-cta-body' },
+              g('cta_body') || 'Discover the wider body of work, browse the exhibition archive, or get in touch directly.'),
+            h('div', { className: 'about-preview-cta-buttons' },
+              h('span', { className: 'about-preview-cta-primary' }, g('cta_contact_button') || 'Get in touch'),
+              h('div', { className: 'about-preview-cta-links' },
+                h('span', { className: 'about-preview-cta-link' }, g('cta_available_link') || 'View available works'),
+                h('span', { className: 'about-preview-cta-link' }, g('cta_exhibitions_link') || 'View exhibitions')
+              )
+            )
+          )
         );
       },
     });
