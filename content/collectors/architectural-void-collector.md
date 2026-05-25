@@ -1,4 +1,5 @@
 ---
+type: CollectorItem
 title: "1"
 slug: "1"
 painting_title: "1"

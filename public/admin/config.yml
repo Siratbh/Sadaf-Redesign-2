@@ -187,14 +187,10 @@ collections:
           - { label: "Contact — Headline", name: "contact_headline", widget: "string" }
           - { label: "Contact — Body", name: "contact_body", widget: "text" }
           - { label: "Contact — CTA", name: "contact_cta", widget: "string" }
-
-      - label: "Home — Artist Block"
-        name: "home-artist"
-        file: "content/pages/home-artist.md"
-        fields:
-          - { label: "Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
-          - { label: "Artist Name (above hero paragraphs)", name: "bio_intro", widget: "string" }
-          - { label: "Hero Paragraphs", name: "hero_subhead", widget: "text", hint: "Hero paragraphs under the big headline. Separate paragraphs with a blank line." }
+          # ── Artist Block (hero) ──────────────────────────────────
+          - { label: "Hero — Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
+          - { label: "Hero — Artist Name", name: "bio_intro", widget: "string", required: false }
+          - { label: "Hero — Paragraphs", name: "hero_subhead", widget: "text", required: false, hint: "Hero paragraphs under the big headline. Separate paragraphs with a blank line." }
 
       - label: "Available Works (page)"
         name: "available"
@@ -314,16 +310,6 @@ collections:
         name: "contact"
         file: "content/pages/contact.md"
         fields:
-          - { label: "Intro Text", name: "intro", widget: "text" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Instagram Handle", name: "instagram", widget: "string", required: false }
-          - { label: "Response Note", name: "response_note", widget: "string", required: false }
-
-      - label: "Collectors Edit Page"
-        name: "collectors-edit"
-        file: "content/pages/collectors-edit.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
           - label: "Intro Text"
             name: "intro"
             widget: "markdown"
@@ -331,6 +317,31 @@ collections:
             buttons: ["bold", "italic", "link"]
             editor_components: []
             modes: ["rich_text", "raw"]
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Instagram Handle", name: "instagram", widget: "string", required: false, hint: "Either a full Instagram URL or a handle." }
+          - { label: "Response Note", name: "response_note", widget: "string", required: false }
+
+      - label: "Collectors Edit Page"
+        name: "collectors-edit"
+        file: "content/pages/collectors-edit.md"
+        fields:
+          # ── Hero ─────────────────────────────────────────────────
+          - { label: "Hero — Eyebrow", name: "hero_eyebrow", widget: "string", required: false, hint: "Optional small label above the big heading." }
+          - { label: "Hero — Title", name: "hero_title", widget: "string", hint: "Big page heading (e.g. 'The Collectors Edit')." }
+          - label: "Hero — Intro paragraph"
+            name: "intro"
+            widget: "markdown"
+            hint: "Short intro paragraph under the heading. Inline emphasis only — bold, italic, and links."
+            buttons: ["bold", "italic", "link"]
+            editor_components: []
+            modes: ["rich_text", "raw"]
+          # ── Tile Labels ──────────────────────────────────────────
+          - { label: "Tile — Hover Label", name: "tile_hover_label", widget: "string", hint: "Shown when hovering a collector image (e.g. 'View')." }
+          # ── Empty / Navigation ───────────────────────────────────
+          - { label: "Empty State Message", name: "empty_state", widget: "text", hint: "Shown when no collector pieces have been added yet." }
+          - { label: "Back Button Label", name: "back_button_label", widget: "string", hint: "Label on the 'Back to Home' button at the bottom of the page." }
+          # ── SEO / Meta ───────────────────────────────────────────
+          - { label: "Title (legacy)", name: "title", widget: "string", required: false, hint: "Legacy field. Use Hero — Title above for the visible heading." }
           - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
           - { label: "SEO Description", name: "seo_description", widget: "string", required: false }
 

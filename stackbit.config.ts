@@ -145,6 +145,7 @@ export default defineStackbitConfig({
             { name: 'Collectors', label: 'Collectors' },
             { name: 'Exhibitions', label: 'Exhibitions' },
             { name: 'Contact', label: 'Contact' },
+            { name: 'Artist Block', label: 'Hero — Artist Block' },
           ],
           fields: [
             // Hero
@@ -181,19 +182,11 @@ export default defineStackbitConfig({
             { name: 'contact_headline', type: 'string', group: 'Contact' },
             { name: 'contact_body', type: 'text', group: 'Contact' },
             { name: 'contact_cta', type: 'string', group: 'Contact' },
-          ],
-        },
 
-        // ─── Homepage "The Artist" data block (portrait + hero paragraphs) ──
-        // Read by HomeV4 hero (hero_subhead). Not the page-of-record any more.
-        {
-          name: 'HomeArtistSection',
-          type: 'data',
-          filePath: 'content/pages/home-artist.md',
-          fields: [
-            { name: 'portrait_image', type: 'image' },
-            { name: 'bio_intro', type: 'string', description: 'Artist name shown above the hero paragraphs.' },
-            { name: 'hero_subhead', type: 'text', description: 'Hero paragraphs under the big headline. Separate paragraphs with a blank line.' },
+            // Hero — Artist Block (merged from former HomeArtistSection)
+            { name: 'portrait_image', type: 'image', group: 'Artist Block', required: false },
+            { name: 'bio_intro', type: 'string', group: 'Artist Block', required: false, description: 'Artist name shown above the hero paragraphs.' },
+            { name: 'hero_subhead', type: 'text', group: 'Artist Block', required: false, description: 'Hero paragraphs under the big headline. Separate paragraphs with a blank line.' },
           ],
         },
 
@@ -347,11 +340,26 @@ export default defineStackbitConfig({
           type: 'page',
           urlPath: '/collectors-edit',
           filePath: 'content/pages/collectors-edit.md',
+          fieldGroups: [
+            { name: 'Hero', label: 'Hero' },
+            { name: 'Tiles', label: 'Tile Labels' },
+            { name: 'States', label: 'Empty / Navigation' },
+            { name: 'SEO', label: 'SEO / Meta' },
+          ],
           fields: [
-            { name: 'title', type: 'string' },
-            { name: 'intro', type: 'text' },
-            { name: 'seo_title', type: 'string' },
-            { name: 'seo_description', type: 'text' },
+            // Hero
+            { name: 'hero_eyebrow', type: 'string', group: 'Hero', description: 'Optional small label above the big heading.' },
+            { name: 'hero_title', type: 'string', group: 'Hero', description: 'Big page heading (e.g. "The Collectors Edit").' },
+            { name: 'intro', type: 'markdown', group: 'Hero', description: 'Short intro paragraph(s) under the heading. Inline emphasis only.' },
+            // Tiles
+            { name: 'tile_hover_label', type: 'string', group: 'Tiles', description: 'Label shown when hovering a collector image (e.g. "View").' },
+            // States / Navigation
+            { name: 'empty_state', type: 'text', group: 'States', description: 'Message shown when no collector pieces are added.' },
+            { name: 'back_button_label', type: 'string', group: 'States', description: 'Label on the "Back to Home" button at the bottom.' },
+            // SEO
+            { name: 'title', type: 'string', group: 'SEO', description: 'Legacy title field (kept for backward compatibility).' },
+            { name: 'seo_title', type: 'string', group: 'SEO', description: 'Browser tab title.' },
+            { name: 'seo_description', type: 'text', group: 'SEO', description: 'SEO meta description.' },
           ],
         },
       ],

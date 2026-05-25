@@ -597,8 +597,63 @@ body {
 /* ---------- Collectors Edit (page) preview ---------- */
 .collectors-edit-preview {
   padding: 2rem 1.5rem 4rem;
-  max-width: 48rem;
+  max-width: 64rem;
   margin: 0 auto;
+}
+
+.collectors-edit-preview-hero {
+  margin: 0 0 2.5rem;
+}
+.collectors-edit-preview-rule {
+  width: 3rem;
+  height: 1px;
+  background: var(--brand-ink);
+  margin: 1rem 0 1.5rem;
+}
+.collectors-edit-preview-intro {
+  max-width: 36rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--brand-muted);
+  font-weight: 300;
+}
+
+.collectors-edit-preview-grid-section {
+  margin: 0 0 2rem;
+}
+.collectors-edit-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+  align-items: start;
+}
+.collectors-edit-preview-tile {
+  background: #f4f2f1;
+  border: 1px dashed #d6d2d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+}
+.collectors-edit-preview-tile-short  { aspect-ratio: 4/3; }
+.collectors-edit-preview-tile-medium { aspect-ratio: 1/1; }
+.collectors-edit-preview-tile-tall   { aspect-ratio: 3/4; }
+
+.collectors-edit-preview-helper {
+  padding-top: 1rem;
+  border-top: 1px solid #efefef;
+}
+
+.collectors-edit-preview-empty-section {
+  margin: 0 0 2rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-top: 1px dashed #efefef;
+}
+
+.collectors-edit-preview-back {
+  padding-top: 1rem;
 }
 
 /* ---------- Single collector card preview ---------- */
@@ -638,11 +693,33 @@ body {
   margin: 0;
 }
 
-/* ---------- Contact preview (page is hardcoded on live, but show editor a clean view) ---------- */
+/* ---------- Contact preview ---------- */
 .contact-preview {
   padding: 2rem 1.5rem 4rem;
-  max-width: 36rem;
+  max-width: 64rem;
   margin: 0 auto;
+}
+.contact-preview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 768px) {
+  .contact-preview-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+.contact-preview-intro {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+}
+.contact-preview-intro.contact-preview-placeholder,
+.contact-preview-placeholder {
+  font-style: italic;
+  color: var(--brand-muted);
 }
 .contact-preview-meta {
   margin: 2rem 0 0;
@@ -661,6 +738,11 @@ body {
 }
 .contact-preview-meta dd {
   margin: 0;
+}
+.contact-preview-meta a {
+  color: var(--brand-ink);
+  border-bottom: 1px solid #c5c7c0;
+  text-decoration: none;
 }
 .contact-preview-response-note {
   margin: 1.5rem 0 0;
@@ -1028,4 +1110,44 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* ---------- Real-tile additions (used by manifest-driven previews) ---------- */
+/* When tiles contain an actual painting <img>, drop the placeholder padding
+   and let the image fill the dashed border box. */
+.listing-preview-tile img,
+.home-preview-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.listing-preview-tile:has(> img),
+.home-preview-tile:has(> img) {
+  padding: 0;
+  background: #fff;
+}
+
+/* Real painting image inside the chrome preview hero — same 3/4 aspect as
+   the original placeholder so neighbouring metadata stays aligned. */
+.painting-chrome-hero-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: #f5f5f5;
+  display: block;
+}
+
+/* Tall textarea-like mock used in the Contact form preview. */
+.painting-chrome-input-tall {
+  min-height: 5rem;
+}
+
+/* Compact wrapper for the artist hero block when embedded inside the homepage
+   preview — keeps it visually distinct from the other homepage sections. */
+.home-preview-section.home-artist-block {
+  background: #fff;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
 }

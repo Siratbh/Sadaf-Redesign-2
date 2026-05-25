@@ -39,6 +39,36 @@
       return value || '';
     }
 
+    /* Bridge for cross-collection painting data. The Decap preview iframe is
+       sandboxed — it can't query the paintings collection directly. A Vite
+       plugin (vite-plugins/decap-paintings-manifest.js) emits this JSON at
+       dev start and build, refreshed whenever content/paintings/ changes. */
+    var _paintingsManifestPromise = null;
+    function loadPaintingsManifest() {
+      if (!_paintingsManifestPromise) {
+        _paintingsManifestPromise = fetch('/admin/paintings-manifest.json', { cache: 'no-store' })
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .catch(function () { return []; });
+      }
+      return _paintingsManifestPromise;
+    }
+
+    function realPaintingTile(p, opts) {
+      opts = opts || {};
+      var img = p.thumbnail_image || p.featured_image;
+      var children = [];
+      if (img) children.push(h('img', { key: 'i', src: img, alt: p.title || '' }));
+      else children.push(h('span', { key: 'h', className: 'home-preview-tile-hint' }, 'No image'));
+      if (opts.statusLabel) {
+        children.push(h('span', { key: 's', className: 'listing-preview-tile-status' }, opts.statusLabel));
+      }
+      return h(
+        'div',
+        { key: p.slug, className: opts.tileClass || 'listing-preview-tile' },
+        children
+      );
+    }
+
     /* ---------------- Exhibition preview ---------------- */
     var ExhibitionPreview = createClass({
       render: function () {
@@ -215,19 +245,56 @@
     /* ---------------- Collectors Edit (page) preview ---------------- */
     var CollectorsEditPagePreview = createClass({
       render: function () {
-        var entry = this.props.entry;
-        var data = entry.get('data');
+        var data = this.props.entry.get('data');
         var widgetFor = this.props.widgetFor;
+        var g = function (k) { return data.get(k) || ''; };
 
-        var title = data.get('title') || '';
+        var heroEyebrow = g('hero_eyebrow');
+        var heroTitle = g('hero_title') || g('title') || 'The Collectors Edit';
         var hasIntro = !!(data.get('intro') && data.get('intro').length);
 
+        // Masonry-style placeholder grid (mixed heights) so editors see
+        // roughly where collector cards land.
+        var tileHeights = ['short', 'tall', 'medium', 'tall', 'short', 'medium'];
+        var tiles = [];
+        for (var i = 0; i < tileHeights.length; i++) {
+          tiles.push(
+            h('div', { key: 't' + i, className: 'collectors-edit-preview-tile collectors-edit-preview-tile-' + tileHeights[i] },
+              h('span', { className: 'home-preview-tile-hint' }, 'Collector image')
+            )
+          );
+        }
+
         return h('div', { className: 'collectors-edit-preview' },
-          h('h1', { className: 'preview-title' }, title),
-          h('div', { className: 'preview-rule' }),
-          hasIntro
-            ? h('div', { className: 'prose-editorial' }, widgetFor('intro'))
-            : null
+          // Hero
+          h('section', { className: 'collectors-edit-preview-hero' },
+            heroEyebrow ? h('p', { className: 'preview-eyebrow' }, heroEyebrow) : null,
+            h('h1', { className: 'preview-title' }, heroTitle),
+            h('div', { className: 'collectors-edit-preview-rule' }),
+            hasIntro
+              ? h('div', { className: 'collectors-edit-preview-intro prose-editorial' }, widgetFor('intro'))
+              : null
+          ),
+
+          // Masonry placeholder grid + hover-label inspector
+          h('section', { className: 'collectors-edit-preview-grid-section' },
+            h('div', { className: 'collectors-edit-preview-grid' }, tiles),
+            h('div', { className: 'collectors-edit-preview-helper' },
+              h('span', { className: 'preview-eyebrow-light' }, 'Tile hover label'),
+              h('p', { className: 'listing-preview-label-value' }, g('tile_hover_label') || 'View')
+            )
+          ),
+
+          // Empty state preview
+          h('section', { className: 'collectors-edit-preview-empty-section' },
+            h('span', { className: 'preview-eyebrow-light' }, 'Empty state (shown when no collector pieces exist)'),
+            h('p', { className: 'listing-preview-empty' }, g('empty_state') || 'Collector pieces will be added soon.')
+          ),
+
+          // Back button
+          h('section', { className: 'collectors-edit-preview-back' },
+            h('span', { className: 'home-preview-cta-outline' }, g('back_button_label') || 'Back to Home')
+          )
         );
       },
     });
@@ -274,11 +341,19 @@
 
     /* ---------------- Homepage preview ---------------- */
     var HomePagePreview = createClass({
+      getInitialState: function () { return { paintings: null }; },
+      componentDidMount: function () {
+        var self = this;
+        loadPaintingsManifest().then(function (p) { self.setState({ paintings: p }); });
+      },
       render: function () {
         var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
         var g = function (k) { return data.get(k) || ''; };
+        var paintings = this.state.paintings;
 
-        // Build placeholder tiles (3-up)
+        // Real or placeholder tile factory — falls back to gray dashed boxes
+        // while the manifest is loading.
         function placeholderTiles(count, hint) {
           var items = [];
           for (var i = 0; i < count; i++) {
@@ -288,6 +363,22 @@
           }
           return items;
         }
+        function realTiles(list) {
+          return list.map(function (p) {
+            return realPaintingTile(p, { tileClass: 'home-preview-tile' });
+          });
+        }
+        var availableTiles = paintings
+          ? realTiles(paintings.filter(function (p) { return p.availability === 'available'; }).slice(0, 3))
+          : placeholderTiles(3, 'Available painting');
+        var pastTiles = paintings
+          ? realTiles(paintings.filter(function (p) { return p.availability && p.availability !== 'available'; }).slice(0, 3))
+          : placeholderTiles(3, 'Past painting');
+
+        // Artist hero block (merged from former home-artist entry)
+        var portrait = resolveAsset(getAsset, data.get('portrait_image'));
+        var bioIntro = data.get('bio_intro') || '';
+        var artistParagraphs = splitParagraphs(data.get('hero_subhead'));
 
         // Build placeholder exhibition rows (3 rows)
         function exhibitionRows() {
@@ -327,12 +418,32 @@
             )
           ),
 
+          /* ── Hero — Artist Block ──────────────────────── */
+          h('section', { className: 'home-preview-section home-artist-block' },
+            h('div', { className: 'home-artist-preview-grid' },
+              h('div', { className: 'home-artist-preview-copy' },
+                h('span', { className: 'preview-eyebrow' }, 'Hero — Artist Block'),
+                h('h2', { className: 'home-artist-preview-name' }, blank(bioIntro, 'Artist name')),
+                artistParagraphs.length
+                  ? h('div', { className: 'home-artist-preview-paragraphs' },
+                      artistParagraphs.map(function (p, i) { return h('p', { key: 'p-' + i }, p); })
+                    )
+                  : h('p', { className: 'home-preview-empty' }, 'Hero paragraphs go here.')
+              ),
+              portrait
+                ? h('img', { className: 'home-artist-preview-portrait', src: portrait, alt: bioIntro || 'Artist portrait' })
+                : h('div', { className: 'home-artist-preview-portrait home-artist-preview-portrait-empty' },
+                    h('span', { className: 'home-preview-tile-hint' }, 'Portrait image')
+                  )
+            )
+          ),
+
           /* ── Available Works ──────────────────────────── */
           h('section', { className: 'home-preview-section home-preview-section-light' },
             h('div', { className: 'home-preview-section-header' },
               h('h2', { className: 'home-preview-section-title' }, blank(g('available_title'), 'Section title'))
             ),
-            h('div', { className: 'home-preview-grid-placeholder' }, placeholderTiles(3, 'Available painting')),
+            h('div', { className: 'home-preview-grid-placeholder' }, availableTiles),
             h('div', { className: 'home-preview-cta-row' },
               h('span', { className: 'home-preview-cta-primary' }, blank(g('available_cta'), 'Primary CTA')),
               h('span', { className: 'home-preview-cta-link' }, blank(g('available_secondary_cta'), 'Secondary CTA'))
@@ -358,7 +469,7 @@
               h('h2', { className: 'home-preview-section-title' }, blank(g('past_works_title'), 'Section title')),
               h('p', { className: 'home-preview-section-subhead' }, blank(g('past_works_subhead'), 'Section subhead'))
             ),
-            h('div', { className: 'home-preview-grid-placeholder' }, placeholderTiles(3, 'Past painting')),
+            h('div', { className: 'home-preview-grid-placeholder' }, pastTiles),
             h('div', { className: 'home-preview-cta-row' },
               h('span', { className: 'home-preview-cta-primary' }, blank(g('past_works_cta'), 'Past Works CTA'))
             )
@@ -402,63 +513,45 @@
 
     CMS.registerPreviewTemplate('home', HomePagePreview);
 
-    /* ---------------- Home — Artist Block preview ---------------- */
-    var HomeArtistPreview = createClass({
-      render: function () {
-        var data = this.props.entry.get('data');
-        var getAsset = this.props.getAsset;
-
-        var portrait = resolveAsset(getAsset, data.get('portrait_image'));
-        var bioIntro = data.get('bio_intro') || '';
-        var paragraphs = splitParagraphs(data.get('hero_subhead'));
-
-        return h('div', { className: 'home-artist-preview' },
-          h('div', { className: 'home-artist-preview-grid' },
-            h('div', { className: 'home-artist-preview-copy' },
-              h('span', { className: 'preview-eyebrow' }, 'Hero — Artist Block'),
-              h('h1', { className: 'home-artist-preview-name' }, blank(bioIntro, 'Artist name')),
-              paragraphs.length
-                ? h('div', { className: 'home-artist-preview-paragraphs' },
-                    paragraphs.map(function (p, i) { return h('p', { key: 'p-' + i }, p); })
-                  )
-                : h('p', { className: 'home-preview-empty' }, 'Hero paragraphs go here.')
-            ),
-            portrait
-              ? h('img', { className: 'home-artist-preview-portrait', src: portrait, alt: bioIntro || 'Artist portrait' })
-              : h('div', { className: 'home-artist-preview-portrait home-artist-preview-portrait-empty' },
-                  h('span', { className: 'home-preview-tile-hint' }, 'Portrait image')
-                )
-          )
-        );
-      },
-    });
-
-    CMS.registerPreviewTemplate('home-artist', HomeArtistPreview);
-
     /* ---------------- Painting listing previews (Available + Past Works) ---------------- */
     function paintingListingPreview(options) {
-      // options: { defaultEyebrow, defaultTitle, defaultDescription, defaultHover, defaultView, defaultEmpty, statusFieldKey, defaultStatus }
+      // options: { defaultEyebrow, defaultTitle, defaultDescription, defaultHover, defaultView, defaultEmpty, paintingFilter, statusFieldKey, defaultStatus }
       return createClass({
+        getInitialState: function () { return { paintings: null }; },
+        componentDidMount: function () {
+          var self = this;
+          loadPaintingsManifest().then(function (p) { self.setState({ paintings: p }); });
+        },
         render: function () {
           var data = this.props.entry.get('data');
           var g = function (k) { return data.get(k) || ''; };
+          var paintings = this.state.paintings;
 
-          // Build 6 placeholder tiles
-          var tiles = [];
-          for (var i = 0; i < 6; i++) {
-            var tileChildren = [
-              h('span', { key: 'h', className: 'home-preview-tile-hint' }, 'Painting')
-            ];
-            if (options.statusFieldKey) {
-              tileChildren.push(
-                h('span', {
-                  key: 's',
-                  className: 'listing-preview-tile-status',
-                  'data-sb-field-path': options.statusFieldKey,
-                }, g(options.statusFieldKey) || options.defaultStatus)
-              );
+          var statusLabel = options.statusFieldKey
+            ? (g(options.statusFieldKey) || options.defaultStatus || '')
+            : '';
+
+          // Real tiles from manifest filtered by options.paintingFilter; fall
+          // back to gray placeholder tiles while the manifest is still loading.
+          var tiles;
+          if (paintings) {
+            var filtered = options.paintingFilter ? paintings.filter(options.paintingFilter) : paintings;
+            tiles = filtered.slice(0, 6).map(function (p) {
+              return realPaintingTile(p, { statusLabel: statusLabel });
+            });
+          } else {
+            tiles = [];
+            for (var i = 0; i < 6; i++) {
+              var tileChildren = [
+                h('span', { key: 'h', className: 'home-preview-tile-hint' }, 'Painting')
+              ];
+              if (statusLabel) {
+                tileChildren.push(
+                  h('span', { key: 's', className: 'listing-preview-tile-status' }, statusLabel)
+                );
+              }
+              tiles.push(h('div', { key: 'tile-' + i, className: 'listing-preview-tile' }, tileChildren));
             }
-            tiles.push(h('div', { key: 'tile-' + i, className: 'listing-preview-tile' }, tileChildren));
           }
 
           return h('div', { className: 'listing-preview' },
@@ -501,6 +594,7 @@
       defaultHover: 'View this piece',
       defaultView: 'View',
       defaultEmpty: 'No works currently available — please check back soon, or get in touch about commissions.',
+      paintingFilter: function (p) { return p.availability === 'available'; },
     });
 
     var PastWorksPagePreview = paintingListingPreview({
@@ -512,6 +606,7 @@
       defaultEmpty: 'No archived works yet.',
       statusFieldKey: 'tile_status_label',
       defaultStatus: 'In Private Collection',
+      paintingFilter: function (p) { return !!p.availability && p.availability !== 'available'; },
     });
 
     CMS.registerPreviewTemplate('available', AvailablePagePreview);
@@ -521,11 +616,34 @@
 
     /* ---------------- Painting detail chrome preview ---------------- */
     // Renders a styled mock of a painting detail page using the chrome labels
-    // + a fake painting, so the editor sees where each label appears in context.
+    // + a real painting (first available from the manifest), so the editor sees
+    // where each label lands against real content.
     var PaintingDetailChromePreview = createClass({
+      getInitialState: function () { return { paintings: null }; },
+      componentDidMount: function () {
+        var self = this;
+        loadPaintingsManifest().then(function (p) { self.setState({ paintings: p }); });
+      },
       render: function () {
         var data = this.props.entry.get('data');
         var g = function (k) { return data.get(k) || ''; };
+        var paintings = this.state.paintings || [];
+        var ctx = paintings.find(function (p) { return p.availability === 'available'; }) || paintings[0] || null;
+        var related = ctx ? paintings.filter(function (p) { return p.slug !== ctx.slug; }).slice(0, 3) : [];
+
+        // Hero — either real painting <img> or the original placeholder
+        var heroImage;
+        if (ctx && ctx.featured_image) {
+          heroImage = h('img', {
+            className: 'painting-chrome-hero-image',
+            src: ctx.featured_image,
+            alt: ctx.title || '',
+          });
+        } else {
+          heroImage = h('div', { className: 'painting-chrome-image-placeholder' },
+            h('span', { className: 'home-preview-tile-hint' }, g('image_forthcoming_label') || 'Image Forthcoming')
+          );
+        }
 
         return h('div', { className: 'painting-chrome-preview' },
           // Back link
@@ -534,23 +652,25 @@
             h('span', { className: 'painting-chrome-back-alt' }, '(sold pieces show: ', g('back_to_past') || '← Past Works', ')')
           ),
 
-          // Hero mock
+          // Hero
           h('section', { className: 'painting-chrome-hero' },
-            h('div', { className: 'painting-chrome-image-placeholder' },
-              h('span', { className: 'home-preview-tile-hint' }, g('image_forthcoming_label') || 'Image Forthcoming')
-            ),
+            heroImage,
             h('div', { className: 'painting-chrome-meta' },
-              h('h1', { className: 'painting-preview-title' }, '— Painting title —'),
-              h('p', { className: 'painting-preview-year' }, '— Year —'),
+              h('h1', { className: 'painting-preview-title' }, (ctx && ctx.title) || '— Painting title —'),
+              h('p', { className: 'painting-preview-year' }, (ctx && ctx.year) || '— Year —'),
               h('dl', { className: 'painting-preview-specs' },
                 h('dt', { key: 'm-l' }, g('spec_label_medium') || 'Medium'),
                 h('dd', { key: 'm-v' }, '— per-painting —'),
                 h('dt', { key: 'd-l' }, g('spec_label_dimensions') || 'Dimensions'),
                 h('dd', { key: 'd-v' }, '— per-painting —'),
                 h('dt', { key: 'y-l' }, g('spec_label_year') || 'Year'),
-                h('dd', { key: 'y-v' }, '— per-painting —'),
+                h('dd', { key: 'y-v' }, (ctx && ctx.year) || '— per-painting —'),
                 h('dt', { key: 'a-l' }, g('spec_label_availability') || 'Availability'),
-                h('dd', { key: 'a-v' }, (g('availability_available') || 'Available'), ' / ', (g('availability_sold') || 'Sold'))
+                h('dd', { key: 'a-v' }, ctx
+                  ? (ctx.availability === 'available'
+                      ? (g('availability_available') || 'Available')
+                      : (g('availability_sold') || 'Sold'))
+                  : (g('availability_available') || 'Available') + ' / ' + (g('availability_sold') || 'Sold'))
               )
             )
           ),
@@ -611,15 +731,13 @@
               h('h2', null, g('related_title') || 'You may also like')
             ),
             h('div', { className: 'painting-chrome-related-grid' },
-              h('div', { className: 'listing-preview-tile' },
-                h('span', { className: 'home-preview-tile-hint' }, g('related_tile_hover') || 'View this piece')
-              ),
-              h('div', { className: 'listing-preview-tile' },
-                h('span', { className: 'home-preview-tile-hint' }, g('related_tile_hover') || 'View this piece')
-              ),
-              h('div', { className: 'listing-preview-tile' },
-                h('span', { className: 'home-preview-tile-hint' }, g('related_tile_hover') || 'View this piece')
-              )
+              related.length
+                ? related.map(function (p) { return realPaintingTile(p); })
+                : [0, 1, 2].map(function (i) {
+                    return h('div', { key: 'rel-' + i, className: 'listing-preview-tile' },
+                      h('span', { className: 'home-preview-tile-hint' }, g('related_tile_hover') || 'View this piece')
+                    );
+                  })
             ),
             h('p', { className: 'painting-chrome-helper' },
               'Under each tile: ', h('strong', null, g('related_tile_view') || 'View')
@@ -639,6 +757,82 @@
     });
 
     CMS.registerPreviewTemplate('painting-detail-chrome', PaintingDetailChromePreview);
+
+    /* ---------------- Contact page preview ---------------- */
+    // Mirrors src/pages/Contact.jsx: left column with intro + email + Instagram
+    // + response_note, right column with a static form mockup.
+    function instagramHandle(value) {
+      if (!value) return '';
+      var match = value.match(/instagram\.com\/([^/?#]+)/i);
+      if (match) return '@' + match[1];
+      if (value.charAt(0) === '@') return value;
+      return '@' + value;
+    }
+    function instagramUrl(value) {
+      if (!value) return '';
+      if (/^https?:\/\//i.test(value)) return value;
+      var handle = value.charAt(0) === '@' ? value.slice(1) : value;
+      return 'https://instagram.com/' + handle;
+    }
+
+    var ContactPreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var widgetFor = this.props.widgetFor;
+        var email = data.get('email') || '';
+        var instagram = data.get('instagram') || '';
+        var responseNote = data.get('response_note') || '';
+        var hasIntro = !!(data.get('intro') && data.get('intro').length);
+
+        return h('div', { className: 'contact-preview' },
+          h('div', { className: 'contact-preview-grid' },
+            h('div', { className: 'contact-preview-left' },
+              h('span', { className: 'preview-eyebrow' }, 'Reach Out'),
+              h('h1', { className: 'preview-title-italic' }, 'Get in Touch'),
+              hasIntro
+                ? h('div', { className: 'contact-preview-intro' }, widgetFor('intro'))
+                : h('p', { className: 'contact-preview-intro contact-preview-placeholder' }, 'Intro paragraph goes here.'),
+              h('dl', { className: 'contact-preview-meta' },
+                h('dt', { key: 'e-l' }, 'Email'),
+                h('dd', { key: 'e-v' }, email
+                  ? h('a', { href: 'mailto:' + email }, email)
+                  : h('span', { className: 'contact-preview-placeholder' }, 'inquiry@example.com')),
+                instagram
+                  ? [
+                      h('dt', { key: 'i-l' }, 'Instagram'),
+                      h('dd', { key: 'i-v' }, h('a', { href: instagramUrl(instagram), target: '_blank', rel: 'noreferrer' }, instagramHandle(instagram)))
+                    ]
+                  : null
+              ),
+              responseNote ? h('p', { className: 'contact-preview-response-note' }, responseNote) : null
+            ),
+            h('div', { className: 'contact-preview-right' },
+              h('div', { className: 'painting-chrome-form' },
+                h('div', { className: 'painting-chrome-field' },
+                  h('label', null, 'Name'),
+                  h('div', { className: 'painting-chrome-input' })
+                ),
+                h('div', { className: 'painting-chrome-field' },
+                  h('label', null, 'Email'),
+                  h('div', { className: 'painting-chrome-input' })
+                ),
+                h('div', { className: 'painting-chrome-field' },
+                  h('label', null, 'Reason'),
+                  h('div', { className: 'painting-chrome-input' })
+                ),
+                h('div', { className: 'painting-chrome-field' },
+                  h('label', null, 'Message'),
+                  h('div', { className: 'painting-chrome-input painting-chrome-input-tall' })
+                ),
+                h('span', { className: 'painting-chrome-submit' }, 'Send Message')
+              )
+            )
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('contact', ContactPreview);
   </script>
 </body>
 </html>
