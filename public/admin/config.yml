@@ -190,7 +190,14 @@ collections:
           # ── Artist Block (hero) ──────────────────────────────────
           - { label: "Hero — Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
           - { label: "Hero — Artist Name", name: "bio_intro", widget: "string", required: false }
-          - { label: "Hero — Paragraphs", name: "hero_subhead", widget: "text", required: false, hint: "Hero paragraphs under the big headline. Separate paragraphs with a blank line." }
+          - label: "Hero — Paragraphs"
+            name: "hero_subhead"
+            widget: "markdown"
+            required: false
+            hint: "Hero paragraphs under the big headline. Inline emphasis only — bold, italic, and links."
+            buttons: ["bold", "italic", "link"]
+            editor_components: []
+            modes: ["rich_text", "raw"]
 
       - label: "Available Works (page)"
         name: "available"

@@ -246,7 +246,7 @@ export default defineStackbitConfig({
             // Hero — Artist Block (merged from former HomeArtistSection)
             { name: 'portrait_image', type: 'image', group: 'Artist Block', required: false },
             { name: 'bio_intro', type: 'string', group: 'Artist Block', required: false, description: 'Artist name shown above the hero paragraphs.' },
-            { name: 'hero_subhead', type: 'text', group: 'Artist Block', required: false, description: 'Hero paragraphs under the big headline. Separate paragraphs with a blank line.' },
+            { name: 'hero_subhead', type: 'markdown', group: 'Artist Block', required: false, description: 'Hero paragraphs under the big headline. Rich-text modal: supports paragraphs, bold, italic, and links.' },
           ],
         },
 

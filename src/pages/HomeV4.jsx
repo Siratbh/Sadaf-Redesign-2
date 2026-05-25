@@ -2,9 +2,14 @@ import { motion as Motion, AnimatePresence } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { getPaintings, getAvailablePaintings, getPastPaintings, getExhibitions, getPage, getCollectors } from '../lib/content';
 import { gsap } from 'gsap';
 import SEOHead from '../components/SEOHead';
+
+// Inline-only elements allowed in the hero subhead — matches About bio_intro pattern.
+const HERO_SUBHEAD_ELEMENTS = ['p', 'strong', 'em', 'a'];
 
 // --- Hero Slideshow Component ---
 const HeroSlideshow = ({ paintings, slideshowLabel }) => {
@@ -167,10 +172,8 @@ export default function HomeV4() {
   // carousel renders a broken thumbnail. Entry stays in Decap so it can be fixed.
   const visibleCollectors = collectors.filter((c) => c.image);
   const home = getPage('home') || {};
-  const homeArtist = getPage('home-artist') || {};
   const aboutPage = getPage('about') || {};
-  const artistImage = homeArtist.portrait_image || "/images/about/Sadaf Portrait.png";
-  const heroParagraphs = splitParagraphs(homeArtist.hero_subhead);
+  const artistImage = home.portrait_image || "/images/about/Sadaf Portrait.png";
   const aboutParagraphs = splitParagraphs(aboutPage.bio_body);
   const aboutPreview = aboutParagraphs.slice(0, 3);
 
@@ -224,13 +227,30 @@ export default function HomeV4() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="max-w-2xl space-y-4 text-brand-muted"
-              {...(homeArtist._id ? { 'data-sb-object-id': homeArtist._id } : {})}
+              data-sb-field-path="hero_subhead"
             >
-              {heroParagraphs.map((paragraph, index) => (
-                <p key={index} className="leading-relaxed font-light text-sm sm:text-[15px]" data-sb-field-path="hero_subhead">
-                  {paragraph}
-                </p>
-              ))}
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                allowedElements={HERO_SUBHEAD_ELEMENTS}
+                unwrapDisallowed
+                components={{
+                  p: ({ children }) => (
+                    <p className="leading-relaxed font-light text-sm sm:text-[15px]">{children}</p>
+                  ),
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      target={href?.startsWith('http') ? '_blank' : undefined}
+                      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="underline decoration-brand-muted underline-offset-4 hover:text-brand-ink transition-colors"
+                    >
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
+                {home.hero_subhead || ''}
+              </ReactMarkdown>
             </Motion.div>
           </div>
         </div>
@@ -295,9 +315,7 @@ export default function HomeV4() {
                   className="w-full grayscale brightness-50 transition-all duration-700 hover:brightness-100"
                 />
               </div>
-              <div className="relative z-20 w-[78%] sm:w-[62%] md:w-[38%] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)]"
-                {...(homeArtist._id ? { 'data-sb-object-id': homeArtist._id } : {})}
-              >
+              <div className="relative z-20 w-[78%] sm:w-[62%] md:w-[38%] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)]">
                 <img
                   src={artistImage}
                   alt="Sadaf Farasat"
