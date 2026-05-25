@@ -1,10 +1,9 @@
 ---
-type: Painting
 title: Turning Of Light
 slug: turning-of-light
-year: "2022"
+year: "2026"
 medium: Oil On Canvas
-dimensions: 30x72 inches
+dimensions: 48x72 inches
 availability: available
 featured_image: /images/paintings/turning-of-light.jpeg
 thumbnail_image: /images/paintings/turning-of-light.jpeg
@@ -14,4 +13,5 @@ short_description: “All religions, all this singing, one song. The differences
   it’s still one light." — Rumi
 sort_order: 99
 featured: false
+type: Painting
 ---
