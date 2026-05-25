@@ -222,6 +222,8 @@ export default defineStackbitConfig({
             { name: 'about_big_title', type: 'string', group: 'About' },
             { name: 'about_section_label', type: 'string', group: 'About', description: 'Small heading on the left column.' },
             { name: 'about_cta', type: 'string', group: 'About', description: 'Link label (e.g. "Read Full Biography").' },
+            { name: 'about_decoration_left_image', type: 'image', group: 'About', description: 'Small decorative painting on the LEFT of the About section. Defaults to the first available painting if not set.' },
+            { name: 'about_decoration_right_image', type: 'image', group: 'About', description: 'Small decorative painting on the RIGHT of the About section. Defaults to the second available painting if not set.' },
 
             // Past Works
             { name: 'past_works_title', type: 'string', group: 'Past Works' },

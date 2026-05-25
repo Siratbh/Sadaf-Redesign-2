@@ -171,6 +171,8 @@ collections:
           - { label: "About — Big Title", name: "about_big_title", widget: "string" }
           - { label: "About — Section Label", name: "about_section_label", widget: "string", hint: "Small heading on the left column." }
           - { label: "About — CTA", name: "about_cta", widget: "string", hint: "Link label (e.g. 'Read Full Biography')." }
+          - { label: "About — Decoration Left Image", name: "about_decoration_left_image", widget: "image", required: false, hint: "Small decorative painting on the LEFT of the About section. Defaults to the first available painting if left blank." }
+          - { label: "About — Decoration Right Image", name: "about_decoration_right_image", widget: "image", required: false, hint: "Small decorative painting on the RIGHT of the About section. Defaults to the second available painting if left blank." }
           # ── Past Works ───────────────────────────────────────────
           - { label: "Past Works — Title", name: "past_works_title", widget: "string" }
           - { label: "Past Works — Subhead", name: "past_works_subhead", widget: "string" }

@@ -23,7 +23,12 @@ function PlayBadge() {
 }
 
 // Renders a clickable thumbnail for a single media item (image, mp4, YouTube, Vimeo)
-function MediaThumb({ src, type, caption, onClick, eager }) {
+// `dataSbFieldPath` (optional): if provided, applied to the actual <img>/<video>
+// for Stackbit Visual Editor click-to-edit. For images it picks an image; for
+// videos (which are URL strings in the schema) it opens a text editor for the URL.
+function MediaThumb({ src, type, caption, onClick, eager, dataSbFieldPath }) {
+  const sbAttr = dataSbFieldPath ? { 'data-sb-field-path': dataSbFieldPath } : {}
+
   if (type === 'image') {
     return (
       <img
@@ -32,6 +37,7 @@ function MediaThumb({ src, type, caption, onClick, eager }) {
         className="w-full h-auto cursor-zoom-in"
         onClick={onClick}
         loading={eager ? 'eager' : 'lazy'}
+        {...sbAttr}
       />
     )
   }
@@ -44,6 +50,7 @@ function MediaThumb({ src, type, caption, onClick, eager }) {
           muted
           playsInline
           className="w-full h-auto block bg-black"
+          {...sbAttr}
         />
         <PlayBadge />
       </div>
@@ -53,7 +60,7 @@ function MediaThumb({ src, type, caption, onClick, eager }) {
     const id = extractYouTubeId(src)
     const poster = id ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg` : null
     return (
-      <div className="relative w-full cursor-pointer aspect-video bg-black" onClick={onClick}>
+      <div className="relative w-full cursor-pointer aspect-video bg-black" onClick={onClick} {...sbAttr}>
         {poster && (
           <img
             src={poster}
@@ -69,7 +76,7 @@ function MediaThumb({ src, type, caption, onClick, eager }) {
   }
   if (type === 'vimeo') {
     return (
-      <div className="relative w-full cursor-pointer aspect-video bg-neutral-900 flex items-center justify-center" onClick={onClick}>
+      <div className="relative w-full cursor-pointer aspect-video bg-neutral-900 flex items-center justify-center" onClick={onClick} {...sbAttr}>
         <PlayBadge />
         <span className="absolute bottom-3 right-4 text-white/40 text-[10px] uppercase tracking-[0.2em]">Vimeo</span>
       </div>
@@ -270,6 +277,7 @@ export default function ExhibitionDetail() {
               caption={ex.title}
               onClick={() => openLightbox(heroIndex)}
               eager
+              dataSbFieldPath={ex.hero_video ? 'hero_video' : 'hero_image'}
             />
           </Motion.div>
         )}
@@ -313,9 +321,10 @@ export default function ExhibitionDetail() {
                     type={type}
                     caption={g.caption}
                     onClick={() => openLightbox(galleryStart + i)}
+                    dataSbFieldPath={g.video ? `gallery.${i}.video` : `gallery.${i}.image`}
                   />
                   {g.caption && (
-                    <figcaption className="mt-3 text-xs text-brand-muted text-center">
+                    <figcaption className="mt-3 text-xs text-brand-muted text-center" data-sb-field-path={`gallery.${i}.caption`}>
                       {g.caption}
                     </figcaption>
                   )}

@@ -282,19 +282,22 @@ export default function HomeV4() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col items-center mb-16 md:mb-24">
             <div className="relative w-full max-w-4xl aspect-[1.05] mb-10 flex justify-center items-end sm:aspect-[1.2] md:aspect-[1.4] md:mb-16">
-              {/* Stacked Images Effect */}
+              {/* Stacked Images Effect — uses CMS-overridable decoration fields,
+                  falling back to the first/second available paintings. */}
               <div className="absolute top-0 left-[12%] w-[45%] -rotate-2 z-0 hidden md:block">
-                <img 
-                  src={paintings[0]?.featured_image} 
-                  alt="Atmospheric Art" 
+                <img
+                  src={home.about_decoration_left_image || paintings[0]?.featured_image}
+                  alt="Atmospheric Art"
                   className="w-full grayscale brightness-75 transition-all duration-700 hover:brightness-100"
+                  data-sb-field-path="about_decoration_left_image"
                 />
               </div>
               <div className="absolute top-[8%] right-[12%] w-[45%] rotate-1 z-10 hidden md:block">
-                <img 
-                  src={paintings[1]?.featured_image} 
-                  alt="Detail Work" 
+                <img
+                  src={home.about_decoration_right_image || paintings[1]?.featured_image}
+                  alt="Detail Work"
                   className="w-full grayscale brightness-50 transition-all duration-700 hover:brightness-100"
+                  data-sb-field-path="about_decoration_right_image"
                 />
               </div>
               <div className="relative z-20 w-[78%] sm:w-[62%] md:w-[38%] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)]">
