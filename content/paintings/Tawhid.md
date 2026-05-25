@@ -4,7 +4,7 @@ slug: tawhid
 year: "2026"
 medium: Oil on canvas
 dimensions: 48x48 inches
-availability: available
+availability: sold
 featured_image: /images/paintings/1.png
 thumbnail_image: /images/paintings/1.png
 short_description: In the arms of God
