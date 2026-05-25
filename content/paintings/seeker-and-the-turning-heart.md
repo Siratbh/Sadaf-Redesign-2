@@ -1,8 +1,7 @@
 ---
-type: Painting
 title: Seeker & The Turning Heart
 slug: seeker-and-the-turning-heart
-year: "2026"
+year: "2025"
 medium: Oil On Canvas
 dimensions: 24x36 inches
 availability: available
@@ -12,4 +11,5 @@ short_description: “Yesterday I was clever, so I wanted to change the world.
   Today I am wise, so I am changing myself.” — Rumi
 sort_order: 99
 featured: false
+type: Painting
 ---
