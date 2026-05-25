@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { getPaintings, getAvailablePaintings, getPastPaintings, getExhibitions, getPage, getCollectors } from '../lib/content';
+import { introComponents } from '../lib/markdownComponents';
 import { gsap } from 'gsap';
 import SEOHead from '../components/SEOHead';
-
-// Inline-only elements allowed in the hero subhead — matches About bio_intro pattern.
-const HERO_SUBHEAD_ELEMENTS = ['p', 'strong', 'em', 'a'];
 
 // --- Hero Slideshow Component ---
 const HeroSlideshow = ({ paintings, slideshowLabel }) => {
@@ -231,23 +229,7 @@ export default function HomeV4() {
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
-                allowedElements={HERO_SUBHEAD_ELEMENTS}
-                unwrapDisallowed
-                components={{
-                  p: ({ children }) => (
-                    <p className="leading-relaxed font-light text-sm sm:text-[15px]">{children}</p>
-                  ),
-                  a: ({ href, children }) => (
-                    <a
-                      href={href}
-                      target={href?.startsWith('http') ? '_blank' : undefined}
-                      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="underline decoration-brand-muted underline-offset-4 hover:text-brand-ink transition-colors"
-                    >
-                      {children}
-                    </a>
-                  ),
-                }}
+                components={introComponents}
               >
                 {home.hero_subhead || ''}
               </ReactMarkdown>

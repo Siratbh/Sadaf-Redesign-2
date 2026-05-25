@@ -5,9 +5,8 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { getCollectors, getPage } from '../lib/content'
+import { introComponents } from '../lib/markdownComponents'
 import SEOHead from '../components/SEOHead'
-
-const INLINE_ELEMENTS = ['strong', 'em', 'a']
 
 function Lightbox({ items, index, onClose, onPrev, onNext }) {
   useEffect(() => {
@@ -160,7 +159,7 @@ export default function CollectorsEdit() {
                 className="text-brand-muted max-w-2xl text-sm md:text-base leading-relaxed font-light"
                 data-sb-field-path="intro"
               >
-                <ReactMarkdown remarkPlugins={[remarkGfm]} allowedElements={INLINE_ELEMENTS} unwrapDisallowed>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={introComponents}>
                   {page.intro}
                 </ReactMarkdown>
               </Motion.div>

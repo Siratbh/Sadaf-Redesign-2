@@ -190,14 +190,7 @@ collections:
           # ── Artist Block (hero) ──────────────────────────────────
           - { label: "Hero — Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
           - { label: "Hero — Artist Name", name: "bio_intro", widget: "string", required: false }
-          - label: "Hero — Paragraphs"
-            name: "hero_subhead"
-            widget: "markdown"
-            required: false
-            hint: "Hero paragraphs under the big headline. Inline emphasis only — bold, italic, and links."
-            buttons: ["bold", "italic", "link"]
-            editor_components: []
-            modes: ["rich_text", "raw"]
+          - { label: "Hero — Paragraphs", name: "hero_subhead", widget: "markdown", required: false, hint: "Hero paragraphs under the big headline. Full markdown toolbar — any formatting you add (bold, lists, headings, blockquotes, etc.) will render on the live site." }
 
       - label: "Available Works (page)"
         name: "available"
@@ -311,13 +304,7 @@ collections:
           # ── Hero ─────────────────────────────────────────────────
           - { label: "Hero — Eyebrow", name: "hero_eyebrow", widget: "string", hint: "Small label above the big heading (e.g. 'About')." }
           - { label: "Hero — Title", name: "hero_title", widget: "string", hint: "Big page heading (e.g. 'About the artist')." }
-          - label: "Hero — Intro paragraph"
-            name: "bio_intro"
-            widget: "markdown"
-            hint: "Short intro paragraph under the heading. Inline emphasis only — bold, italic, and links."
-            buttons: ["bold", "italic", "link"]
-            editor_components: []
-            modes: ["rich_text", "raw"]
+          - { label: "Hero — Intro paragraph", name: "bio_intro", widget: "markdown", hint: "Short intro paragraph under the heading. Full markdown toolbar — any formatting you add will render on the live site." }
           - { label: "Hero — Portrait Image", name: "portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about" }
           # ── Biography ────────────────────────────────────────────
           - { label: "Biography — Section title", name: "biography_title", widget: "string", hint: "Section heading (e.g. 'Biography')." }
@@ -367,13 +354,7 @@ collections:
           # ── Hero ─────────────────────────────────────────────────
           - { label: "Hero — Eyebrow", name: "hero_eyebrow", widget: "string", required: false, hint: "Optional small label above the big heading." }
           - { label: "Hero — Title", name: "hero_title", widget: "string", hint: "Big page heading (e.g. 'The Collectors Edit')." }
-          - label: "Hero — Intro paragraph"
-            name: "intro"
-            widget: "markdown"
-            hint: "Short intro paragraph under the heading. Inline emphasis only — bold, italic, and links."
-            buttons: ["bold", "italic", "link"]
-            editor_components: []
-            modes: ["rich_text", "raw"]
+          - { label: "Hero — Intro paragraph", name: "intro", widget: "markdown", hint: "Short intro paragraph under the heading. Full markdown toolbar — any formatting you add will render on the live site." }
           # ── Tile Labels ──────────────────────────────────────────
           - { label: "Tile — Hover Label", name: "tile_hover_label", widget: "string", hint: "Shown when hovering a collector image (e.g. 'View')." }
           # ── Empty / Navigation ───────────────────────────────────

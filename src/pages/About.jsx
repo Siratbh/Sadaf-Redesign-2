@@ -5,7 +5,11 @@ import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 import { getPage, getPaintings } from '../lib/content'
+import { introComponents } from '../lib/markdownComponents'
 
+// Used for the artist_statement styled blockquote — restricted to inline-only
+// elements because the surrounding <blockquote> has hard-coded huge serif
+// styling that breaks if the editor adds lists/headings inside it.
 const INLINE_ELEMENTS = ['strong', 'em', 'a']
 
 export default function About() {
@@ -39,7 +43,7 @@ export default function About() {
                   {a.hero_title || 'About the artist'}
                 </h1>
                 <div className="max-w-2xl text-sm font-light leading-relaxed text-brand-muted sm:text-[15px] md:text-base" data-sb-field-path="bio_intro">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} allowedElements={INLINE_ELEMENTS} unwrapDisallowed>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={introComponents}>
                     {a.bio_intro || ''}
                   </ReactMarkdown>
                 </div>
