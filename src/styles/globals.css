@@ -92,6 +92,9 @@
   }
 }
 
+/* Editorial body typography lives in public/styles/editorial.css
+   (loaded via <link> in index.html). Shared with Decap CMS preview iframe. */
+
 /* Lenis smooth scroll adjustments */
 html.lenis,
 html.lenis body {

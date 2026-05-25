@@ -2,8 +2,12 @@ import { motion as Motion, AnimatePresence } from 'motion/react'
 import { useState, useCallback, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { getCollectors, getPage } from '../lib/content'
 import SEOHead from '../components/SEOHead'
+
+const INLINE_ELEMENTS = ['strong', 'em', 'a']
 
 function Lightbox({ items, index, onClose, onPrev, onNext }) {
   useEffect(() => {
@@ -140,14 +144,16 @@ export default function CollectorsEdit() {
             <div className="w-12 h-[1px] bg-brand-ink mt-4 mb-6" />
 
             {page?.intro && (
-              <Motion.p
+              <Motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
                 className="text-brand-muted max-w-2xl text-sm md:text-base leading-relaxed font-light"
               >
-                {page.intro}
-              </Motion.p>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} allowedElements={INLINE_ELEMENTS} unwrapDisallowed>
+                  {page.intro}
+                </ReactMarkdown>
+              </Motion.div>
             )}
           </div>
 

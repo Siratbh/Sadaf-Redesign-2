@@ -280,7 +280,7 @@ export default function ExhibitionDetail() {
         )}
 
         {ex.body && (
-          <article className="max-w-2xl mx-auto px-4 sm:px-6 pb-16 md:pb-20 prose-exhibition">
+          <article className="max-w-2xl mx-auto px-4 sm:px-6 pb-16 md:pb-20 prose-editorial">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
               {ex.body}
             </ReactMarkdown>
