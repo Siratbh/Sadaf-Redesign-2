@@ -59,6 +59,7 @@ export default defineStackbitConfig({
         },
 
         // ─── Exhibitions ──────────────────────────────────────────────
+        // Schema aligned with Decap config (was previously missing 9 fields).
         {
           name: 'Exhibition',
           type: 'data',
@@ -67,6 +68,9 @@ export default defineStackbitConfig({
           fields: [
             { name: 'title', type: 'string', required: true },
             { name: 'year', type: 'string' },
+            { name: 'start_date', type: 'date', description: 'Optional. Leave blank to show year only.' },
+            { name: 'end_date', type: 'date' },
+            { name: 'featured', type: 'boolean', description: 'Pin this exhibition to the top of /exhibitions as a Hero/Next card.' },
             { name: 'venue', type: 'string' },
             { name: 'city', type: 'string' },
             {
@@ -76,10 +80,29 @@ export default defineStackbitConfig({
                 { label: 'Solo', value: 'Solo' },
                 { label: 'Group', value: 'Group' },
                 { label: 'Residency', value: 'Residency' },
+                { label: 'Art Fair', value: 'Art Fair' },
               ],
             },
-            { name: 'description', type: 'text' },
-            { name: 'image', type: 'image' },
+            { name: 'hero_image', type: 'image', description: 'Full-bleed image at the top of the detail page.' },
+            { name: 'card_thumbnail', type: 'image', description: 'Optional. Used on archive grid cards. Falls back to hero_image.' },
+            { name: 'hero_video', type: 'string', description: 'Optional. Path to MP4 or URL (YouTube / Vimeo / Cloudinary). Replaces hero_image when set.' },
+            { name: 'description', type: 'text', description: 'Short description shown on listing rows.' },
+            { name: 'body', type: 'markdown', description: 'Long-form editorial body. Inline ![](url) supports images AND videos.' },
+            {
+              name: 'gallery',
+              type: 'list',
+              items: {
+                type: 'object',
+                fields: [
+                  { name: 'image', type: 'image' },
+                  { name: 'video', type: 'string', description: 'Optional. MP4 path or YouTube / Vimeo / Cloudinary URL. Replaces image when set.' },
+                  { name: 'caption', type: 'string' },
+                ],
+              },
+            },
+            { name: 'works_shown', type: 'list', items: { type: 'string' }, description: 'Painting slugs shown at this exhibition (matches Decap relation widget).' },
+            { name: 'link', type: 'string', description: 'Optional external press link.' },
+            { name: 'image', type: 'image', description: 'Legacy field. Use hero_image / card_thumbnail going forward.' },
             { name: 'sort_order', type: 'number' },
           ],
         },
@@ -257,6 +280,22 @@ export default defineStackbitConfig({
             { name: 'empty_state', type: 'text', description: 'Message shown when there are no past works yet.' },
             { name: 'seo_title', type: 'string', description: 'Browser tab title.' },
             { name: 'seo_description', type: 'text', description: 'SEO meta description.' },
+          ],
+        },
+
+        // ─── Exhibition detail page — shared chrome ───────────────────
+        // Shared labels used on EVERY /exhibitions/:slug page.
+        // Per-exhibition data lives on the Exhibition model above.
+        {
+          name: 'ExhibitionDetailChrome',
+          type: 'data',
+          filePath: 'content/pages/exhibition-detail-chrome.md',
+          fields: [
+            { name: 'back_link_label', type: 'string', description: 'Back link to /exhibitions (e.g. "← The Archive").' },
+            { name: 'works_shown_eyebrow', type: 'string', description: 'Eyebrow above the Works Shown grid (e.g. "Works").' },
+            { name: 'works_shown_title', type: 'string', description: 'Section title for the Works Shown grid (e.g. "Works Shown").' },
+            { name: 'read_more_label', type: 'string', description: 'External link CTA (e.g. "Read more →").' },
+            { name: 'not_found_title', type: 'string', description: 'Heading shown when an exhibition URL is invalid.' },
           ],
         },
 

@@ -860,6 +860,85 @@ body {
   border-top: 1px dashed #efefef;
 }
 
+/* ---------- Exhibition preview — gallery + works extensions ---------- */
+.exhibition-preview-gallery {
+  max-width: 48rem;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
+}
+.exhibition-preview-gallery-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.exhibition-preview-gallery-item {
+  margin: 0;
+}
+.exhibition-preview-gallery-item img,
+.exhibition-preview-gallery-item video,
+.exhibition-preview-gallery-item iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #f0eded;
+}
+.exhibition-preview-gallery-item figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--brand-muted);
+  text-align: center;
+}
+
+.exhibition-preview-works {
+  max-width: 80rem;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
+}
+.exhibition-preview-works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* ---------- Exhibition detail chrome preview ---------- */
+.exhibition-chrome-preview {
+  background: var(--brand-bg);
+  color: var(--brand-ink);
+  padding: 2rem 1.5rem 4rem;
+}
+.exhibition-chrome-header {
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+.exhibition-chrome-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 2.25rem;
+  line-height: 1.05;
+  margin: 0.5rem 0;
+  color: var(--brand-ink);
+}
+.exhibition-chrome-meta {
+  font-size: 0.875rem;
+  color: var(--brand-muted);
+  margin: 0.5rem 0 0;
+}
+.exhibition-chrome-hero {
+  max-width: 80rem;
+  margin: 0 auto 2rem;
+  background: #ececec;
+  border: 1px dashed #c8c8c8;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.exhibition-chrome-section {
+  max-width: 60rem;
+  margin: 0 auto 2.5rem;
+}
+
 /* ---------- Single collector card preview ---------- */
 .collector-preview {
   padding: 2rem 1.5rem 4rem;

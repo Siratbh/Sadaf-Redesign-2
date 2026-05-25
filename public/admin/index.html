@@ -70,7 +70,14 @@
     }
 
     /* ---------------- Exhibition preview ---------------- */
+    // Includes gallery thumbnails + Works Shown grid (real painting tiles
+    // looked up via the paintings manifest bridge).
     var ExhibitionPreview = createClass({
+      getInitialState: function () { return { paintings: null }; },
+      componentDidMount: function () {
+        var self = this;
+        loadPaintingsManifest().then(function (p) { self.setState({ paintings: p }); });
+      },
       render: function () {
         var entry = this.props.entry;
         var data = entry.get('data');
@@ -84,6 +91,8 @@
         var exhibitionType = data.get('exhibition_type') || '';
         var heroImage = resolveAsset(getAsset, data.get('hero_image'));
         var heroVideo = resolveAsset(getAsset, data.get('hero_video'));
+        var gallery = data.get('gallery');
+        var worksShown = data.get('works_shown');
 
         var metaBits = [];
         if (exhibitionType) metaBits.push(exhibitionType + ' Exhibition');
@@ -91,6 +100,7 @@
         var metaPrefix = metaBits.join(' · ');
         var venueLine = venue + (city ? ', ' + city : '');
 
+        // ── Hero ──
         var heroNode = null;
         if (heroVideo && isVideoUrl(heroVideo)) {
           heroNode = h('video', {
@@ -112,6 +122,75 @@
           heroNode = h('img', { className: 'preview-hero', src: heroImage, alt: title });
         }
 
+        // ── Gallery section ──
+        var gallerySection = null;
+        if (gallery && gallery.size > 0) {
+          var galleryItems = [];
+          gallery.forEach(function (g, i) {
+            if (!g) return;
+            var imgPath = g.get && g.get('image');
+            var vidPath = g.get && g.get('video');
+            var caption = (g.get && g.get('caption')) || '';
+            var src = resolveAsset(getAsset, vidPath || imgPath);
+            if (!src) return;
+            var media;
+            if (vidPath && isVideoUrl(src)) {
+              media = h('video', { src: src, controls: true, preload: 'metadata', playsInline: true });
+            } else if (vidPath) {
+              media = h('iframe', { src: src, allow: 'autoplay; fullscreen', style: { aspectRatio: '16/9', border: 0, width: '100%' } });
+            } else {
+              media = h('img', { src: src, alt: caption });
+            }
+            galleryItems.push(
+              h('figure', { key: 'g' + i, className: 'exhibition-preview-gallery-item' },
+                media,
+                caption ? h('figcaption', null, caption) : null
+              )
+            );
+          });
+          if (galleryItems.length > 0) {
+            gallerySection = h('section', { className: 'exhibition-preview-gallery' },
+              h('div', { className: 'preview-section-header' }, h('h2', null, 'Gallery')),
+              h('div', { className: 'exhibition-preview-gallery-stack' }, galleryItems)
+            );
+          }
+        }
+
+        // ── Works Shown grid (uses paintings manifest) ──
+        var worksSection = null;
+        if (worksShown && worksShown.size > 0) {
+          var paintings = this.state.paintings;
+          var worksList = worksShown.toJS ? worksShown.toJS() : worksShown;
+          var worksTiles = [];
+          if (paintings) {
+            worksList.forEach(function (slug, i) {
+              var p = paintings.find(function (item) { return item.slug === slug; });
+              if (!p) {
+                worksTiles.push(
+                  h('div', { key: 'w' + i, className: 'listing-preview-tile' },
+                    h('span', { className: 'home-preview-tile-hint' }, slug + ' (not found)')
+                  )
+                );
+                return;
+              }
+              worksTiles.push(realPaintingTile(p, { tileClass: 'listing-preview-tile' }));
+            });
+          } else {
+            // Manifest still loading — placeholder tiles
+            for (var i = 0; i < worksList.length; i++) {
+              worksTiles.push(
+                h('div', { key: 'wp' + i, className: 'listing-preview-tile' },
+                  h('span', { className: 'home-preview-tile-hint' }, 'Loading…')
+                )
+              );
+            }
+          }
+          worksSection = h('section', { className: 'exhibition-preview-works' },
+            h('div', { className: 'preview-section-header' }, h('h2', null, 'Works Shown')),
+            h('div', { className: 'exhibition-preview-works-grid' }, worksTiles)
+          );
+        }
+
         return h('div', { className: 'exhibition-preview' },
           heroNode,
           h('header', { className: 'preview-header' },
@@ -119,7 +198,9 @@
             h('h1', { className: 'preview-title' }, title),
             venueLine ? h('p', { className: 'preview-venue' }, venueLine) : null
           ),
-          h('article', { className: 'prose-editorial' }, widgetFor('body'))
+          h('article', { className: 'prose-editorial' }, widgetFor('body')),
+          gallerySection,
+          worksSection
         );
       },
     });
@@ -694,6 +775,68 @@
     });
 
     CMS.registerPreviewTemplate('exhibitions-page', ExhibitionsPagePreview);
+
+    /* ---------------- Exhibition detail chrome preview ---------------- */
+    // Mock layout showing where each chrome label lands on an exhibition page.
+    var ExhibitionDetailChromePreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var g = function (k) { return data.get(k) || ''; };
+
+        return h('div', { className: 'exhibition-chrome-preview' },
+          // Back link
+          h('div', { className: 'painting-chrome-back' },
+            h('span', { className: 'preview-eyebrow-light' }, g('back_link_label') || '← The Archive')
+          ),
+
+          // Header mock
+          h('section', { className: 'exhibition-chrome-header' },
+            h('p', { className: 'preview-eyebrow' }, 'Type · Date range'),
+            h('h1', { className: 'exhibition-chrome-title' }, '— Exhibition title —'),
+            h('p', { className: 'exhibition-chrome-meta' }, 'Venue, City')
+          ),
+
+          // Hero placeholder
+          h('div', { className: 'exhibition-chrome-hero' },
+            h('span', { className: 'home-preview-tile-hint' }, 'Hero image / video')
+          ),
+
+          // Body placeholder
+          h('section', { className: 'exhibition-chrome-section' },
+            h('p', { className: 'painting-chrome-placeholder' }, '— Long-form body markdown per exhibition —')
+          ),
+
+          // Works Shown section
+          h('section', { className: 'exhibition-chrome-section' },
+            h('div', { className: 'preview-section-header' },
+              h('p', { className: 'preview-eyebrow' }, g('works_shown_eyebrow') || 'Works'),
+              h('h2', null, g('works_shown_title') || 'Works Shown')
+            ),
+            h('div', { className: 'exhibition-preview-works-grid' },
+              h('div', { className: 'listing-preview-tile' }, h('span', { className: 'home-preview-tile-hint' }, 'Painting')),
+              h('div', { className: 'listing-preview-tile' }, h('span', { className: 'home-preview-tile-hint' }, 'Painting')),
+              h('div', { className: 'listing-preview-tile' }, h('span', { className: 'home-preview-tile-hint' }, 'Painting'))
+            )
+          ),
+
+          // External link CTA
+          h('section', { className: 'exhibition-chrome-section painting-chrome-section-light' },
+            h('span', { className: 'preview-eyebrow-light' }, 'External press / link CTA (only shown when exhibition has a link field)'),
+            h('p', { className: 'painting-chrome-helper' },
+              h('strong', null, g('read_more_label') || 'Read more →')
+            )
+          ),
+
+          // Not-found state
+          h('section', { className: 'exhibition-chrome-section' },
+            h('span', { className: 'preview-eyebrow-light' }, 'Not-found page (when an exhibition URL is invalid)'),
+            h('h2', { className: 'painting-chrome-notfound-title' }, g('not_found_title') || 'Exhibition not found.')
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('exhibition-detail-chrome', ExhibitionDetailChromePreview);
 
     /* ---------------- Painting detail chrome preview ---------------- */
     // Renders a styled mock of a painting detail page using the chrome labels

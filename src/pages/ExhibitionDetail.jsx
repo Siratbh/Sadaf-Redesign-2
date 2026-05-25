@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
 import Lightbox from '../components/Lightbox'
-import { getExhibition, getPainting } from '../lib/content'
+import { getExhibition, getPainting, getPage } from '../lib/content'
 import { mediaType, extractYouTubeId, youtubeEmbedUrl, vimeoEmbedUrl } from '../lib/media'
 import { formatDateRange } from '../lib/exhibitions'
 
@@ -90,6 +90,9 @@ export default function ExhibitionDetail() {
     ex = null
   }
 
+  // Shared chrome — labels/headings used across every exhibition page.
+  const c = getPage('exhibition-detail-chrome') || {}
+
   // Collect every media item in a single ordered list for the lightbox.
   // Order: hero → inline markdown media (in document order) → gallery items.
   const { allMedia, heroIndex, inlineStart, galleryStart, heroType, heroSrc } = useMemo(() => {
@@ -150,9 +153,9 @@ export default function ExhibitionDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-brand-bg text-brand-ink px-4">
         <div className="text-center">
-          <h1 className="text-4xl font-serif italic mb-4">Exhibition not found.</h1>
+          <h1 className="text-4xl font-serif italic mb-4">{c.not_found_title || 'Exhibition not found.'}</h1>
           <Link to="/exhibitions" className="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-brand-ink pb-1 text-brand-ink">
-            ← The Archive
+            {c.back_link_label || '← The Archive'}
           </Link>
         </div>
       </div>
@@ -230,10 +233,10 @@ export default function ExhibitionDetail() {
         image={ex.hero_image}
       />
 
-      <div className="min-h-screen bg-brand-bg text-brand-ink">
+      <div className="min-h-screen bg-brand-bg text-brand-ink" {...(ex._id ? { 'data-sb-object-id': ex._id } : {})}>
         <div className="max-w-7xl mx-auto px-4 pt-28 pb-4 sm:px-6 md:pt-32">
           <Link to="/exhibitions" className="text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted hover:text-brand-ink transition-colors">
-            ← The Archive
+            {c.back_link_label || '← The Archive'}
           </Link>
         </div>
 
@@ -248,9 +251,9 @@ export default function ExhibitionDetail() {
               {metaPrefix}
             </p>
           )}
-          <h1 className="text-4xl font-serif leading-[1.05] sm:text-5xl md:text-6xl">{ex.title}</h1>
+          <h1 className="text-4xl font-serif leading-[1.05] sm:text-5xl md:text-6xl" data-sb-field-path="title">{ex.title}</h1>
           <p className="mt-4 text-sm text-brand-muted">
-            {ex.venue}{ex.city ? `, ${ex.city}` : ''}
+            <span data-sb-field-path="venue">{ex.venue}</span>{ex.city ? <>, <span data-sb-field-path="city">{ex.city}</span></> : ''}
           </p>
         </Motion.header>
 
@@ -273,14 +276,14 @@ export default function ExhibitionDetail() {
 
         {ex.description && !ex.body && (
           <section className="max-w-2xl mx-auto px-4 sm:px-6 pb-16 md:pb-20">
-            <p className="text-[15px] leading-[1.8] text-brand-muted md:text-[17px] whitespace-pre-line">
+            <p className="text-[15px] leading-[1.8] text-brand-muted md:text-[17px] whitespace-pre-line" data-sb-field-path="description">
               {ex.description}
             </p>
           </section>
         )}
 
         {ex.body && (
-          <article className="max-w-2xl mx-auto px-4 sm:px-6 pb-16 md:pb-20 prose-editorial">
+          <article className="max-w-2xl mx-auto px-4 sm:px-6 pb-16 md:pb-20 prose-editorial" data-sb-field-path="body">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
               {ex.body}
             </ReactMarkdown>
@@ -321,8 +324,8 @@ export default function ExhibitionDetail() {
         {Array.isArray(ex.works_shown) && ex.works_shown.length > 0 && (
           <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 md:pb-28">
             <div className="mb-10 border-b border-gray-100 pb-6 md:mb-12 md:pb-8">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-muted mb-3">Works</p>
-              <h2 className="font-serif italic text-brand-ink text-3xl md:text-4xl lg:text-5xl leading-[1.05]">Works Shown</h2>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-muted mb-3">{c.works_shown_eyebrow || 'Works'}</p>
+              <h2 className="font-serif italic text-brand-ink text-3xl md:text-4xl lg:text-5xl leading-[1.05]">{c.works_shown_title || 'Works Shown'}</h2>
             </div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-14">
               {ex.works_shown.map((slug) => {
@@ -330,7 +333,12 @@ export default function ExhibitionDetail() {
                 if (!p) return null
                 const img = p.featured_image || p.thumbnail_image
                 return (
-                  <Link key={slug} to={`/paintings/${p.slug}`} className="group flex flex-col">
+                  <Link
+                    key={slug}
+                    to={`/paintings/${p.slug}`}
+                    className="group flex flex-col"
+                    {...(p._id ? { 'data-sb-object-id': p._id } : {})}
+                  >
                     <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
                       {img ? (
                         <img
@@ -338,6 +346,7 @@ export default function ExhibitionDetail() {
                           alt={p.title}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
+                          data-sb-field-path={p.featured_image ? 'featured_image' : 'thumbnail_image'}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-brand-muted text-xs uppercase tracking-[0.2em]">
@@ -346,11 +355,11 @@ export default function ExhibitionDetail() {
                       )}
                     </div>
                     <div className="mt-4">
-                      <h3 className="font-serif italic text-brand-ink text-lg md:text-xl leading-[1.15] group-hover:text-brand-accent transition-colors">
+                      <h3 className="font-serif italic text-brand-ink text-lg md:text-xl leading-[1.15] group-hover:text-brand-accent transition-colors" data-sb-field-path="title">
                         {p.title}
                       </h3>
                       {p.year && (
-                        <p className="mt-1.5 text-[10px] uppercase tracking-[0.24em] text-brand-muted">
+                        <p className="mt-1.5 text-[10px] uppercase tracking-[0.24em] text-brand-muted" data-sb-field-path="year">
                           {p.year}
                         </p>
                       )}
@@ -370,7 +379,7 @@ export default function ExhibitionDetail() {
               rel="noopener noreferrer"
               className="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-brand-ink pb-1 text-brand-ink hover:text-brand-accent hover:border-brand-accent transition-colors"
             >
-              Read more →
+              {c.read_more_label || 'Read more →'}
             </a>
           </div>
         )}

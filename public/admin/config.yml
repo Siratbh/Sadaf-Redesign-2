@@ -209,6 +209,16 @@ collections:
           - { label: "SEO — Browser Tab Title", name: "seo_title", widget: "string", required: false }
           - { label: "SEO — Meta Description", name: "seo_description", widget: "text", required: false }
 
+      - label: "Exhibition Detail — Shared Labels"
+        name: "exhibition-detail-chrome"
+        file: "content/pages/exhibition-detail-chrome.md"
+        fields:
+          - { label: "Back Link Label", name: "back_link_label", widget: "string", hint: "Back link to /exhibitions (e.g. '← The Archive')." }
+          - { label: "Works Shown — Eyebrow", name: "works_shown_eyebrow", widget: "string", hint: "Small label above the Works Shown grid (e.g. 'Works')." }
+          - { label: "Works Shown — Title", name: "works_shown_title", widget: "string", hint: "Section heading for the Works Shown grid." }
+          - { label: "Read More — CTA", name: "read_more_label", widget: "string", hint: "External link CTA (e.g. 'Read more →')." }
+          - { label: "Not Found — Title", name: "not_found_title", widget: "string", hint: "Heading shown when an exhibition URL is invalid." }
+
       - label: "Painting Detail — Shared Labels"
         name: "painting-detail-chrome"
         file: "content/pages/painting-detail-chrome.md"
