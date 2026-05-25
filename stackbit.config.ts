@@ -87,7 +87,11 @@ export default defineStackbitConfig({
             { name: 'card_thumbnail', type: 'image', description: 'Optional. Used on archive grid cards. Falls back to hero_image.' },
             { name: 'hero_video', type: 'string', description: 'Optional. Path to MP4 or URL (YouTube / Vimeo / Cloudinary). Replaces hero_image when set.' },
             { name: 'description', type: 'text', description: 'Short description shown on listing rows.' },
-            { name: 'body', type: 'markdown', description: 'Long-form editorial body. Inline ![](url) supports images AND videos.' },
+            // The exhibition's long-form body is the markdown content BELOW the
+            // frontmatter delimiter, not a frontmatter field. Stackbit auto-exposes
+            // it under the canonical name `markdown_content`. Declaring it here
+            // explicitly so the side panel labels it nicely.
+            { name: 'markdown_content', type: 'markdown', description: 'Long-form editorial body. Inline ![](url) supports images AND videos.' },
             {
               name: 'gallery',
               type: 'list',

@@ -283,7 +283,11 @@ export default function ExhibitionDetail() {
         )}
 
         {ex.body && (
-          <article className="max-w-2xl mx-auto px-4 sm:px-6 pb-16 md:pb-20 prose-editorial" data-sb-field-path="body">
+          // The body content lives BELOW the frontmatter in the .md file. Stackbit
+          // exposes that under the canonical field name `markdown_content` — annotating
+          // with `body` would point at a non-existent frontmatter field and the
+          // Visual Editor modal would open empty (risking content loss on save).
+          <article className="max-w-2xl mx-auto px-4 sm:px-6 pb-16 md:pb-20 prose-editorial" data-sb-field-path="markdown_content">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
               {ex.body}
             </ReactMarkdown>
