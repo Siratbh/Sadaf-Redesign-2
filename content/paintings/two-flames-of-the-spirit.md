@@ -1,8 +1,7 @@
 ---
-type: Painting
 title: Two Flames Of The Spirit
 slug: two-flames-of-the-spirit
-year: "2026"
+year: "2025"
 medium: Oil On Canvas
 dimensions: 48x84 inches
 availability: available
@@ -12,4 +11,5 @@ short_description: "“There comes a time when nothing is meaningful except
   surrendering to love.” —Rumi  "
 sort_order: 99
 featured: false
+type: Painting
 ---
