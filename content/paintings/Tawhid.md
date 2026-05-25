@@ -1,13 +1,13 @@
 ---
 title: Tawhid
 slug: tawhid
-year: "2023"
+year: "2026"
 medium: Oil on canvas
-dimensions: 40x60 inches
+dimensions: 48x48 inches
 availability: available
 featured_image: /images/paintings/1.png
 thumbnail_image: /images/paintings/1.png
-short_description: In the arms of god
+short_description: In the arms of God
 full_description: |
   In the arms of god
 inquiry_subject: inquire about this piece
