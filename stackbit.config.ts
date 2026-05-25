@@ -85,6 +85,39 @@ export default defineStackbitConfig({
         },
 
 
+        // ─── Exhibitions listing page ─────────────────────────────────
+        {
+          name: 'ExhibitionsPage',
+          type: 'page',
+          urlPath: '/exhibitions',
+          filePath: 'content/pages/exhibitions.md',
+          fieldGroups: [
+            { name: 'Hero', label: 'Hero' },
+            { name: 'Archive Section', label: 'Archive Section' },
+            { name: 'Card Labels', label: 'Card Labels' },
+            { name: 'States', label: 'Empty / SEO' },
+          ],
+          fields: [
+            // Hero
+            { name: 'hero_eyebrow', type: 'string', group: 'Hero', description: 'Small label above the title (e.g. "Archive").' },
+            { name: 'hero_title_prefix', type: 'string', group: 'Hero', description: 'First part of the title — rendered upright (e.g. "The ").' },
+            { name: 'hero_title_italic', type: 'string', group: 'Hero', description: 'Italic emphasis part of the title (e.g. "Archive").' },
+            { name: 'count_singular', type: 'string', group: 'Hero', description: 'Word shown after the count when there is exactly 1 exhibition (e.g. "exhibition").' },
+            { name: 'count_plural', type: 'string', group: 'Hero', description: 'Word shown after the count when there are 0 or 2+ exhibitions (e.g. "exhibitions").' },
+            // Archive Section
+            { name: 'archive_section_label', type: 'string', group: 'Archive Section', description: 'Small label above the archive section intro (e.g. "Exhibition Archive").' },
+            { name: 'archive_section_intro', type: 'text', group: 'Archive Section', description: 'Italic serif intro paragraph above the year-grouped grid.' },
+            // Card Labels
+            { name: 'view_exhibition_label', type: 'string', group: 'Card Labels', description: 'CTA label shown on Hero and Next featured cards (e.g. "View exhibition").' },
+            { name: 'next_badge_label', type: 'string', group: 'Card Labels', description: 'Badge text on the second featured card (e.g. "Next").' },
+            { name: 'exhibition_type_fallback', type: 'string', group: 'Card Labels', description: 'Fallback shown on the Next card when an exhibition has no exhibition_type (e.g. "Exhibition").' },
+            // States / SEO
+            { name: 'empty_state', type: 'text', group: 'States', description: 'Message shown when no exhibitions exist.' },
+            { name: 'seo_title', type: 'string', group: 'States', description: 'Browser tab title.' },
+            { name: 'seo_description', type: 'text', group: 'States', description: 'SEO meta description.' },
+          ],
+        },
+
         // ─── About page ───────────────────────────────────────────────
         {
           name: 'AboutPage',

@@ -614,6 +614,87 @@
     // (which is already registered above as PaintingPreview for individual sold paintings).
     CMS.registerPreviewTemplate('past-works-page', PastWorksPagePreview);
 
+    /* ---------------- Exhibitions (page) preview ---------------- */
+    // Mock of the 3-tier listing: header + Hero Featured + Next Featured + Archive grid.
+    // Same key-collision rule: registered as 'exhibitions-page', NOT 'exhibitions'
+    // (which is the folder collection above).
+    var ExhibitionsPagePreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var g = function (k) { return data.get(k) || ''; };
+
+        return h('div', { className: 'exhibitions-preview' },
+          // Page header
+          h('section', { className: 'exhibitions-preview-header' },
+            h('p', { className: 'preview-eyebrow' }, g('hero_eyebrow') || 'Archive'),
+            h('div', { className: 'exhibitions-preview-title-row' },
+              h('h1', { className: 'exhibitions-preview-title' },
+                h('span', { key: 'p' }, g('hero_title_prefix') || 'The '),
+                h('i', { key: 'i', className: 'exhibitions-preview-title-italic' }, g('hero_title_italic') || 'Archive')
+              ),
+              h('p', { className: 'exhibitions-preview-count' },
+                'N ', (g('count_plural') || 'exhibitions'),
+                h('span', { className: 'exhibitions-preview-count-helper' }, ' (singular: ', (g('count_singular') || 'exhibition'), ')')
+              )
+            )
+          ),
+
+          // Hero Featured mock
+          h('section', { className: 'exhibitions-preview-hero-featured' },
+            h('div', { className: 'exhibitions-preview-hero-image' },
+              h('span', { className: 'home-preview-tile-hint' }, 'Hero featured exhibition image')
+            ),
+            h('div', { className: 'exhibitions-preview-hero-meta' },
+              h('p', { className: 'preview-eyebrow' }, 'Date range'),
+              h('h2', { className: 'exhibitions-preview-hero-title' }, '— Exhibition title (italic) —'),
+              h('p', { className: 'exhibitions-preview-meta-line' }, 'Venue, City'),
+              h('p', { className: 'exhibitions-preview-helper' },
+                'CTA: ', h('strong', null, g('view_exhibition_label') || 'View exhibition')
+              )
+            )
+          ),
+
+          // Next Featured mock
+          h('section', { className: 'exhibitions-preview-next' },
+            h('div', { className: 'exhibitions-preview-next-image' },
+              h('span', { className: 'exhibitions-preview-next-badge' }, g('next_badge_label') || 'Next'),
+              h('span', { className: 'home-preview-tile-hint' }, 'Next featured exhibition image (full-bleed)')
+            ),
+            h('div', { className: 'exhibitions-preview-next-meta' },
+              h('p', { className: 'preview-eyebrow' }, 'Date range'),
+              h('p', { className: 'exhibitions-preview-next-type' }, g('exhibition_type_fallback') || 'Exhibition'),
+              h('h2', { className: 'exhibitions-preview-next-title' }, '— Exhibition title (italic, large) —'),
+              h('p', { className: 'exhibitions-preview-meta-line' }, 'Venue, City')
+            )
+          ),
+
+          // Archive grid
+          h('section', { className: 'exhibitions-preview-archive' },
+            h('p', { className: 'preview-eyebrow' }, g('archive_section_label') || 'Exhibition Archive'),
+            h('p', { className: 'exhibitions-preview-archive-intro' }, g('archive_section_intro') || 'Every show, residency, and fair — from the earliest to the most recent.'),
+            h('div', { className: 'exhibitions-preview-year-header' },
+              h('h3', { className: 'exhibitions-preview-year' }, 'YYYY'),
+              h('span', { className: 'exhibitions-preview-year-rule' }),
+              h('span', { className: 'preview-eyebrow-light' }, 'N ', g('count_plural') || 'exhibitions')
+            ),
+            h('div', { className: 'exhibitions-preview-grid' },
+              h('div', { className: 'listing-preview-tile' }, h('span', { className: 'home-preview-tile-hint' }, 'Card')),
+              h('div', { className: 'listing-preview-tile' }, h('span', { className: 'home-preview-tile-hint' }, 'Card')),
+              h('div', { className: 'listing-preview-tile' }, h('span', { className: 'home-preview-tile-hint' }, 'Card'))
+            )
+          ),
+
+          // Empty state
+          h('section', { className: 'exhibitions-preview-empty-section' },
+            h('span', { className: 'preview-eyebrow-light' }, 'Empty state (when no exhibitions exist)'),
+            h('p', { className: 'listing-preview-empty' }, g('empty_state') || 'No exhibitions yet. Add them through the CMS.')
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate('exhibitions-page', ExhibitionsPagePreview);
+
     /* ---------------- Painting detail chrome preview ---------------- */
     // Renders a styled mock of a painting detail page using the chrome labels
     // + a real painting (first available from the manifest), so the editor sees

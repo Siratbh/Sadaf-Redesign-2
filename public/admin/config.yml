@@ -247,6 +247,28 @@ collections:
           - { label: "Not Found — CTA", name: "not_found_cta", widget: "string" }
           - { label: "Image Forthcoming Label", name: "image_forthcoming_label", widget: "string", hint: "Placeholder text shown when a painting has no image yet." }
 
+      - label: "Exhibitions (page)"
+        name: "exhibitions-page"
+        file: "content/pages/exhibitions.md"
+        fields:
+          # ── Hero ─────────────────────────────────────────────────
+          - { label: "Hero — Eyebrow", name: "hero_eyebrow", widget: "string", hint: "Small label above the title (e.g. 'Archive')." }
+          - { label: "Hero — Title (prefix)", name: "hero_title_prefix", widget: "string", hint: "First part of the title — rendered upright (e.g. 'The ')." }
+          - { label: "Hero — Title (italic)", name: "hero_title_italic", widget: "string", hint: "Italic emphasis part of the title (e.g. 'Archive')." }
+          - { label: "Count — Singular word", name: "count_singular", widget: "string", hint: "Word shown after the count when exactly 1 (e.g. 'exhibition')." }
+          - { label: "Count — Plural word", name: "count_plural", widget: "string", hint: "Word shown after the count when 0 or 2+ (e.g. 'exhibitions')." }
+          # ── Archive Section ──────────────────────────────────────
+          - { label: "Archive — Section Label", name: "archive_section_label", widget: "string", hint: "Small label above the archive intro paragraph." }
+          - { label: "Archive — Intro paragraph", name: "archive_section_intro", widget: "text", hint: "Italic serif intro above the year-grouped exhibition grid." }
+          # ── Card Labels ──────────────────────────────────────────
+          - { label: "Card — View CTA", name: "view_exhibition_label", widget: "string", hint: "CTA on Hero and Next featured cards (e.g. 'View exhibition')." }
+          - { label: "Card — Next badge", name: "next_badge_label", widget: "string", hint: "Badge text on the second featured card (e.g. 'Next')." }
+          - { label: "Card — Type fallback", name: "exhibition_type_fallback", widget: "string", hint: "Fallback when an exhibition has no type (e.g. 'Exhibition')." }
+          # ── Empty / SEO ──────────────────────────────────────────
+          - { label: "Empty State Message", name: "empty_state", widget: "text" }
+          - { label: "SEO — Browser Tab Title", name: "seo_title", widget: "string", required: false }
+          - { label: "SEO — Meta Description", name: "seo_description", widget: "text", required: false }
+
       - label: "Past Works (page)"
         name: "past-works-page"
         file: "content/pages/past-works.md"
