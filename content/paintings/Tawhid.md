@@ -3,7 +3,7 @@ title: Tawhid
 slug: tawhid
 year: "2023"
 medium: Oil on canvas
-dimensions: 12013x120o
+dimensions: 40x60 inches
 availability: available
 featured_image: /images/paintings/1.png
 thumbnail_image: /images/paintings/1.png
