@@ -7,18 +7,41 @@
   <title>CMS — Sadaf</title>
   <style>
     /* Mobile optimization for Decap CMS admin (phones only — desktop unchanged).
-       Decap v3 is desktop-first. These overrides make it usable on phones so
-       Sadaf can manage entries + upload paintings directly from her iPhone. */
+       Selectors use VERIFIED emotion `label` names from decap-cms-app@3.12.2.
+       Strategy: stack the row-layout vertically rather than overlay sidebar. */
     @media (max-width: 768px) {
-      /* Hide the editor preview pane — decorative on a phone, frees screen + memory */
-      [class*="EditorPreviewPane"],
-      [class*="PreviewPane"] {
+      /* SIDEBAR: full-width strip at top, capped height, scrolls inside.
+         Replaces the v4 position:fixed/80vw rule that covered the content. */
+      [class*="SidebarContainer"] {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 200px !important;
+        overflow-y: auto !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e2e2e2 !important;
+        box-shadow: none !important;
+        flex: 0 0 auto !important;
+      }
+
+      /* PARENT: force the flex row that holds [sidebar + entries] to stack.
+         :has() supported in Safari 15.4+ / Chrome 105+ (her browsers qualify).
+         Explicit CollectionMain / AppMainContainer targets are fallback. */
+      *:has(> [class*="SidebarContainer"]),
+      [class*="CollectionMain"],
+      [class*="AppMainContainer"] {
+        flex-direction: column !important;
+      }
+
+      /* Hide the editor preview iframe — decorative on a phone, frees memory */
+      [class*="PreviewPaneContainer"],
+      [class*="PreviewPaneFrame"] {
         display: none !important;
       }
 
       /* Form pane fills the screen once preview is gone */
-      [class*="EditorControlPane"],
-      [class*="ControlPane"] {
+      [class*="ControlPaneContainer"] {
         width: 100% !important;
         max-width: 100% !important;
         flex: 1 1 100% !important;
@@ -32,38 +55,43 @@
         padding: 10px 14px !important;
       }
 
-      /* Sticky bottom toolbar — Save / Publish often scroll off-screen otherwise */
-      [class*="EditorToolBar"],
-      [class*="EditorToolbar"] {
+      /* Sticky bottom toolbar — Save / Publish at bottom of viewport */
+      [class*="EditorControlBar"] {
         position: fixed !important;
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
+        top: auto !important;
         z-index: 100 !important;
         background: #fff !important;
         border-top: 1px solid #e2e2e2 !important;
         padding: 8px !important;
         flex-wrap: wrap !important;
         gap: 6px !important;
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06) !important;
       }
 
       /* Pad the form so its content isn't hidden behind the sticky toolbar */
-      [class*="EditorContent"],
       [class*="EditorContainer"] {
         padding-bottom: 100px !important;
       }
 
       /* Media library: 2-col grid on phones instead of the desktop 4-6 col grid */
-      [class*="MediaLibraryCardGrid"],
-      [class*="CardsGrid"] {
+      [class*="CardGridContainer"],
+      [class*="CardsGrid"],
+      [class*="CardGrid"] {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 8px !important;
       }
 
+      /* Entry cards (collection listings) take full row width */
+      [class*="GridCard"],
+      [class*="ListCard"],
+      [class*="CardCollection"] {
+        width: 100% !important;
+      }
+
       /* Full-screen modals (media library, dialogs) */
-      [class*="ModalContent"],
-      [class*="DialogContent"],
       [role="dialog"] > div {
         width: 100vw !important;
         height: 100vh !important;
@@ -73,28 +101,13 @@
         margin: 0 !important;
       }
 
-      /* Side nav becomes a slide-out overlay rather than always-on column */
-      nav[class*="SideBar"],
-      [class*="SidebarContainer"],
-      [class*="CollectionSidebar"] {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        bottom: 0 !important;
-        width: 80vw !important;
-        max-width: 320px !important;
-        z-index: 90 !important;
-        background: #fff !important;
-        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Form fields: bigger labels, prevent iOS zoom on input focus (16px+) */
-      label,
-      [class*="FieldLabel"] {
+      /* Form labels readable */
+      label {
         font-size: 14px !important;
         font-weight: 600 !important;
       }
 
+      /* 16px input font prevents iOS zoom-on-focus */
       input[type="text"],
       input[type="email"],
       input[type="url"],
@@ -106,22 +119,9 @@
         padding: 10px !important;
       }
 
-      /* Image upload widget touch target */
-      [class*="ImageWidget"],
-      [class*="FileWidget"] {
-        padding: 16px !important;
-      }
-
-      /* Markdown toolbar: wrap rather than overflow horizontally */
-      [class*="MarkdownToolbar"],
-      [class*="ToolbarContainer"] {
+      /* Inline / markdown toolbars: wrap rather than overflow horizontally */
+      [class*="ToolbarContainer"]:not([class*="EditorControlBar"]) {
         flex-wrap: wrap !important;
-      }
-
-      /* Card grid on collection pages: single column for readable rows */
-      [class*="EntryListing"] [class*="Card"],
-      [class*="CollectionCard"] {
-        width: 100% !important;
       }
     }
   </style>
