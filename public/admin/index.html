@@ -5,6 +5,216 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>CMS — Sadaf</title>
+  <style>
+    /* Mobile optimization for Decap CMS admin (phones only — desktop unchanged).
+       Decap v3 is desktop-first. These overrides make it usable on phones so
+       Sadaf can manage entries + upload paintings directly from her iPhone. */
+    @media (max-width: 768px) {
+      /* Hide the editor preview pane — decorative on a phone, frees screen + memory */
+      [class*="EditorPreviewPane"],
+      [class*="PreviewPane"] {
+        display: none !important;
+      }
+
+      /* Form pane fills the screen once preview is gone */
+      [class*="EditorControlPane"],
+      [class*="ControlPane"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 1 1 100% !important;
+        padding: 12px !important;
+      }
+
+      /* Apple HIG: 44pt minimum touch target */
+      button,
+      [role="button"] {
+        min-height: 44px !important;
+        padding: 10px 14px !important;
+      }
+
+      /* Sticky bottom toolbar — Save / Publish often scroll off-screen otherwise */
+      [class*="EditorToolBar"],
+      [class*="EditorToolbar"] {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 100 !important;
+        background: #fff !important;
+        border-top: 1px solid #e2e2e2 !important;
+        padding: 8px !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      /* Pad the form so its content isn't hidden behind the sticky toolbar */
+      [class*="EditorContent"],
+      [class*="EditorContainer"] {
+        padding-bottom: 100px !important;
+      }
+
+      /* Media library: 2-col grid on phones instead of the desktop 4-6 col grid */
+      [class*="MediaLibraryCardGrid"],
+      [class*="CardsGrid"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+      }
+
+      /* Full-screen modals (media library, dialogs) */
+      [class*="ModalContent"],
+      [class*="DialogContent"],
+      [role="dialog"] > div {
+        width: 100vw !important;
+        height: 100vh !important;
+        max-width: 100vw !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* Side nav becomes a slide-out overlay rather than always-on column */
+      nav[class*="SideBar"],
+      [class*="SidebarContainer"],
+      [class*="CollectionSidebar"] {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 80vw !important;
+        max-width: 320px !important;
+        z-index: 90 !important;
+        background: #fff !important;
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Form fields: bigger labels, prevent iOS zoom on input focus (16px+) */
+      label,
+      [class*="FieldLabel"] {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="url"],
+      input[type="number"],
+      input[type="search"],
+      textarea,
+      select {
+        font-size: 16px !important;
+        padding: 10px !important;
+      }
+
+      /* Image upload widget touch target */
+      [class*="ImageWidget"],
+      [class*="FileWidget"] {
+        padding: 16px !important;
+      }
+
+      /* Markdown toolbar: wrap rather than overflow horizontally */
+      [class*="MarkdownToolbar"],
+      [class*="ToolbarContainer"] {
+        flex-wrap: wrap !important;
+      }
+
+      /* Card grid on collection pages: single column for readable rows */
+      [class*="EntryListing"] [class*="Card"],
+      [class*="CollectionCard"] {
+        width: 100% !important;
+      }
+    }
+  </style>
+  <script>
+    /* Client-side image auto-resize for the Decap CMS image upload widget.
+       Why: older Macs (e.g. 2017 i5 MBP / 8 GB RAM) run out of memory when
+       Decap's FileReader base64-encodes multi-MB iPhone JPEGs, causing the
+       file picker to silently fail. This script intercepts the file BEFORE
+       Decap sees it, downsizes it via canvas, and substitutes the smaller
+       File. Originals over 1.5 MB get resized to max 2000px / ~quality 0.82.
+       Falls back to original on any error — never a regression. */
+    (function () {
+      var MAX_SIZE_BYTES = 1.5 * 1024 * 1024;
+      var TARGET_MAX_DIM = 2000;
+      var JPEG_QUALITY = 0.82;
+
+      function resizeImageFile(file) {
+        return new Promise(function (resolve) {
+          if (!/^image\/(jpe?g|png|webp)$/i.test(file.type)) {
+            resolve(file);
+            return;
+          }
+          if (file.size <= MAX_SIZE_BYTES) {
+            resolve(file);
+            return;
+          }
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            var img = new Image();
+            img.onload = function () {
+              var longEdge = Math.max(img.width, img.height);
+              if (longEdge <= TARGET_MAX_DIM) {
+                resolve(file);
+                return;
+              }
+              var scale = TARGET_MAX_DIM / longEdge;
+              var w = Math.round(img.width * scale);
+              var h = Math.round(img.height * scale);
+              var canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              var ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, w, h);
+              canvas.toBlob(function (blob) {
+                if (!blob) { resolve(file); return; }
+                var nameNoExt = file.name.replace(/\.[^.]+$/, '');
+                var newFile = new File([blob], nameNoExt + '.jpg', {
+                  type: 'image/jpeg',
+                  lastModified: file.lastModified || Date.now(),
+                });
+                console.log('[Decap auto-resize] ' + file.name + ': ' +
+                  (file.size / 1024 / 1024).toFixed(2) + ' MB → ' +
+                  (newFile.size / 1024 / 1024).toFixed(2) + ' MB');
+                resolve(newFile);
+              }, 'image/jpeg', JPEG_QUALITY);
+            };
+            img.onerror = function () { resolve(file); };
+            img.src = e.target.result;
+          };
+          reader.onerror = function () { resolve(file); };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      /* Intercept file selection at document level (capture phase) so we run
+         BEFORE Decap's React handler. After resize, dispatch a new change
+         event with a flag so we don't loop. */
+      document.addEventListener('change', function (event) {
+        var input = event.target;
+        if (!(input instanceof HTMLInputElement) || input.type !== 'file') return;
+        if (!input.files || input.files.length === 0) return;
+        if (input.dataset.autoResized === '1') {
+          delete input.dataset.autoResized;
+          return;
+        }
+        event.stopImmediatePropagation();
+        var originals = Array.from(input.files);
+        Promise.all(originals.map(resizeImageFile)).then(function (resized) {
+          try {
+            var dt = new DataTransfer();
+            resized.forEach(function (f) { dt.items.add(f); });
+            input.files = dt.files;
+            input.dataset.autoResized = '1';
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          } catch (err) {
+            console.warn('[Decap auto-resize] swap failed, falling back', err);
+          }
+        }).catch(function (err) {
+          console.warn('[Decap auto-resize] error, falling back', err);
+        });
+      }, true);
+    })();
+  </script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
