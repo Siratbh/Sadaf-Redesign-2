@@ -10,43 +10,12 @@
        Selectors use VERIFIED emotion `label` names from decap-cms-app@3.12.2.
        Strategy: stack the row-layout vertically rather than overlay sidebar. */
     @media (max-width: 768px) {
-      /* SIDEBAR: full-width strip at top, capped height, scrolls inside.
-         Replaces the v4 position:fixed/80vw rule that covered the content. */
-      [class*="SidebarContainer"] {
-        position: static !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        max-height: 200px !important;
-        overflow-y: auto !important;
-        border-right: none !important;
-        border-bottom: 1px solid #e2e2e2 !important;
-        box-shadow: none !important;
-        flex: 0 0 auto !important;
-      }
-
-      /* PARENT: force the flex row that holds [sidebar + entries] to stack.
-         :has() supported in Safari 15.4+ / Chrome 105+ (her browsers qualify).
-         Explicit CollectionMain / AppMainContainer targets are fallback. */
-      *:has(> [class*="SidebarContainer"]),
-      [class*="CollectionMain"],
-      [class*="AppMainContainer"] {
-        flex-direction: column !important;
-      }
-
-      /* Hide the editor preview iframe — decorative on a phone, frees memory */
-      [class*="PreviewPaneContainer"],
-      [class*="PreviewPaneFrame"] {
-        display: none !important;
-      }
-
-      /* Form pane fills the screen once preview is gone */
-      [class*="ControlPaneContainer"] {
-        width: 100% !important;
-        max-width: 100% !important;
-        flex: 1 1 100% !important;
-        padding: 12px !important;
-      }
+      /* v6 minimal CSS: only generic element + ARIA selectors. No Decap class
+         targeting — v5 attempts to target emotion components broke the editor
+         layout (form invisible) because the production bundle strips labels
+         from runtime class names. Default Decap mobile layout is cramped but
+         functional; these rules add readability + usability without touching
+         layout. Inspect live DOM later for accurate targeted CSS. */
 
       /* Apple HIG: 44pt minimum touch target */
       button,
@@ -55,43 +24,26 @@
         padding: 10px 14px !important;
       }
 
-      /* Sticky bottom toolbar — Save / Publish at bottom of viewport */
-      [class*="EditorControlBar"] {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        top: auto !important;
-        z-index: 100 !important;
-        background: #fff !important;
-        border-top: 1px solid #e2e2e2 !important;
-        padding: 8px !important;
-        flex-wrap: wrap !important;
-        gap: 6px !important;
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06) !important;
+      /* 16px input font prevents iOS Safari zoom-on-focus */
+      input[type="text"],
+      input[type="email"],
+      input[type="url"],
+      input[type="number"],
+      input[type="search"],
+      input[type="password"],
+      textarea,
+      select {
+        font-size: 16px !important;
+        padding: 10px !important;
       }
 
-      /* Pad the form so its content isn't hidden behind the sticky toolbar */
-      [class*="EditorContainer"] {
-        padding-bottom: 100px !important;
+      /* Form labels readable on small screens */
+      label {
+        font-size: 14px !important;
+        font-weight: 600 !important;
       }
 
-      /* Media library: 2-col grid on phones instead of the desktop 4-6 col grid */
-      [class*="CardGridContainer"],
-      [class*="CardsGrid"],
-      [class*="CardGrid"] {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px !important;
-      }
-
-      /* Entry cards (collection listings) take full row width */
-      [class*="GridCard"],
-      [class*="ListCard"],
-      [class*="CardCollection"] {
-        width: 100% !important;
-      }
-
-      /* Full-screen modals (media library, dialogs) */
+      /* Full-screen modals (media library, dialogs) — ARIA role, not class */
       [role="dialog"] > div {
         width: 100vw !important;
         height: 100vh !important;
@@ -99,29 +51,6 @@
         max-height: 100vh !important;
         border-radius: 0 !important;
         margin: 0 !important;
-      }
-
-      /* Form labels readable */
-      label {
-        font-size: 14px !important;
-        font-weight: 600 !important;
-      }
-
-      /* 16px input font prevents iOS zoom-on-focus */
-      input[type="text"],
-      input[type="email"],
-      input[type="url"],
-      input[type="number"],
-      input[type="search"],
-      textarea,
-      select {
-        font-size: 16px !important;
-        padding: 10px !important;
-      }
-
-      /* Inline / markdown toolbars: wrap rather than overflow horizontally */
-      [class*="ToolbarContainer"]:not([class*="EditorControlBar"]) {
-        flex-wrap: wrap !important;
       }
     }
   </style>
