@@ -4,7 +4,7 @@ slug: mystics-orbit
 year: "2023"
 medium: Mixed Media
 dimensions: 60 × 80 cm
-availability: available
+availability: sold
 featured_image: /images/paintings/architectural-void.jpeg
 thumbnail_image: /images/paintings/architectural-void.jpeg
 short_description: The geometry of absence — what a space reveals when it is
