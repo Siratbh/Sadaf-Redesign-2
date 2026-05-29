@@ -172,6 +172,7 @@ export default function HomeV4() {
   const home = getPage('home') || {};
   const aboutPage = getPage('about') || {};
   const artistImage = home.portrait_image || "/images/about/Sadaf Portrait.png";
+  const heroPortrait = home.hero_portrait_image; // optional B&W portrait, top-right of hero
   const aboutParagraphs = splitParagraphs(aboutPage.bio_body);
   const aboutPreview = aboutParagraphs.slice(0, 3);
 
@@ -210,7 +211,7 @@ export default function HomeV4() {
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 pt-28 pb-16 sm:px-6 md:pt-32 md:pb-20">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 md:mb-16">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-16">
           <div className="max-w-2xl">
             <Motion.h2
               initial={{ opacity: 0, y: 30 }}
@@ -235,6 +236,24 @@ export default function HomeV4() {
               </ReactMarkdown>
             </Motion.div>
           </div>
+
+          {heroPortrait && (
+            <Motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 1, ease: 'easeOut' }}
+              className="w-full md:w-[25%] md:max-w-[240px] md:flex-shrink-0"
+            >
+              <div className="relative aspect-[16/9] md:aspect-[4/5] overflow-hidden">
+                <img
+                  src={heroPortrait}
+                  alt="Sadaf Farasat"
+                  className="w-full h-full object-cover grayscale"
+                  data-sb-field-path="hero_portrait_image"
+                />
+              </div>
+            </Motion.div>
+          )}
         </div>
 
         <Motion.div
