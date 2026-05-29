@@ -34,31 +34,33 @@
         min-height: 44px !important;
       }
 
-      /* Publish / sort / quick-add menus are DropdownLists. responsive-decap
-         pins them to position:fixed; bottom:10px (hidden behind iOS Safari's
-         address bar). An earlier fix also caught the ToolbarDropdown WRAPPER
-         and dragged the Publish button to mid-screen. Restore Decap's native
-         positioning — absolute, directly under the button, right-aligned —
-         exactly how it already works in landscape where no mobile overrides
-         apply. Do NOT target ToolbarDropdown (that is the button wrapper).
-         Trailing [class*="css-"] raises specificity so this wins over the CDN. */
+      /* The Publish menu is a DropdownList. responsive-decap pins it to
+         position:fixed; bottom:10px (hidden behind iOS Safari's address bar),
+         and absolute positioning proved unreliable (its offsetParent shifts
+         when the crowded toolbar wraps at narrow widths, throwing the menu
+         off-screen). Anchor the menu to the VIEWPORT centre instead: fixed +
+         translate is independent of the toolbar layout AND the Safari bar, and
+         v8 already proved fixed-centre reaches this device's screen. Target
+         ONLY DropdownList (never ToolbarDropdown — that is the button wrapper,
+         centring it was the v8 mistake). Trailing [class*="css-"] raises
+         specificity so this wins over the CDN rule. */
       [class*="DropdownList"][class*="css-"] {
-        position: absolute !important;
-        top: 100% !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
         bottom: auto !important;
-        left: auto !important;
-        right: 0 !important;
-        transform: none !important;
+        transform: translate(-50%, -50%) !important;
         width: auto !important;
-        min-width: 100% !important;
+        min-width: 240px !important;
         max-width: 92vw !important;
         max-height: 70vh !important;
         overflow-y: auto !important;
-        margin: 4px 0 0 !important;
-        z-index: 1000 !important;
+        margin: 0 !important;
+        z-index: 100000 !important;
         background: #fff !important;
         border: 1px solid #dfdfe3 !important;
-        border-radius: 6px !important;
+        border-radius: 8px !important;
         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18) !important;
       }
     }
