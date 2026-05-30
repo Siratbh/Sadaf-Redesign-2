@@ -34,34 +34,31 @@
         min-height: 44px !important;
       }
 
-      /* The Publish menu is a DropdownList. responsive-decap pins it to
-         position:fixed; bottom:10px (hidden behind iOS Safari's address bar),
-         and absolute positioning proved unreliable (its offsetParent shifts
-         when the crowded toolbar wraps at narrow widths, throwing the menu
-         off-screen). Anchor the menu to the VIEWPORT centre instead: fixed +
-         translate is independent of the toolbar layout AND the Safari bar, and
-         v8 already proved fixed-centre reaches this device's screen. Target
-         ONLY DropdownList (never ToolbarDropdown — that is the button wrapper,
-         centring it was the v8 mistake). Trailing [class*="css-"] raises
-         specificity so this wins over the CDN rule. */
+      /* Mobile Publish menu fix (confirmed live on a real iPhone via Web Inspector).
+         responsive-decap sets overflow-x:auto on the editor toolbar containers,
+         which per CSS spec computes to overflow:auto on BOTH axes and CLIPS the
+         Publish dropdown (a toolbar descendant). Earlier position:fixed attempts
+         additionally hit iOS Safari's fixed-inside-overflow PAINT bug — the menu
+         was in the DOM, computed-visible and on-screen, but never painted until a
+         device rotation forced a relayout. Fix = un-clip those containers AND
+         render the menu as plain absolute (NOT fixed) so it paints below the
+         button, exactly as it already does in landscape. Trailing [class*="css-"]
+         raises specificity so this wins over the CDN rule. */
+      [class*="EditorContainer"],
+      [class*="ToolbarContainer"],
+      [class*="EditorControlBar"] {
+        overflow: visible !important;
+      }
       [class*="DropdownList"][class*="css-"] {
-        position: fixed !important;
-        top: 50% !important;
-        left: 50% !important;
-        right: auto !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: auto !important;
+        right: 0 !important;
         bottom: auto !important;
-        transform: translate(-50%, -50%) !important;
-        width: auto !important;
-        min-width: 240px !important;
-        max-width: 92vw !important;
-        max-height: 70vh !important;
-        overflow-y: auto !important;
-        margin: 0 !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+        margin: 4px 0 0 !important;
         z-index: 100000 !important;
-        background: #fff !important;
-        border: 1px solid #dfdfe3 !important;
-        border-radius: 8px !important;
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18) !important;
       }
     }
   </style>
