@@ -1,7 +1,7 @@
 ---
 title: Three Souls In Surrender
 slug: three-souls-in-surrender
-year: "2025"
+year: "2024"
 medium: Oil On Canvas
 dimensions: 48x60 inches
 availability: available
