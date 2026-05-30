@@ -1,20 +1,22 @@
 ---
-year: "2024"
-start_date: 2024-02-14
+year: '2024'
+start_date: '2024-02-14'
 title: Whimsical Ekhos
 venue: Atus Gallery
 city: Dubai, UAE
 exhibition_type: Solo
 hero_image: /images/6d683dd7-f8de-436e-a556-7e8813dbffd5.jpg
 card_thumbnail: /images/6d683dd7-f8de-436e-a556-7e8813dbffd5.jpg
-hero_video: https://res.cloudinary.com/dxjv01x2t/video/upload/v1779603837/5906cf87-9160-4b2d-9861-93b5ced88b22_jd1s2f.mp4
+hero_video: >-
+  https://res.cloudinary.com/dxjv01x2t/video/upload/v1779603837/5906cf87-9160-4b2d-9861-93b5ced88b22_jd1s2f.mp4
 gallery:
   - image: /images/79f1f3be-be77-4df2-baf1-82d90e7c2120.jpg
   - image: /images/2edb1fda-520f-435f-b1a4-f54e36379e88.jpg
 sort_order: 1
 type: Exhibition
 ---
-**Whimsical Ekhos**\
+**Whimsical Ekhos Exhibition** 
+
 Atus Gallery, Dubai, UAE — 2024
 
 *Whimsical Ekhos* is a collection of works by Kuala Lumpur-based visual artist Sadaf Farasat, presented at Atus Gallery in Dubai — a city that sits at the crossroads of the ancient and the contemporary, and a fitting stage for an artist whose work moves between both worlds.

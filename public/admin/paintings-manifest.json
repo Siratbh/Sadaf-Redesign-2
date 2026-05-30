@@ -1,0 +1,242 @@
+[
+  {
+    "slug": "noor-in-the-void",
+    "title": "Noor In The Void",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/image0-1-.jpeg",
+    "thumbnail_image": "/images/paintings/image0-1-.jpeg",
+    "featured": true,
+    "sort_order": 1
+  },
+  {
+    "slug": "mystics-orbit",
+    "title": "Mystics Orbit",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/architectural-void.jpeg",
+    "thumbnail_image": "/images/paintings/architectural-void.jpeg",
+    "featured": true,
+    "sort_order": 2
+  },
+  {
+    "slug": "enveloped-in-grace",
+    "title": "Enveloped In Grace",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/image8.jpeg",
+    "thumbnail_image": "/images/paintings/image8.jpeg",
+    "featured": true,
+    "sort_order": 4
+  },
+  {
+    "slug": "between-earth-and-heaven",
+    "title": "Between earth and heaven ",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/architectural-void.jpeg",
+    "thumbnail_image": "/images/paintings/architectural-void.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "celestial-herd",
+    "title": "Celestial Herd",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/celestial-herd.jpeg",
+    "thumbnail_image": "/images/paintings/celestial-herd.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "consumed-by-rememberance",
+    "title": "Consumed By Rememberance",
+    "year": "2024",
+    "availability": "available",
+    "featured_image": "/images/paintings/consumed-by-rememberance.jpeg",
+    "thumbnail_image": "/images/paintings/consumed-by-rememberance.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "dance ",
+    "title": "Dance ",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_0866.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "huroof ",
+    "title": "Huroof ",
+    "year": "2024",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_6418.jpg",
+    "thumbnail_image": "/images/paintings/img_6418.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "in-the-shelter-of-divine-love",
+    "title": "In the Shelter of Divine Love",
+    "year": "2024",
+    "availability": "available",
+    "featured_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
+    "thumbnail_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "kun-fayakun",
+    "title": "Kun Fayakun ",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/kun-fayakun.jpeg",
+    "thumbnail_image": "/images/paintings/kun-fayakun.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "letters-of-the-beloved",
+    "title": "Letters Of The Beloved",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/letters-of-the-beloved.jpeg",
+    "thumbnail_image": "/images/paintings/letters-of-the-beloved.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "love-carried-through-time",
+    "title": "Love Carried Through Time",
+    "year": "2010",
+    "availability": "available",
+    "featured_image": "/images/paintings/love-carried-through-time.jpeg",
+    "thumbnail_image": "/images/paintings/love-carried-through-time.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "orbit-of-devotion",
+    "title": "Orbit Of Devotion",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/orbit-of-devotion.jpeg",
+    "thumbnail_image": "/images/paintings/orbit-of-devotion.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "orbit-of-love",
+    "title": "Orbit Of Love",
+    "year": "2023",
+    "availability": "available",
+    "featured_image": "/images/paintings/orbit-of-love.jpeg",
+    "thumbnail_image": "/images/paintings/orbit-of-love.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "radiance-within",
+    "title": "Radiance Within",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/radiance-within.jpeg",
+    "thumbnail_image": "/images/paintings/radiance-within.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "seeker-and-the-turning-heart",
+    "title": "Seeker & The Turning Heart",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/seeker-the-turning-heart.jpeg",
+    "thumbnail_image": "/images/paintings/seeker-the-turning-heart.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "seeker-beneath-the-pattern",
+    "title": "Seeker Beneath the Pattern",
+    "year": "2022",
+    "availability": "available",
+    "featured_image": "/images/paintings/seeker-beneath-the-pattern.jpeg",
+    "thumbnail_image": "/images/paintings/seeker-beneath-the-pattern.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "soul-unbound",
+    "title": "Soul Unbound",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/soul-unbound.jpeg",
+    "thumbnail_image": "/images/paintings/soul-unbound.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "thisisatest",
+    "title": "this is a test",
+    "year": "2024",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_0908.heic",
+    "thumbnail_image": "/images/paintings/img_0908.heic",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "three-souls-in-surrender",
+    "title": "Three Souls In Surrender",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/three-souls-in-surrender.jpeg",
+    "thumbnail_image": "/images/paintings/three-souls-in-surrender.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "turning-of-light",
+    "title": "Turning Of Light",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/turning-of-light.jpeg",
+    "thumbnail_image": "/images/paintings/turning-of-light.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "turning-through-the-fire",
+    "title": "Turning Through The Fire",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/turning-through-the-fire.jpeg",
+    "thumbnail_image": "/images/paintings/turning-through-the-fire.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "two-flames-of-the-spirit",
+    "title": "Two Flames Of The Spirit",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/two-flames-of-the-spirit.jpeg",
+    "thumbnail_image": "/images/paintings/two-flames-of-the-spirit.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "tawhid",
+    "title": "Tawhid",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/1.png",
+    "thumbnail_image": "/images/paintings/1.png",
+    "featured": true,
+    "sort_order": 1200
+  }
+]

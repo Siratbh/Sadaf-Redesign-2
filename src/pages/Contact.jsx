@@ -2,19 +2,43 @@ import { useEffect, useState } from 'react'
 import SEOHead from '../components/SEOHead'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import siteSettings from '../../content/settings/site.json'
+import { getPage } from '../lib/content'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const contactData = {
-  intro: 'For inquiries about available works, private viewings, institutional loans, or simply to connect.',
-  email: siteSettings.inquiry_email || 'inquiry@sadafart.com',
-  response_note: 'Responses within 2–3 working days.',
+const INLINE_ELEMENTS = ['strong', 'em', 'a']
+
+const FALLBACK_INTRO = 'For inquiries about available works, private viewings, institutional loans, or simply to connect.'
+const FALLBACK_RESPONSE = 'Responses within 2–3 working days.'
+
+function instagramHandle(value) {
+  if (!value) return ''
+  const match = value.match(/instagram\.com\/([^/?#]+)/i)
+  if (match) return `@${match[1]}`
+  if (value.startsWith('@')) return value
+  return `@${value}`
+}
+function instagramUrl(value) {
+  if (!value) return ''
+  if (/^https?:\/\//i.test(value)) return value
+  const handle = value.startsWith('@') ? value.slice(1) : value
+  return `https://instagram.com/${handle}`
 }
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', reason: '', message: '' })
   const [status, setStatus] = useState('idle')
+
+  const contactPage = getPage('contact') || {}
+  const contactData = {
+    intro: contactPage.intro || FALLBACK_INTRO,
+    email: contactPage.email || siteSettings.inquiry_email || 'inquiry@sadafart.com',
+    instagram: contactPage.instagram || siteSettings.instagram || '',
+    response_note: contactPage.response_note || FALLBACK_RESPONSE,
+  }
 
   useEffect(() => {
     document.body.classList.add('is-light')
@@ -53,7 +77,10 @@ export default function Contact() {
     <>
       <SEOHead title="Contact" description={contactData.intro} />
 
-      <div className="min-h-screen bg-light-bg text-dark-text">
+      <div
+        className="min-h-screen bg-light-bg text-dark-text"
+        {...(contactPage._id ? { 'data-sb-object-id': contactPage._id } : {})}
+      >
         {/* Hero */}
         <section className="min-h-[40vh] flex flex-col justify-end px-6 md:px-24 pt-32 pb-16 md:pb-24">
           <span className="font-label text-[10px] uppercase tracking-[0.4em] text-stone-500 mb-6 block">Reach Out</span>
@@ -65,32 +92,42 @@ export default function Contact() {
         <section className="px-6 md:px-24 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           {/* Left: info */}
           <div className="lg:col-span-4 flex flex-col gap-10 reveal-item">
-            <p className="font-body text-base text-stone-600 leading-relaxed max-w-xs">
-              {contactData.intro}
-            </p>
+            <div
+              className="font-body text-base text-stone-600 leading-relaxed max-w-xs"
+              data-sb-field-path="intro"
+            >
+              <ReactMarkdown remarkPlugins={[remarkGfm]} allowedElements={INLINE_ELEMENTS} unwrapDisallowed>
+                {contactData.intro}
+              </ReactMarkdown>
+            </div>
             <div>
               <span className={labelClass}>Email</span>
               <a
                 href={`mailto:${contactData.email}`}
                 className="font-body text-base text-dark-text border-b border-stone-300 pb-1 hover:border-dark-text transition-colors"
+                data-sb-field-path="email"
               >
                 {contactData.email}
               </a>
             </div>
-            {siteSettings.instagram && (
+            {contactData.instagram && (
               <div>
                 <span className={labelClass}>Instagram</span>
                 <a
-                  href={siteSettings.instagram}
+                  href={instagramUrl(contactData.instagram)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-base text-dark-text border-b border-stone-300 pb-1 hover:border-dark-text transition-colors"
+                  data-sb-field-path="instagram"
                 >
-                  @sadaf
+                  {instagramHandle(contactData.instagram)}
                 </a>
               </div>
             )}
-            <p className="font-label text-[10px] uppercase tracking-widest text-stone-500 mt-auto">
+            <p
+              className="font-label text-[10px] uppercase tracking-widest text-stone-500 mt-auto"
+              data-sb-field-path="response_note"
+            >
               {contactData.response_note}
             </p>
           </div>

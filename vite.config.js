@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath } from 'url'
 import path from 'path'
+import decapPaintingsManifest from './vite-plugins/decap-paintings-manifest.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -21,7 +22,7 @@ const decapAdminDirIndex = () => ({
 })
 
 export default defineConfig({
-  plugins: [react(), decapAdminDirIndex()],
+  plugins: [react(), decapAdminDirIndex(), decapPaintingsManifest()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

@@ -23,6 +23,26 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Hidden static forms — required for Netlify to detect React-rendered forms.
+         The build-time HTML parser only sees these; the real forms render via React.
+         Field names MUST match every field the React forms POST. -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="reason" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <form name="inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="painting" />
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

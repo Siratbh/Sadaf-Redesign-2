@@ -86,7 +86,7 @@ export default function About() {
                       <img
                         src={a.portrait_image}
                         alt="Sadaf Farasat portrait"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover grayscale"
                         data-sb-field-path="portrait_image"
                       />
                     ) : (
