@@ -3,7 +3,7 @@ title: "Fierce Love "
 slug: "fierce-love "
 year: "2020"
 medium: "Oil on canvas "
-dimensions: "48x60 inched "
+dimensions: 48x60 inches
 availability: available
 featured_image: /images/paintings/img_1970.jpg
 thumbnail_image: /images/paintings/img_1970.jpg
