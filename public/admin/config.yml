@@ -163,6 +163,7 @@ collections:
           - { label: "Hero — Headline (line 1)", name: "hero_headline_line1", widget: "string", hint: "First line of the big headline (e.g. 'Explore the intersection')." }
           - { label: "Hero — Headline (line 2)", name: "hero_headline_line2", widget: "string", hint: "Second line of the big headline (e.g. 'of spirituality and abstraction')." }
           - { label: "Hero — Slideshow Label", name: "hero_slideshow_label", widget: "string", hint: "Small label on the slideshow caption (e.g. 'Featured Work')." }
+          - { label: "Hero — Featured Portrait", name: "hero_portrait_image", widget: "image", required: false, media_folder: "/public/images/about", public_folder: "/images/about", hint: "B&W portrait shown top-right of the hero. Upload a normal color photo — the site renders it black & white." }
           # ── Available Works ──────────────────────────────────────
           - { label: "Available Works — Title", name: "available_title", widget: "string" }
           - { label: "Available Works — Primary CTA", name: "available_cta", widget: "string", hint: "Primary button label (e.g. 'View available works')." }

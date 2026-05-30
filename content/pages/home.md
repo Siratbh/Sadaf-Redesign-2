@@ -2,6 +2,7 @@
 hero_headline_line1: Explore The Intersection
 hero_headline_line2: Of Spirituality & Abstraction
 hero_slideshow_label: Featured Work
+hero_portrait_image: /images/about/Sadaf-hero-portrait.jpeg
 available_title: Available Works
 available_cta: View available works
 available_secondary_cta: Browse past works →
@@ -18,8 +19,23 @@ exhibitions_title: Past Exhibitions
 exhibitions_subhead: A complete archive of solo and group exhibitions
 exhibitions_cta: Explore Full Archive
 contact_headline: Got Inspired?
-contact_body: Reserve your piece or get in touch for an exclusive appointment at
-  our private showroom.
+contact_body: >-
+  Reserve your piece or get in touch for an exclusive appointment at our private
+  showroom.
 contact_cta: Get in touch
+portrait_image: /images/about/Sadaf Portrait.png
+bio_intro: Sadaf Farasat
+hero_subhead: >+
+  *Sadaf Farasat* is a Lahore-born, Malaysia-based artist with over 17 years of
+  practice and an international exhibition history spanning Dubai, London, Kuala
+  Lumpur, Singapore, New Jersey, and Pakistan.
+
+
+  Her work is held in private collections across multiple regions and is
+  recognized for its distinctive visual language and presence.
+
+
+  She is also the author of Rhythm of a Mystic Heart.
+
 type: HomePage
 ---

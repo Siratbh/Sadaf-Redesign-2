@@ -212,6 +212,7 @@ export default defineStackbitConfig({
             { name: 'hero_headline_line1', type: 'string', group: 'Hero', description: 'First line of the big headline (e.g. "Explore the intersection").' },
             { name: 'hero_headline_line2', type: 'string', group: 'Hero', description: 'Second line of the big headline (e.g. "of spirituality and abstraction").' },
             { name: 'hero_slideshow_label', type: 'string', group: 'Hero', description: 'Small label on the slideshow caption (e.g. "Featured Work").' },
+            { name: 'hero_portrait_image', type: 'image', group: 'Hero', required: false, description: 'Black-and-white portrait shown top-right of the hero. Upload a normal color photo — the site renders it B&W.' },
 
             // Available Works
             { name: 'available_title', type: 'string', group: 'Available Works' },
