@@ -15,7 +15,7 @@ cta_body: >-
 cta_contact_button: Get in touch
 cta_available_link: View available works
 cta_exhibitions_link: View exhibitions
-portrait_image: /images/about/Sadaf-hero-portrait.jpeg
+portrait_image: /images/about/Sadaf-Hero-Portrait.jpg
 bio_intro: >-
   Sadaf Farasat is a self-taught artist whose work is deeply rooted in Sufism
   and inspired by the mystical poetry of Rumi.

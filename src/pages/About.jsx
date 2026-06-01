@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
 import MediaPlaceholder from '../components/MediaPlaceholder'
-import { getPage, getPaintings } from '../lib/content'
+import { getPage } from '../lib/content'
 import { introComponents } from '../lib/markdownComponents'
 
 // Used for the artist_statement styled blockquote — restricted to inline-only
@@ -15,9 +15,6 @@ const INLINE_ELEMENTS = ['strong', 'em', 'a']
 export default function About() {
   const a = getPage('about') || {}
   const pageTitle = a.title?.trim() || 'About'
-  const decorativePaintings = getPaintings().slice(0, 2)
-  const leftLayer = decorativePaintings[0]?.thumbnail_image || decorativePaintings[0]?.featured_image || null
-  const rightLayer = decorativePaintings[1]?.thumbnail_image || decorativePaintings[1]?.featured_image || null
 
   const revealUp = {
     initial: { opacity: 0, y: 28 },
@@ -54,47 +51,25 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.85, ease: 'easeOut' }}
-                className="relative mx-auto w-full max-w-3xl"
+                className="mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-md"
               >
-                <div className="relative flex min-h-[360px] items-end justify-center sm:min-h-[440px] lg:min-h-[520px]">
-                  {leftLayer && (
-                    <div className="absolute left-[4%] top-0 hidden w-[38%] -rotate-[3deg] overflow-hidden md:block">
-                      <img
-                        src={leftLayer}
-                        alt=""
-                        aria-hidden="true"
-                        className="h-full w-full grayscale brightness-75 transition-all duration-700 hover:brightness-100"
-                        loading="lazy"
-                      />
+                <div className="relative overflow-hidden shadow-[0_35px_60px_-15px_rgba(0,0,0,0.28)]">
+                  {a.portrait_image ? (
+                    <img
+                      src={a.portrait_image}
+                      alt="Sadaf Farasat portrait"
+                      width="1020"
+                      height="1657"
+                      loading="eager"
+                      decoding="async"
+                      className="aspect-[1020/1657] w-full object-cover grayscale"
+                      data-sb-field-path="portrait_image"
+                    />
+                  ) : (
+                    <div className="aspect-[1020/1657] bg-transparent">
+                      <MediaPlaceholder text="Portrait forthcoming" />
                     </div>
                   )}
-
-                  {rightLayer && (
-                    <div className="absolute right-[4%] top-[10%] hidden w-[38%] rotate-[2deg] overflow-hidden md:block">
-                      <img
-                        src={rightLayer}
-                        alt=""
-                        aria-hidden="true"
-                        className="h-full w-full grayscale brightness-50 transition-all duration-700 hover:brightness-100"
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
-
-                  <div className="relative z-20 w-[82%] overflow-hidden shadow-[0_35px_60px_-15px_rgba(0,0,0,0.28)] sm:w-[64%] md:w-[48%] lg:w-[52%]">
-                    {a.portrait_image ? (
-                      <img
-                        src={a.portrait_image}
-                        alt="Sadaf Farasat portrait"
-                        className="h-full w-full object-cover grayscale"
-                        data-sb-field-path="portrait_image"
-                      />
-                    ) : (
-                      <div className="aspect-[3/4] bg-transparent">
-                        <MediaPlaceholder text="Portrait forthcoming" />
-                      </div>
-                    )}
-                  </div>
                 </div>
               </Motion.div>
             </div>
