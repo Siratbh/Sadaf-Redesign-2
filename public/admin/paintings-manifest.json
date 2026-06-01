@@ -10,16 +10,6 @@
     "sort_order": 1
   },
   {
-    "slug": "mystics-orbit",
-    "title": "Mystics Orbit",
-    "year": "2023",
-    "availability": "sold",
-    "featured_image": "/images/paintings/architectural-void.jpeg",
-    "thumbnail_image": "/images/paintings/architectural-void.jpeg",
-    "featured": true,
-    "sort_order": 2
-  },
-  {
     "slug": "enveloped-in-grace",
     "title": "Enveloped In Grace",
     "year": "2026",
@@ -28,6 +18,16 @@
     "thumbnail_image": "/images/paintings/image8.jpeg",
     "featured": true,
     "sort_order": 4
+  },
+  {
+    "slug": "the-oneness-of-duality ",
+    "title": "    The Oneness of Duality",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_1941.jpg",
+    "thumbnail_image": "/images/paintings/img_1941.jpg",
+    "featured": false,
+    "sort_order": 99
   },
   {
     "slug": "between-earth-and-heaven",
@@ -63,9 +63,39 @@
     "slug": "dance ",
     "title": "Dance ",
     "year": "2026",
-    "availability": "available",
+    "availability": "sold",
     "featured_image": "/images/paintings/img_0866.jpg",
-    "thumbnail_image": "",
+    "thumbnail_image": "/images/paintings/img_0866.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "dua",
+    "title": "Dua",
+    "year": "2021",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_8787.jpg",
+    "thumbnail_image": "/images/paintings/img_8787.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "endless-days ",
+    "title": "Endless days",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0908.heic",
+    "thumbnail_image": "/images/paintings/img_0908.heic",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "hope-in-despair ",
+    "title": "Hope in despair ",
+    "year": "2026",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1103.jpg",
+    "thumbnail_image": "/images/paintings/img_1103.jpg",
     "featured": false,
     "sort_order": 99
   },
@@ -86,6 +116,16 @@
     "availability": "available",
     "featured_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
     "thumbnail_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "ishq-nachaya",
+    "title": "Ishq nachaya ",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/rains-of-the-beloved.jpeg",
+    "thumbnail_image": "/images/paintings/rains-of-the-beloved.jpeg",
     "featured": false,
     "sort_order": 99
   },
@@ -116,6 +156,16 @@
     "availability": "available",
     "featured_image": "/images/paintings/love-carried-through-time.jpeg",
     "thumbnail_image": "/images/paintings/love-carried-through-time.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "noor-in-the-void ",
+    "title": "Noor in the void ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/Noor in the Void.png",
+    "thumbnail_image": "/images/paintings/Noor in the Void.png",
     "featured": false,
     "sort_order": 99
   },
@@ -180,12 +230,22 @@
     "sort_order": 99
   },
   {
-    "slug": "thisisatest",
-    "title": "this is a test",
-    "year": "2024",
+    "slug": "speech-in-silence ",
+    "title": "Speech in silence ",
+    "year": "2025 ",
+    "availability": "sold",
+    "featured_image": "/images/paintings/silenec-of-ishq.jpeg",
+    "thumbnail_image": "/images/paintings/silenec-of-ishq.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "spinning-in-nothingness",
+    "title": "Spinning in Nothingness ",
+    "year": "2026",
     "availability": "available",
-    "featured_image": "/images/paintings/img_0908.heic",
-    "thumbnail_image": "/images/paintings/img_0908.heic",
+    "featured_image": "/images/paintings/img_0461.jpg",
+    "thumbnail_image": "/images/paintings/img_0461.jpg",
     "featured": false,
     "sort_order": 99
   },
