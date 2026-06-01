@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Mail, Phone } from 'lucide-react';
+import { Instagram, Facebook, Mail, Phone } from 'lucide-react';
 import siteSettings from '../../content/settings/site.json';
 
 export default function Footer() {
@@ -46,11 +46,16 @@ export default function Footer() {
            <h4 className="uppercase tracking-widest font-bold text-[11px] mb-6">Social</h4>
            <div className="flex space-x-6 text-brand-muted">
               {siteSettings.instagram && (
-                <a href={siteSettings.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-brand-ink transition-colors">
+                <a href={siteSettings.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-brand-ink transition-colors">
                   <Instagram size={20} />
                 </a>
               )}
-              <a href={`mailto:${inquiryEmail}`} className="hover:text-brand-ink transition-colors">
+              {siteSettings.facebook && (
+                <a href={siteSettings.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-brand-ink transition-colors">
+                  <Facebook size={20} />
+                </a>
+              )}
+              <a href={`mailto:${inquiryEmail}`} aria-label="Email" className="hover:text-brand-ink transition-colors">
                 <Mail size={20} />
               </a>
             </div>
