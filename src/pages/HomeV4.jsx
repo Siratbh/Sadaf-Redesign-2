@@ -248,6 +248,10 @@ export default function HomeV4() {
                 <img
                   src={heroPortrait}
                   alt="Sadaf Farasat"
+                  width="570"
+                  height="760"
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-full object-cover grayscale"
                   data-sb-field-path="hero_portrait_image"
                 />
