@@ -171,7 +171,7 @@ export default function HomeV4() {
   const visibleCollectors = collectors.filter((c) => c.image);
   const home = getPage('home') || {};
   const aboutPage = getPage('about') || {};
-  const artistImage = home.portrait_image || "/images/about/Sadaf Portrait.png";
+  const artistImage = home.portrait_image || "/images/about/Sadaf-Hero-Portrait.jpg";
   const heroPortrait = home.hero_portrait_image; // optional B&W portrait, top-right of hero
   const aboutParagraphs = splitParagraphs(aboutPage.bio_body);
   const aboutPreview = aboutParagraphs.slice(0, 3);
@@ -304,34 +304,25 @@ export default function HomeV4() {
       <section id="about" className="py-20 bg-black text-white md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col items-center mb-16 md:mb-24">
-            <div className="relative w-full max-w-4xl aspect-[1.05] mb-10 flex justify-center items-end sm:aspect-[1.2] md:aspect-[1.4] md:mb-16">
-              {/* Stacked Images Effect — uses CMS-overridable decoration fields,
-                  falling back to the first/second available paintings. */}
-              <div className="absolute top-0 left-[12%] w-[45%] -rotate-2 z-0 hidden md:block">
-                <img
-                  src={home.about_decoration_left_image || paintings[0]?.featured_image}
-                  alt="Atmospheric Art"
-                  className="w-full grayscale brightness-75 transition-all duration-700 hover:brightness-100"
-                  data-sb-field-path="about_decoration_left_image"
-                />
-              </div>
-              <div className="absolute top-[8%] right-[12%] w-[45%] rotate-1 z-10 hidden md:block">
-                <img
-                  src={home.about_decoration_right_image || paintings[1]?.featured_image}
-                  alt="Detail Work"
-                  className="w-full grayscale brightness-50 transition-all duration-700 hover:brightness-100"
-                  data-sb-field-path="about_decoration_right_image"
-                />
-              </div>
-              <div className="relative z-20 w-[78%] sm:w-[62%] md:w-[38%] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)]">
+            {/* Single framed B&W portrait — intimate scale, centered above the title. */}
+            <Motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative mb-12 w-full max-w-[280px] sm:max-w-[340px] md:mb-16 md:max-w-[400px]"
+            >
+              <div className="relative overflow-hidden ring-1 ring-white/10 shadow-[0_45px_80px_-25px_rgba(0,0,0,0.9)]">
                 <img
                   src={artistImage}
                   alt="Sadaf Farasat"
-                  className="w-full"
+                  className="w-full grayscale transition-all duration-[1200ms] ease-out group-hover:grayscale-0"
                   data-sb-field-path="portrait_image"
                 />
+                {/* Soft fade seats the portrait into the black section. */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
-            </div>
+            </Motion.div>
 
             <Motion.h2
               initial={{ opacity: 0, y: 30 }}

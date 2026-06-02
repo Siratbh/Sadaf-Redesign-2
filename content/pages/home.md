@@ -23,7 +23,7 @@ contact_body: >-
   Reserve your piece or get in touch for an exclusive appointment at our private
   showroom.
 contact_cta: Get in touch
-portrait_image: /images/about/Sadaf Portrait.png
+portrait_image: /images/about/Sadaf-Hero-Portrait.jpg
 bio_intro: Sadaf Farasat
 hero_subhead: >+
   *Sadaf Farasat* is a Lahore-born, Malaysia-based artist with over 17 years of
