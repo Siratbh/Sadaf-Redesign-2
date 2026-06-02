@@ -30,12 +30,102 @@
     "sort_order": 99
   },
   {
-    "slug": "between-earth-and-heaven",
-    "title": "Between earth and heaven ",
+    "slug": "dissolving-into-the-divine-will",
+    "title": " Dissolving into the Divine will",
+    "year": "2013",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5713.jpeg",
+    "thumbnail_image": "/images/paintings/img_5713.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "in-love-is-peace ",
+    "title": " In love is peace",
     "year": "2026",
     "availability": "available",
-    "featured_image": "/images/paintings/architectural-void.jpeg",
-    "thumbnail_image": "/images/paintings/architectural-void.jpeg",
+    "featured_image": "/images/paintings/img_3121.jpg",
+    "thumbnail_image": "/images/paintings/img_3121.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": " in-surrender-I-found-freedom",
+    "title": " In surrender, I found freedom",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9337.jpeg",
+    "thumbnail_image": "/images/paintings/img_9337.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "a-hundred-veils ",
+    "title": "A Hundred Veils ",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9462.jpg",
+    "thumbnail_image": "/images/paintings/img_9462.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "aerial ",
+    "title": "Aerial ",
+    "year": "2019 ",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2239.jpg",
+    "thumbnail_image": "/images/paintings/img_2239.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "allah-hu",
+    "title": "Allah Hu",
+    "year": "2017",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8862.jpg",
+    "thumbnail_image": "/images/paintings/img_8862.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "be-like-a-tree",
+    "title": "Be like a tree",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3189.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "behind-the-veils-1 ",
+    "title": "Behind the veils 1 ",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_7536.jpg",
+    "thumbnail_image": "/images/paintings/img_7536.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "between-surrender-and-serenity",
+    "title": "Between surrender and serenity",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/lovers-of-the-infinite.jpeg",
+    "thumbnail_image": "/images/paintings/lovers-of-the-infinite.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "breaking-barriers-within ",
+    "title": "Breaking Barriers Within ",
+    "year": "2024",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_6597.jpg",
+    "thumbnail_image": "/images/paintings/img_6597.jpg",
     "featured": false,
     "sort_order": 99
   },
@@ -46,6 +136,26 @@
     "availability": "available",
     "featured_image": "/images/paintings/celestial-herd.jpeg",
     "thumbnail_image": "/images/paintings/celestial-herd.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "change ",
+    "title": "Change ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2538.jpeg",
+    "thumbnail_image": "/images/paintings/img_2538.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "confusion ",
+    "title": "Confusion",
+    "year": "2019",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_7985.jpg",
+    "thumbnail_image": "/images/paintings/img_7985.jpg",
     "featured": false,
     "sort_order": 99
   },
@@ -70,6 +180,36 @@
     "sort_order": 99
   },
   {
+    "slug": "dancing-soul ",
+    "title": "Dancing soul ",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/5ded9c63-e8b1-45ea-bb4b-70a56eece908.jpeg",
+    "thumbnail_image": "/images/paintings/5ded9c63-e8b1-45ea-bb4b-70a56eece908.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "die-in-your-love",
+    "title": "Die in Your love",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3214.jpg",
+    "thumbnail_image": "/images/paintings/img_3214.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "door-to-heaven ",
+    "title": "Door to Heaven ",
+    "year": "2017",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3102.jpeg",
+    "thumbnail_image": "/images/paintings/img_3102.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "dua",
     "title": "Dua",
     "year": "2021",
@@ -80,12 +220,82 @@
     "sort_order": 99
   },
   {
+    "slug": "echoes-of-love ",
+    "title": "Echoes of love ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2533.jpeg",
+    "thumbnail_image": "/images/paintings/img_2533.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "endless-days ",
     "title": "Endless days",
     "year": "2024",
     "availability": "sold",
     "featured_image": "/images/paintings/img_0908.heic",
     "thumbnail_image": "/images/paintings/img_0908.heic",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "faith",
+    "title": "Faith ",
+    "year": "2017",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4960.jpeg",
+    "thumbnail_image": "/images/paintings/img_4960.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "fierce-love ",
+    "title": "Fierce Love ",
+    "year": "2020",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_1970.jpg",
+    "thumbnail_image": "/images/paintings/img_1970.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "grandeur",
+    "title": "Grandeur ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2275.jpg",
+    "thumbnail_image": "/images/paintings/img_2275.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "harmony ",
+    "title": "Harmony ",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_7737.jpg",
+    "thumbnail_image": "/images/paintings/img_7737.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "hidden-truth",
+    "title": "Hidden truth ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3953.jpg",
+    "thumbnail_image": "/images/paintings/img_3953.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "hope-in-despair ",
+    "title": "Hope in despair ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1387.jpeg",
+    "thumbnail_image": "/images/paintings/img_1387.jpeg",
     "featured": false,
     "sort_order": 99
   },
@@ -110,12 +320,52 @@
     "sort_order": 99
   },
   {
+    "slug": "illusions",
+    "title": "Illusions",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3408.jpeg",
+    "thumbnail_image": "/images/paintings/img_3408.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "in-the-shelter-of-divine-love",
     "title": "In the Shelter of Divine Love",
     "year": "2024",
     "availability": "available",
     "featured_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
     "thumbnail_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "Ishq",
+    "title": "Ishq",
+    "year": "2023",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_1169.jpg",
+    "thumbnail_image": "/images/paintings/img_1169.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "Ishq ",
+    "title": "Ishq ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1099.jpeg",
+    "thumbnail_image": "/images/paintings/img_1099.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "ishq-mosque",
+    "title": "Ishq mosque",
+    "year": "2017",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1209.jpg",
+    "thumbnail_image": "/images/paintings/img_1209.jpg",
     "featured": false,
     "sort_order": 99
   },
@@ -140,12 +390,52 @@
     "sort_order": 99
   },
   {
+    "slug": "lahore",
+    "title": "Lahore",
+    "year": "2014",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9814.jpg",
+    "thumbnail_image": "/images/paintings/img_9814.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "letters-of-the-beloved",
     "title": "Letters Of The Beloved",
     "year": "2025",
     "availability": "available",
     "featured_image": "/images/paintings/letters-of-the-beloved.jpeg",
     "thumbnail_image": "/images/paintings/letters-of-the-beloved.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "liberation ",
+    "title": "Liberation ",
+    "year": "2017",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9893.jpg",
+    "thumbnail_image": "/images/paintings/img_9893.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "light-and-shadow",
+    "title": "Light and Shadow ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6704.jpeg",
+    "thumbnail_image": "/images/paintings/img_6704.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "lost-in-love",
+    "title": "Lost in Love",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2514.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -160,12 +450,82 @@
     "sort_order": 99
   },
   {
+    "slug": "masjid-e-nabawi",
+    "title": "Masjid e Nabawi ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6498.jpeg",
+    "thumbnail_image": "/images/paintings/img_6498.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "mathnavi",
+    "title": "Mathnavi ",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9531.jpg",
+    "thumbnail_image": "/images/paintings/img_9531.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "melting-snow",
+    "title": "Melting Snow ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2443.jpg",
+    "thumbnail_image": "/images/paintings/img_2443.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "moon-love",
+    "title": "Moon love",
+    "year": "2019",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0386.jpg",
+    "thumbnail_image": "/images/paintings/img_0386.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "noor-in-despair ",
+    "title": "Noor in despair",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8535.jpg",
+    "thumbnail_image": "/images/paintings/img_8535.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "noor-in-the-void ",
     "title": "Noor in the void ",
     "year": "2015",
     "availability": "sold",
     "featured_image": "/images/paintings/Noor in the Void.png",
     "thumbnail_image": "/images/paintings/Noor in the Void.png",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "nothingness",
+    "title": "Nothingness",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9416.jpeg",
+    "thumbnail_image": "/images/paintings/img_9416.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "one-desire",
+    "title": "One Desire ",
+    "year": "2017",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6380.jpeg",
+    "thumbnail_image": "/images/paintings/img_6380.jpeg",
     "featured": false,
     "sort_order": 99
   },
@@ -190,12 +550,42 @@
     "sort_order": 99
   },
   {
+    "slug": "preachers",
+    "title": "Preachers ",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5766.jpg",
+    "thumbnail_image": "/images/paintings/img_5766.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "radiance-within",
     "title": "Radiance Within",
     "year": "2025",
     "availability": "available",
     "featured_image": "/images/paintings/radiance-within.jpeg",
     "thumbnail_image": "/images/paintings/radiance-within.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "restless-in-love ",
+    "title": "Restless In Love ",
+    "year": "2024 ",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_4748.jpg",
+    "thumbnail_image": "/images/paintings/img_4748.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "roses",
+    "title": "Roses",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3765.jpg",
+    "thumbnail_image": "/images/paintings/img_3765.jpg",
     "featured": false,
     "sort_order": 99
   },
@@ -220,12 +610,72 @@
     "sort_order": 99
   },
   {
+    "slug": "sema-in-group",
+    "title": "Sema in Group ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8604.jpeg",
+    "thumbnail_image": "/images/paintings/img_8604.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "servant ",
+    "title": "Servant ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4369.jpeg",
+    "thumbnail_image": "/images/paintings/img_4369.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "set-of-5",
+    "title": "Set of 5 ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6131.jpg",
+    "thumbnail_image": "/images/paintings/img_6131.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "sheesh-mahal",
+    "title": "Sheesh Mahal ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2919.jpeg",
+    "thumbnail_image": "/images/paintings/img_2919.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "sheeshmahal-2",
+    "title": "Sheesh mahal 2 ",
+    "year": "2018",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8500.jpg",
+    "thumbnail_image": "/images/paintings/img_8500.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "soul-unbound",
     "title": "Soul Unbound",
     "year": "2026",
     "availability": "available",
     "featured_image": "/images/paintings/soul-unbound.jpeg",
     "thumbnail_image": "/images/paintings/soul-unbound.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "speech-in-silence ",
+    "title": "Speech in silence ",
+    "year": "2023 ",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_0788.jpg",
+    "thumbnail_image": "/images/paintings/img_0788.jpg",
     "featured": false,
     "sort_order": 99
   },
@@ -250,12 +700,102 @@
     "sort_order": 99
   },
   {
+    "slug": "submit ",
+    "title": "Submit ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3049.jpeg",
+    "thumbnail_image": "/images/paintings/img_3049.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "surrender ",
+    "title": "Surrender ",
+    "year": "2025",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_7955.jpeg",
+    "thumbnail_image": "/images/paintings/img_7955.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "the-door",
+    "title": "The door",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3808.jpeg",
+    "thumbnail_image": "/images/paintings/img_3808.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "the-escape",
+    "title": "The Escape ",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8900.jpg",
+    "thumbnail_image": "/images/paintings/img_8900.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "the-flight",
+    "title": "The Flight",
+    "year": "2016",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5796.jpeg",
+    "thumbnail_image": "/images/paintings/img_5796.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "the-free-soul ",
+    "title": "The free soul ",
+    "year": "2014",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6208.jpeg",
+    "thumbnail_image": "/images/paintings/img_6208.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "the-revelation ",
+    "title": "The revelation ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4653.jpg",
+    "thumbnail_image": "/images/paintings/img_4653.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "the-sun",
+    "title": "The sun ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3640.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "three-souls-in-surrender",
     "title": "Three Souls In Surrender",
-    "year": "2025",
+    "year": "2024",
     "availability": "available",
     "featured_image": "/images/paintings/three-souls-in-surrender.jpeg",
     "thumbnail_image": "/images/paintings/three-souls-in-surrender.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "to-surrender-is-to-trust",
+    "title": "To surrender is to trust",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_2997.jpg",
+    "thumbnail_image": "/images/paintings/img_2997.jpg",
     "featured": false,
     "sort_order": 99
   },
@@ -286,6 +826,36 @@
     "availability": "available",
     "featured_image": "/images/paintings/two-flames-of-the-spirit.jpeg",
     "thumbnail_image": "/images/paintings/two-flames-of-the-spirit.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "union",
+    "title": "Union ",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3970.jpeg",
+    "thumbnail_image": "/images/paintings/img_3970.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "well-of-love",
+    "title": "Well of love",
+    "year": "2015",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4167.jpg",
+    "thumbnail_image": "/images/paintings/img_4167.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "ya-hafeezu",
+    "title": "Ya Hafeezu ",
+    "year": "2023",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_6003.jpg",
+    "thumbnail_image": "/images/paintings/img_6003.jpg",
     "featured": false,
     "sort_order": 99
   },
