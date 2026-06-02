@@ -1,6 +1,11 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  # Skip ALL git-push builds (exit 0 = skip, 0 credits). Build-hook builds bypass
+  # this command entirely and always proceed. Deploys are batched via the
+  # GitHub Actions debounce workflow, which fires a build hook ~15 min after the
+  # last publish. INCOMING_HOOK_TITLE is set only for hook-triggered builds.
+  ignore = "if [ -n \"$INCOMING_HOOK_TITLE\" ]; then echo 'Hook build - proceeding' && exit 1; else echo 'Git-push build - skipping (debounced via GitHub Actions)' && exit 0; fi"
 
 [build.environment]
   NODE_VERSION = "22"

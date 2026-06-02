@@ -1,0 +1,31 @@
+name: Daily Netlify Safety-Net Deploy
+
+# Safety net for the "marathon edit" case (continuous publishing with no 15-min
+# gap means the debounce never fires) and a manual "deploy now" button.
+# Shares the debounce concurrency group so it never double-deploys alongside an
+# in-flight debounce run.
+
+on:
+  schedule:
+    # 06:17 UTC daily. Non-:00 minute reduces GitHub cron contention/skew.
+    - cron: "17 6 * * *"
+  workflow_dispatch: {}   # manual "deploy now" trigger from the Actions tab
+
+concurrency:
+  group: netlify-debounce-deploy
+  cancel-in-progress: true
+
+jobs:
+  daily-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify deploy via build hook
+        env:
+          BUILD_HOOK_URL: ${{ secrets.BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$BUILD_HOOK_URL" ]; then
+            echo "BUILD_HOOK_URL secret is not set" >&2
+            exit 1
+          fi
+          curl -sS -X POST -d '{}' "$BUILD_HOOK_URL"
+          echo "Daily safety-net build hook POSTed."

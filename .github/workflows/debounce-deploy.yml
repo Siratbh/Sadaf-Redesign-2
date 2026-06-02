@@ -1,0 +1,38 @@
+name: Debounce Netlify Deploy
+
+# Every Decap publish commits to main (via git-gateway), which fires this
+# workflow. The concurrency group + cancel-in-progress means each new push
+# cancels the previous still-sleeping run, so only the run that survives the
+# full quiet period reaches the curl step and triggers ONE Netlify deploy.
+# Net effect: a burst of N publishes => 1 production deploy, ~15 min after the
+# last one. Git-push builds themselves are skipped by netlify.toml's ignore
+# command (0 credits); only this hook-triggered build deploys.
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: netlify-debounce-deploy
+  cancel-in-progress: true
+
+jobs:
+  debounce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for quiet period (trailing debounce)
+        # 900s = 15 min. To test the mechanism fast, set QUIET_PERIOD_SECONDS to 120.
+        run: sleep "${QUIET_PERIOD_SECONDS:-900}"
+        env:
+          QUIET_PERIOD_SECONDS: 900
+
+      - name: Trigger Netlify deploy via build hook
+        env:
+          BUILD_HOOK_URL: ${{ secrets.BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$BUILD_HOOK_URL" ]; then
+            echo "BUILD_HOOK_URL secret is not set" >&2
+            exit 1
+          fi
+          curl -sS -X POST -d '{}' "$BUILD_HOOK_URL"
+          echo "Build hook POSTed after debounce window."
