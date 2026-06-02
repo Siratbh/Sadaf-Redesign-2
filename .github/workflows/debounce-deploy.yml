@@ -24,7 +24,7 @@ jobs:
         # 900s = 15 min. To test the mechanism fast, set QUIET_PERIOD_SECONDS to 120.
         run: sleep "${QUIET_PERIOD_SECONDS:-900}"
         env:
-          QUIET_PERIOD_SECONDS: 900
+          QUIET_PERIOD_SECONDS: 120
 
       - name: Trigger Netlify deploy via build hook
         env:
