@@ -1,5 +1,5 @@
 import { motion as Motion, AnimatePresence } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Instagram, Facebook, Mail } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -8,6 +8,7 @@ import { getPaintings, getAvailablePaintings, getPastPaintings, getExhibitions, 
 import { introComponents } from '../lib/markdownComponents';
 import { gsap } from 'gsap';
 import SEOHead from '../components/SEOHead';
+import siteSettings from '../../content/settings/site.json';
 
 // --- Hero Slideshow Component ---
 const HeroSlideshow = ({ paintings, slideshowLabel }) => {
@@ -171,6 +172,10 @@ export default function HomeV4() {
   const visibleCollectors = collectors.filter((c) => c.image);
   const home = getPage('home') || {};
   const aboutPage = getPage('about') || {};
+  // Social links reuse the single source of truth in site.json (same as the Footer).
+  const instagramUrl = siteSettings.instagram;
+  const facebookUrl = siteSettings.facebook;
+  const inquiryEmail = siteSettings.inquiry_email || siteSettings.email || 'inquiry@sadafart.com';
   const artistImage = home.portrait_image || "/images/about/Sadaf-Hero-Portrait.jpg";
   const heroPortrait = home.hero_portrait_image; // optional B&W portrait, top-right of hero
   const aboutParagraphs = splitParagraphs(aboutPage.bio_body);
@@ -351,6 +356,82 @@ export default function HomeV4() {
                 </div>
               </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Follow / Social Section ────────────────────────────── */}
+      {/* Sits directly under the dark About block — same black ground, a hairline
+          divider — so "about the artist" and "follow the artist" read as one
+          editorial moment. The @handle is the focal point. */}
+      <section id="follow" className="bg-black text-white border-t border-white/10 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <Motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end lg:gap-16"
+          >
+            <div className="lg:col-span-7">
+              <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/40" data-sb-field-path="social_subhead">
+                {home.social_subhead || 'Stay close to the studio'}
+              </p>
+              <h2 className="font-serif text-4xl leading-[1.0] sm:text-5xl md:text-6xl" data-sb-field-path="social_title">
+                {home.social_title || 'Follow the journey'}
+              </h2>
+              {instagramUrl && (
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group mt-6 inline-flex items-center gap-3 text-white/85 transition-colors hover:text-white"
+                >
+                  <span className="font-serif italic text-3xl sm:text-4xl md:text-5xl" data-sb-field-path="social_handle">
+                    {home.social_handle || '@studiosadaffarasat'}
+                  </span>
+                  <ArrowUpRight
+                    size={28}
+                    strokeWidth={1.5}
+                    className="text-white/40 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white"
+                  />
+                </a>
+              )}
+            </div>
+
+            <div className="lg:col-span-5 lg:justify-self-end">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+                {instagramUrl && (
+                  <a
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 border border-white/80 px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors duration-300 hover:bg-white hover:text-black"
+                  >
+                    <Instagram size={18} strokeWidth={1.75} />
+                    <span data-sb-field-path="social_cta">{home.social_cta || 'Follow on Instagram'}</span>
+                  </a>
+                )}
+                {facebookUrl && (
+                  <a
+                    href={facebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="inline-flex h-[52px] w-[52px] items-center justify-center border border-white/20 text-white/70 transition-colors duration-300 hover:border-white hover:text-white"
+                  >
+                    <Facebook size={18} strokeWidth={1.75} />
+                  </a>
+                )}
+                <a
+                  href={`mailto:${inquiryEmail}`}
+                  aria-label="Email"
+                  className="inline-flex h-[52px] w-[52px] items-center justify-center border border-white/20 text-white/70 transition-colors duration-300 hover:border-white hover:text-white"
+                >
+                  <Mail size={18} strokeWidth={1.75} />
+                </a>
+              </div>
+            </div>
+          </Motion.div>
         </div>
       </section>
 

@@ -9,6 +9,10 @@ available_secondary_cta: Browse past works →
 about_big_title: About the artist
 about_section_label: About the artist
 about_cta: Read Full Biography
+social_subhead: Stay close to the studio
+social_title: Follow the journey
+social_handle: '@studiosadaffarasat'
+social_cta: Follow on Instagram
 past_works_title: Past Works
 past_works_subhead: An archive of works now in private collections
 past_works_cta: Browse all past works
@@ -26,8 +30,8 @@ contact_cta: Get in touch
 portrait_image: /images/about/Sadaf-Hero-Portrait.jpg
 bio_intro: Sadaf Farasat
 hero_subhead: >+
-  *Sadaf Farasat* is a Lahore-born, Malaysia-based artist with over 17 years of
-  practice and an international exhibition history spanning Dubai, London, Kuala
+  *Sadaf Farasat* is a Lahore-born, Malaysia-based artist, painting since 2010,
+  with an international exhibition history spanning Dubai, London, Chicago, Kuala
   Lumpur, Singapore, New Jersey, and Pakistan.
 
 

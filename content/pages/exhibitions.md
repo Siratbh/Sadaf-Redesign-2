@@ -5,8 +5,10 @@ hero_title_prefix: 'The '
 hero_title_italic: Archive
 count_singular: exhibition
 count_plural: exhibitions
-archive_section_label: Exhibition Archive
-archive_section_intro: Every show, residency, and fair — from the earliest to the most recent.
+pool_section_label: Moments
+pool_section_intro: Glimpses from the shows — openings, installations, and walls.
+archive_section_label: Exhibition History
+archive_section_intro: Every show, residency, and fair — from the most recent to the earliest.
 view_exhibition_label: View exhibition
 next_badge_label: Next
 exhibition_type_fallback: Exhibition

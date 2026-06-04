@@ -120,6 +120,7 @@ export default defineStackbitConfig({
           filePath: 'content/pages/exhibitions.md',
           fieldGroups: [
             { name: 'Hero', label: 'Hero' },
+            { name: 'Pool', label: 'Image Pool' },
             { name: 'Archive Section', label: 'Archive Section' },
             { name: 'Card Labels', label: 'Card Labels' },
             { name: 'States', label: 'Empty / SEO' },
@@ -131,9 +132,12 @@ export default defineStackbitConfig({
             { name: 'hero_title_italic', type: 'string', group: 'Hero', description: 'Italic emphasis part of the title (e.g. "Archive").' },
             { name: 'count_singular', type: 'string', group: 'Hero', description: 'Word shown after the count when there is exactly 1 exhibition (e.g. "exhibition").' },
             { name: 'count_plural', type: 'string', group: 'Hero', description: 'Word shown after the count when there are 0 or 2+ exhibitions (e.g. "exhibitions").' },
+            // Image Pool
+            { name: 'pool_section_label', type: 'string', group: 'Pool', description: 'Small label above the photo pool (e.g. "Moments").' },
+            { name: 'pool_section_intro', type: 'text', group: 'Pool', description: 'Italic serif intro above the masonry photo pool.' },
             // Archive Section
-            { name: 'archive_section_label', type: 'string', group: 'Archive Section', description: 'Small label above the archive section intro (e.g. "Exhibition Archive").' },
-            { name: 'archive_section_intro', type: 'text', group: 'Archive Section', description: 'Italic serif intro paragraph above the year-grouped grid.' },
+            { name: 'archive_section_label', type: 'string', group: 'Archive Section', description: 'Small label above the archive section intro (e.g. "Exhibition History").' },
+            { name: 'archive_section_intro', type: 'text', group: 'Archive Section', description: 'Italic serif intro paragraph above the year-grouped exhibition list.' },
             // Card Labels
             { name: 'view_exhibition_label', type: 'string', group: 'Card Labels', description: 'CTA label shown on Hero and Next featured cards (e.g. "View exhibition").' },
             { name: 'next_badge_label', type: 'string', group: 'Card Labels', description: 'Badge text on the second featured card (e.g. "Next").' },
@@ -201,6 +205,7 @@ export default defineStackbitConfig({
             { name: 'Hero', label: 'Hero' },
             { name: 'Available Works', label: 'Available Works' },
             { name: 'About', label: 'About' },
+            { name: 'Social', label: 'Social' },
             { name: 'Past Works', label: 'Past Works' },
             { name: 'Collectors', label: 'Collectors' },
             { name: 'Exhibitions', label: 'Exhibitions' },
@@ -225,6 +230,12 @@ export default defineStackbitConfig({
             { name: 'about_cta', type: 'string', group: 'About', description: 'Link label (e.g. "Read Full Biography").' },
             { name: 'about_decoration_left_image', type: 'image', group: 'About', description: 'Small decorative painting on the LEFT of the About section. Defaults to the first available painting if not set.' },
             { name: 'about_decoration_right_image', type: 'image', group: 'About', description: 'Small decorative painting on the RIGHT of the About section. Defaults to the second available painting if not set.' },
+
+            // Social
+            { name: 'social_subhead', type: 'string', group: 'Social', description: 'Small label above the social heading (e.g. "Stay close to the studio").' },
+            { name: 'social_title', type: 'string', group: 'Social', description: 'Big serif heading (e.g. "Follow the journey").' },
+            { name: 'social_handle', type: 'string', group: 'Social', description: 'Instagram @handle shown large. Links to the Instagram URL in Site Settings.' },
+            { name: 'social_cta', type: 'string', group: 'Social', description: 'Primary follow button label (e.g. "Follow on Instagram").' },
 
             // Past Works
             { name: 'past_works_title', type: 'string', group: 'Past Works' },
@@ -393,6 +404,7 @@ export default defineStackbitConfig({
             { name: 'inquiry_email', type: 'string' },
             { name: 'footer_text', type: 'string' },
             { name: 'instagram', type: 'string' },
+            { name: 'facebook', type: 'string' },
             { name: 'tagline', type: 'string' },
           ],
         },

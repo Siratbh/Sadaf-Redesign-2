@@ -174,6 +174,11 @@ collections:
           - { label: "About — CTA", name: "about_cta", widget: "string", hint: "Link label (e.g. 'Read Full Biography')." }
           - { label: "About — Decoration Left Image", name: "about_decoration_left_image", widget: "image", required: false, hint: "Small decorative painting on the LEFT of the About section. Defaults to the first available painting if left blank." }
           - { label: "About — Decoration Right Image", name: "about_decoration_right_image", widget: "image", required: false, hint: "Small decorative painting on the RIGHT of the About section. Defaults to the second available painting if left blank." }
+          # ── Social ───────────────────────────────────────────────
+          - { label: "Social — Subhead (eyebrow)", name: "social_subhead", widget: "string", required: false, hint: "Small label above the social heading (e.g. 'Stay close to the studio')." }
+          - { label: "Social — Title", name: "social_title", widget: "string", required: false, hint: "Big serif heading (e.g. 'Follow the journey')." }
+          - { label: "Social — Instagram Handle", name: "social_handle", widget: "string", required: false, hint: "Shown large next to the heading (e.g. '@studiosadaffarasat'). Links to the Instagram URL in Site Settings." }
+          - { label: "Social — Button Label", name: "social_cta", widget: "string", required: false, hint: "Primary follow button (e.g. 'Follow on Instagram')." }
           # ── Past Works ───────────────────────────────────────────
           - { label: "Past Works — Title", name: "past_works_title", widget: "string" }
           - { label: "Past Works — Subhead", name: "past_works_subhead", widget: "string" }
@@ -270,9 +275,12 @@ collections:
           - { label: "Hero — Title (italic)", name: "hero_title_italic", widget: "string", hint: "Italic emphasis part of the title (e.g. 'Archive')." }
           - { label: "Count — Singular word", name: "count_singular", widget: "string", hint: "Word shown after the count when exactly 1 (e.g. 'exhibition')." }
           - { label: "Count — Plural word", name: "count_plural", widget: "string", hint: "Word shown after the count when 0 or 2+ (e.g. 'exhibitions')." }
+          # ── Image Pool ───────────────────────────────────────────
+          - { label: "Pool — Section Label", name: "pool_section_label", widget: "string", required: false, hint: "Small label above the photo pool (e.g. 'Moments')." }
+          - { label: "Pool — Intro paragraph", name: "pool_section_intro", widget: "text", required: false, hint: "Italic serif intro above the masonry photo pool." }
           # ── Archive Section ──────────────────────────────────────
           - { label: "Archive — Section Label", name: "archive_section_label", widget: "string", hint: "Small label above the archive intro paragraph." }
-          - { label: "Archive — Intro paragraph", name: "archive_section_intro", widget: "text", hint: "Italic serif intro above the year-grouped exhibition grid." }
+          - { label: "Archive — Intro paragraph", name: "archive_section_intro", widget: "text", hint: "Italic serif intro above the year-grouped exhibition list." }
           # ── Card Labels ──────────────────────────────────────────
           - { label: "Card — View CTA", name: "view_exhibition_label", widget: "string", hint: "CTA on Hero and Next featured cards (e.g. 'View exhibition')." }
           - { label: "Card — Next badge", name: "next_badge_label", widget: "string", hint: "Badge text on the second featured card (e.g. 'Next')." }
@@ -380,5 +388,6 @@ collections:
           - { label: "Default SEO Description", name: "seo_description", widget: "text" }
           - { label: "Inquiry Email", name: "inquiry_email", widget: "string" }
           - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
           - { label: "Footer Text", name: "footer_text", widget: "string" }
           - { label: "Tagline", name: "tagline", widget: "string", required: false }
