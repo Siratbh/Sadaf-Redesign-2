@@ -23,6 +23,7 @@ function parse(raw) {
 const paintingFiles = import.meta.glob('/content/paintings/*.md', { query: '?raw', import: 'default', eager: true })
 
 const exhibitionFiles = import.meta.glob('/content/exhibitions/*.md', { query: '?raw', import: 'default', eager: true })
+const galleryFiles = import.meta.glob('/content/gallery/*.md', { query: '?raw', import: 'default', eager: true })
 const collectorFiles = import.meta.glob('/content/collectors/*.md', { query: '?raw', import: 'default', eager: true })
 const pageFiles = import.meta.glob('/content/pages/*.md', { query: '?raw', import: 'default', eager: true })
 
@@ -47,7 +48,6 @@ export function getExhibitions() {
       const slug = filePath.split('/').pop().replace(/\.md$/, '')
       return { ...data, slug, body: content, _id: filePath.slice(1) }
     })
-    .filter(e => e.type !== 'gallery')
     .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
 }
 
@@ -76,12 +76,11 @@ export function getPastPaintings() {
 }
 
 export function getExhibitionGallery() {
-  const albums = Object.entries(exhibitionFiles)
+  const albums = Object.entries(galleryFiles)
     .map(([filePath, raw]) => {
       const { data } = parse(raw)
       return { ...data, _id: filePath.slice(1) }
     })
-    .filter(e => e.type === 'gallery')
     .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
 
   const pool = []

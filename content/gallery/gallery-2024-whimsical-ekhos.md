@@ -1,5 +1,4 @@
 ---
-type: gallery
 title: "Whimsical Ekhos 2024"
 sort_order: 1
 gallery:

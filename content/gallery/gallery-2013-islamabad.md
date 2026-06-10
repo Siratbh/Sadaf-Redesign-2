@@ -1,5 +1,4 @@
 ---
-type: gallery
 title: "Islamabad Group Exhibition 2013"
 sort_order: 40
 gallery:

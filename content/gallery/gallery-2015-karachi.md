@@ -1,5 +1,4 @@
 ---
-type: gallery
 title: "Karachi Solo Exhibition 2015"
 sort_order: 30
 gallery:

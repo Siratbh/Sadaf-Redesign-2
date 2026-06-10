@@ -1,5 +1,4 @@
 ---
-type: gallery
 title: "World Art Dubai 2016"
 sort_order: 20
 gallery:

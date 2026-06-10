@@ -80,24 +80,8 @@ collections:
     create: true
     slug: "{{year}}-{{slug}}"
     identifier_field: title
-    view_filters:
-      - label: "Shows"
-        field: type
-        pattern: "listing"
-      - label: "Gallery Albums"
-        field: type
-        pattern: "gallery"
     fields:
-      - label: "Type"
-        name: "type"
-        widget: "select"
-        options:
-          - { label: "Exhibition Show", value: "listing" }
-          - { label: "Gallery Album", value: "gallery" }
-        default: "listing"
-        hint: "Show: adds to the exhibitions history list. Gallery Album: adds photos to the collage on /exhibitions. Use the Gallery section below to add photos to an album."
-      - { label: "Title", name: "title", widget: "string", required: false,
-          hint: "Show name for listings (e.g. 'Whimsical Ekhos'); album name for gallery albums (e.g. 'Dubai 2024')." }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Year", name: "year", widget: "string", required: false }
       - { label: "Start Date", name: "start_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, hint: "Optional. Leave blank to show year only." }
       - { label: "End Date", name: "end_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
@@ -139,6 +123,26 @@ collections:
         hint: "Pick paintings shown at this exhibition. They appear as a 'Works Shown' grid on the exhibition page, linking to each painting's detail page."
       - { label: "External Link", name: "link", widget: "string", required: false, hint: "Optional press link, gallery page, catalogue PDF." }
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content/gallery"
+    create: true
+    slug: "{{title}}"
+    identifier_field: title
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Label for this set of photos (e.g. 'Dubai 2024', 'Various shows'). Not shown publicly — just for your reference."
+      - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
+      - label: "Photos / Videos"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Video URL", name: "video", widget: "string", required: false }
+          - { label: "Caption", name: "caption", widget: "string", required: false }
 
   - name: "collectors"
     label: "Collectors Edit"
