@@ -409,6 +409,20 @@ export default defineStackbitConfig({
           ],
         },
 
+        // ─── Exhibition Gallery Items ─────────────────────────────────
+        {
+          name: 'ExhibitionGalleryItem',
+          type: 'data',
+          labelField: 'caption',
+          filePath: 'content/exhibition-gallery/{slug}.md',
+          fields: [
+            { name: 'image', type: 'image' },
+            { name: 'video', type: 'file' },
+            { name: 'caption', type: 'string' },
+            { name: 'sort_order', type: 'number' },
+          ],
+        },
+
         // ─── Collector Items ──────────────────────────────────────────
         {
           name: 'CollectorItem',

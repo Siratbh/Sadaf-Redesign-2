@@ -23,6 +23,7 @@ function parse(raw) {
 const paintingFiles = import.meta.glob('/content/paintings/*.md', { query: '?raw', import: 'default', eager: true })
 
 const exhibitionFiles = import.meta.glob('/content/exhibitions/*.md', { query: '?raw', import: 'default', eager: true })
+const exhibitionGalleryFiles = import.meta.glob('/content/exhibition-gallery/*.md', { query: '?raw', import: 'default', eager: true })
 const collectorFiles = import.meta.glob('/content/collectors/*.md', { query: '?raw', import: 'default', eager: true })
 const pageFiles = import.meta.glob('/content/pages/*.md', { query: '?raw', import: 'default', eager: true })
 
@@ -72,6 +73,15 @@ export function getAvailablePaintings() {
 
 export function getPastPaintings() {
   return getPaintings().filter(p => p.availability && p.availability !== 'available')
+}
+
+export function getExhibitionGallery() {
+  return Object.entries(exhibitionGalleryFiles)
+    .map(([filePath, raw]) => {
+      const { data } = parse(raw)
+      return { ...data, _id: filePath.slice(1) }
+    })
+    .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
 }
 
 export function getCollectors() {

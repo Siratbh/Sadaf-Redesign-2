@@ -152,6 +152,25 @@ collections:
       - { label: "Featured Image", name: "featured_image", widget: "image", required: false, media_folder: "/public/images/paintings", public_folder: "/images/paintings" }
       - { label: "Availability", name: "availability", widget: "string", required: false }
 
+  - name: "exhibition-gallery"
+    label: "Exhibitions — Gallery"
+    label_singular: "Gallery Item"
+    folder: "content/exhibition-gallery"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: caption
+    fields:
+      - { label: "Image", name: "image", widget: "image", required: false,
+          media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions",
+          hint: "The photo shown in the gallery grid. Also used as the video cover if a video is set." }
+      - { label: "Video", name: "video", widget: "file", required: false,
+          media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions",
+          hint: "Optional. Upload an MP4 or paste a YouTube/Vimeo URL. Clicking the tile will play this video." }
+      - { label: "Caption", name: "caption", widget: "string", required: false,
+          hint: "Label shown in the lightbox (e.g. 'Whimsical Ekhos — Atus Gallery, Dubai, 2024')." }
+      - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false,
+          hint: "Lower numbers appear first. Use to control the order of photos in the gallery." }
+
   - name: "pages"
     label: "Pages"
     files:

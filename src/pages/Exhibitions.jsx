@@ -3,20 +3,14 @@ import { Link } from 'react-router-dom'
 import { motion as Motion } from 'motion/react'
 import SEOHead from '../components/SEOHead'
 import Lightbox from '../components/Lightbox'
-import { getExhibitions, getPage } from '../lib/content'
-import { formatDateRange, getExhibitionImages } from '../lib/exhibitions'
+import { getExhibitions, getPage, getExhibitionGallery } from '../lib/content'
+import { formatDateRange } from '../lib/exhibitions'
 
-// An exhibition has "detail content" worth linking to when it carries a body,
-// media, or a gallery. Most archive entries are text-only — those render as
-// plain rows with no link.
+// An exhibition has "detail content" worth linking to when it carries written
+// content or an external press link. Media is now managed independently via
+// the Exhibition Gallery collection, so image presence no longer drives linking.
 function hasDetailContent(ex) {
-  return Boolean(
-    ex.body ||
-    ex.hero_image ||
-    ex.hero_video ||
-    ex.card_thumbnail ||
-    (Array.isArray(ex.gallery) && ex.gallery.some(g => g && (g.image || g.video)))
-  )
+  return Boolean(ex.body || ex.description || ex.link)
 }
 
 // One exhibition as a typographic row. No image — the visuals live in the pool
@@ -103,9 +97,17 @@ export default function Exhibitions() {
     return (a.sort_order ?? 99) - (b.sort_order ?? 99)
   })
 
-  // Image pool — every still across every exhibition (today: just the shows
-  // that have photos; grows as more galleries are added in the CMS).
-  const pool = getExhibitionImages(sorted)
+  // Standalone gallery — managed via the Exhibition Gallery CMS collection,
+  // independent of individual exhibition entries.
+  const gallery = getExhibitionGallery()
+  const pool = gallery.map(item => ({
+    src: item.video || item.image,
+    type: item.video ? 'video' : 'image',
+    caption: item.caption || '',
+    slug: item._id,
+    objectId: item._id,
+    fieldPath: item.video ? 'video' : 'image',
+  }))
 
   // Year-group ALL exhibitions for the complete text history.
   const byYear = sorted.reduce((acc, ex) => {
