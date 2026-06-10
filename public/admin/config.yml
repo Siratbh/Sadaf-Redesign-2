@@ -80,13 +80,29 @@ collections:
     create: true
     slug: "{{year}}-{{slug}}"
     identifier_field: title
+    view_filters:
+      - label: "Shows"
+        field: type
+        pattern: "listing"
+      - label: "Gallery Albums"
+        field: type
+        pattern: "gallery"
     fields:
-      - { label: "Year", name: "year", widget: "string" }
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options:
+          - { label: "Exhibition Show", value: "listing" }
+          - { label: "Gallery Album", value: "gallery" }
+        default: "listing"
+        hint: "Show: adds to the exhibitions history list. Gallery Album: adds photos to the collage on /exhibitions. Use the Gallery section below to add photos to an album."
+      - { label: "Title", name: "title", widget: "string", required: false,
+          hint: "Show name for listings (e.g. 'Whimsical Ekhos'); album name for gallery albums (e.g. 'Dubai 2024')." }
+      - { label: "Year", name: "year", widget: "string", required: false }
       - { label: "Start Date", name: "start_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, hint: "Optional. Leave blank to show year only." }
       - { label: "End Date", name: "end_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false, required: false, hint: "Tick to highlight this exhibition at the top of /exhibitions. Up to two featured exhibitions show as Hero + NEXT; if fewer than two are flagged, the page auto-fills with the most recent exhibitions that have images." }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Venue", name: "venue", widget: "string" }
+      - { label: "Venue", name: "venue", widget: "string", required: false }
       - { label: "City", name: "city", widget: "string", required: false }
       - label: "Exhibition Type"
         name: "exhibition_type"
@@ -101,11 +117,12 @@ collections:
       - { label: "Hero Video", name: "hero_video", widget: "file", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions", hint: "Optional. Upload an MP4 or paste a YouTube / Vimeo / Cloudinary URL. Replaces the Hero Image when set." }
       - { label: "Short Description", name: "description", widget: "text", required: false, hint: "Plain text. Shown as a teaser on the listing row." }
       - { label: "Body", name: "body", widget: "markdown", required: false, hint: "Long-form editorial content. Inline images use ![alt](url). Inline videos use the same syntax — paste any MP4, YouTube, Vimeo, or Cloudinary URL and it renders as a video." }
-      - label: "Gallery"
+      - label: "Gallery / Photos"
         name: "gallery"
         widget: "list"
         required: false
         summary: "{{fields.caption}}"
+        hint: "For Gallery Albums: add all the photos for this album here — they appear in the collage on /exhibitions. For Exhibition Shows: optional detail-page gallery."
         fields:
           - { label: "Image", name: "image", widget: "image", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions" }
           - { label: "Video", name: "video", widget: "file", required: false, media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions", hint: "Upload MP4 or paste YouTube / Vimeo / Cloudinary URL. Replaces Image when set." }
@@ -151,25 +168,6 @@ collections:
       - { label: "Year", name: "year", widget: "string", required: false }
       - { label: "Featured Image", name: "featured_image", widget: "image", required: false, media_folder: "/public/images/paintings", public_folder: "/images/paintings" }
       - { label: "Availability", name: "availability", widget: "string", required: false }
-
-  - name: "exhibition-gallery"
-    label: "Exhibitions — Gallery"
-    label_singular: "Gallery Item"
-    folder: "content/exhibition-gallery"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    identifier_field: caption
-    fields:
-      - { label: "Image", name: "image", widget: "image", required: false,
-          media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions",
-          hint: "The photo shown in the gallery grid. Also used as the video cover if a video is set." }
-      - { label: "Video", name: "video", widget: "file", required: false,
-          media_folder: "/public/images/exhibitions", public_folder: "/images/exhibitions",
-          hint: "Optional. Upload an MP4 or paste a YouTube/Vimeo URL. Clicking the tile will play this video." }
-      - { label: "Caption", name: "caption", widget: "string", required: false,
-          hint: "Label shown in the lightbox (e.g. 'Whimsical Ekhos — Atus Gallery, Dubai, 2024')." }
-      - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false,
-          hint: "Lower numbers appear first. Use to control the order of photos in the gallery." }
 
   - name: "pages"
     label: "Pages"

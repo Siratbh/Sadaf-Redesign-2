@@ -66,7 +66,8 @@ export default defineStackbitConfig({
           labelField: 'title',
           filePath: 'content/exhibitions/{slug}.md',
           fields: [
-            { name: 'title', type: 'string', required: true },
+            { name: 'type', type: 'enum', options: ['listing', 'gallery'], description: 'listing = exhibition show; gallery = photo album for the collage' },
+            { name: 'title', type: 'string' },
             { name: 'year', type: 'string' },
             { name: 'start_date', type: 'date', description: 'Optional. Leave blank to show year only.' },
             { name: 'end_date', type: 'date' },
@@ -406,20 +407,6 @@ export default defineStackbitConfig({
             { name: 'instagram', type: 'string' },
             { name: 'facebook', type: 'string' },
             { name: 'tagline', type: 'string' },
-          ],
-        },
-
-        // ─── Exhibition Gallery Items ─────────────────────────────────
-        {
-          name: 'ExhibitionGalleryItem',
-          type: 'data',
-          labelField: 'caption',
-          filePath: 'content/exhibition-gallery/{slug}.md',
-          fields: [
-            { name: 'image', type: 'image' },
-            { name: 'video', type: 'file' },
-            { name: 'caption', type: 'string' },
-            { name: 'sort_order', type: 'number' },
           ],
         },
 
