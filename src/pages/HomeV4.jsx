@@ -8,6 +8,8 @@ import { getPaintings, getAvailablePaintings, getPastPaintings, getExhibitions, 
 import { introComponents } from '../lib/markdownComponents';
 import { gsap } from 'gsap';
 import SEOHead from '../components/SEOHead';
+import CdnImage from '../components/CdnImage';
+import { netlifyImage } from '../lib/image';
 import siteSettings from '../../content/settings/site.json';
 
 // --- Hero Slideshow Component ---
@@ -38,9 +40,15 @@ const HeroSlideshow = ({ paintings, slideshowLabel }) => {
           className="absolute inset-0"
           {...(current._id ? { 'data-sb-object-id': current._id } : {})}
         >
-          <img
+          <CdnImage
             src={current.featured_image}
             alt={current.title}
+            widths={[640, 960, 1280, 1600]}
+            sizes="100vw"
+            q={78}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover"
             data-sb-field-path="featured_image"
           />
@@ -85,9 +93,15 @@ const GalleryItem = ({ art, showStatus = false }) => {
       {...(art._id ? { 'data-sb-object-id': art._id } : {})}
     >
       <Link to={`/paintings/${art.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
-        <img
+        <CdnImage
           src={image}
           alt={art.title}
+          widths={[300, 450, 600]}
+          sizes="(max-width: 768px) 45vw, 30vw"
+          fit="contain"
+          q={70}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-110"
           data-sb-field-path={art.thumbnail_image ? 'thumbnail_image' : 'featured_image'}
         />
@@ -196,7 +210,7 @@ export default function HomeV4() {
 
   const handleEnter = (image) => {
     if (window.innerWidth <= 768 || !revealRef.current || !revealInnerRef.current) return;
-    revealInnerRef.current.style.backgroundImage = `url(${image})`;
+    revealInnerRef.current.style.backgroundImage = `url(${netlifyImage(image, { w: 600, q: 72 })})`;
     gsap.to(revealRef.current, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' });
   };
 
@@ -250,9 +264,12 @@ export default function HomeV4() {
               className="w-full md:w-[25%] md:max-w-[240px] md:flex-shrink-0"
             >
               <div className="relative aspect-[16/9] md:aspect-[4/5] overflow-hidden">
-                <img
+                <CdnImage
                   src={heroPortrait}
                   alt="Sadaf Farasat"
+                  widths={[240, 480]}
+                  sizes="(max-width: 768px) 100vw, 240px"
+                  q={72}
                   width="570"
                   height="760"
                   loading="eager"
@@ -318,9 +335,14 @@ export default function HomeV4() {
               className="group relative mb-12 w-full max-w-[280px] sm:max-w-[340px] md:mb-16 md:max-w-[400px]"
             >
               <div className="relative overflow-hidden ring-1 ring-white/10 shadow-[0_45px_80px_-25px_rgba(0,0,0,0.9)]">
-                <img
+                <CdnImage
                   src={artistImage}
                   alt="Sadaf Farasat"
+                  widths={[280, 400, 800]}
+                  sizes="(max-width: 768px) 80vw, 400px"
+                  q={78}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full grayscale transition-all duration-[1200ms] ease-out group-hover:grayscale-0"
                   data-sb-field-path="portrait_image"
                 />
@@ -497,11 +519,15 @@ export default function HomeV4() {
                   {...(item._id ? { 'data-sb-object-id': item._id } : {})}
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-transparent">
-                    <img
+                    <CdnImage
                       src={item.image}
                       alt={item.title}
+                      widths={[480, 720, 960]}
+                      sizes="85vw"
+                      q={72}
                       className="w-full h-full object-cover pointer-events-none"
                       loading="lazy"
+                      decoding="async"
                       draggable={false}
                       data-sb-field-path="image"
                     />

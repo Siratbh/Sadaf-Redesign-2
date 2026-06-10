@@ -1,6 +1,7 @@
 import { motion as Motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
+import CdnImage from '../components/CdnImage'
 import { getAvailablePaintings, getPage } from '../lib/content'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 
@@ -55,11 +56,16 @@ export default function Available() {
                 >
                   <Link to={`/paintings/${painting.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
                     {painting.thumbnail_image || painting.featured_image ? (
-                      <img
+                      <CdnImage
                         src={painting.thumbnail_image || painting.featured_image}
                         alt={painting.title}
+                        widths={[300, 450, 600]}
+                        sizes="(max-width: 768px) 45vw, 30vw"
+                        fit="contain"
+                        q={70}
                         className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-110"
                         loading="lazy"
+                        decoding="async"
                         data-sb-field-path={painting.thumbnail_image ? 'thumbnail_image' : 'featured_image'}
                       />
                     ) : (

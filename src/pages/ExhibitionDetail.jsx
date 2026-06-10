@@ -4,6 +4,7 @@ import { motion as Motion } from 'motion/react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
+import CdnImage from '../components/CdnImage'
 import Lightbox from '../components/Lightbox'
 import { getExhibition, getPainting, getPage } from '../lib/content'
 import { mediaType, extractYouTubeId, youtubeEmbedUrl, vimeoEmbedUrl } from '../lib/media'
@@ -31,12 +32,17 @@ function MediaThumb({ src, type, caption, onClick, eager, dataSbFieldPath }) {
 
   if (type === 'image') {
     return (
-      <img
+      <CdnImage
         src={src}
         alt={caption || ''}
+        widths={eager ? [640, 960, 1280, 1600] : [640, 960, 1280]}
+        sizes={eager ? '100vw' : '(max-width: 768px) 100vw, 640px'}
+        q={eager ? 78 : 76}
         className="w-full h-auto cursor-zoom-in"
         onClick={onClick}
         loading={eager ? 'eager' : 'lazy'}
+        {...(eager ? { fetchPriority: 'high' } : {})}
+        decoding="async"
         {...sbAttr}
       />
     )
@@ -182,7 +188,18 @@ export default function ExhibitionDetail() {
       const onClick = () => idx != null && openLightbox(idx)
 
       if (type === 'image') {
-        return <img src={src} alt={alt || ''} onClick={onClick} loading="lazy" />
+        return (
+          <CdnImage
+            src={src}
+            alt={alt || ''}
+            widths={[640, 960, 1280]}
+            sizes="(max-width: 768px) 100vw, 640px"
+            q={76}
+            onClick={onClick}
+            loading="lazy"
+            decoding="async"
+          />
+        )
       }
       if (type === 'video') {
         return (
@@ -354,11 +371,15 @@ export default function ExhibitionDetail() {
                   >
                     <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
                       {img ? (
-                        <img
+                        <CdnImage
                           src={img}
                           alt={p.title}
+                          widths={[300, 450, 600]}
+                          sizes="(max-width: 768px) 45vw, 30vw"
+                          q={72}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
+                          decoding="async"
                           data-sb-field-path={p.featured_image ? 'featured_image' : 'thumbnail_image'}
                         />
                       ) : (

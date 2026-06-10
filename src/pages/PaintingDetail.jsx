@@ -4,6 +4,7 @@ import { motion as Motion } from 'motion/react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
+import CdnImage from '../components/CdnImage'
 import { getPainting, getAvailablePaintings, getPage } from '../lib/content'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 
@@ -108,11 +109,16 @@ export default function PaintingDetail() {
               >
                 <div className="w-full aspect-[3/4] bg-gray-100 overflow-hidden">
                   {painting.featured_image || painting.thumbnail_image ? (
-                    <img
+                    <CdnImage
                       src={painting.featured_image || painting.thumbnail_image}
                       alt={painting.title}
+                      widths={[640, 960, 1280, 1600]}
+                      sizes="(max-width: 1024px) 100vw, 58vw"
+                      q={78}
                       className="w-full h-full object-cover"
                       loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                       data-sb-field-path={painting.featured_image ? 'featured_image' : 'thumbnail_image'}
                     />
                   ) : (
@@ -300,11 +306,16 @@ export default function PaintingDetail() {
                   >
                     <Link to={`/paintings/${art.slug}`} className="relative aspect-[4/5] overflow-hidden bg-transparent">
                       {art.thumbnail_image || art.featured_image ? (
-                        <img
+                        <CdnImage
                           src={art.thumbnail_image || art.featured_image}
                           alt={art.title}
+                          widths={[300, 450, 600]}
+                          sizes="(max-width: 768px) 45vw, 30vw"
+                          fit="contain"
+                          q={70}
                           className="w-full h-full object-contain p-4 sm:p-6 transition-transform duration-700 group-hover:scale-110"
                           loading="lazy"
+                          decoding="async"
                           data-sb-field-path={art.thumbnail_image ? 'thumbnail_image' : 'featured_image'}
                         />
                       ) : (

@@ -5,8 +5,8 @@ year: "2026"
 medium: Oil on canvas
 dimensions: 48x48 inches
 availability: available
-featured_image: /images/paintings/1.png
-thumbnail_image: /images/paintings/1.png
+featured_image: /images/paintings/1.jpg
+thumbnail_image: /images/paintings/1.jpg
 short_description: In the arms of God
 full_description: |
   In the arms of god

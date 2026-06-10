@@ -15,6 +15,16 @@
   to = "/index.html"
   status = 200
 
+# Long-lived immutable cache for raw source images. The Netlify Image CDN
+# (/.netlify/images) fetches each original once per transform and edge-caches
+# the resized/format-negotiated result (invalidated on deploy). Browsers that
+# hit a raw /images/* path also cache hard. Safe because Decap uploads create
+# new filenames rather than overwriting existing ones.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [dev]
   command = "npm run dev"
   targetPort = 5173

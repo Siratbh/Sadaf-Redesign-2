@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import { AnimatePresence, motion as Motion } from 'motion/react'
 import { mediaType, youtubeEmbedUrl, vimeoEmbedUrl } from '../lib/media'
+import CdnImage from './CdnImage'
 
 export default function Lightbox({ images, startIndex, open, onClose, onIndexChange }) {
   const total = images.length
@@ -86,9 +87,11 @@ export default function Lightbox({ images, startIndex, open, onClose, onIndexCha
             className="flex items-center justify-center"
           >
             {currentType === 'image' && (
-              <img
+              <CdnImage
                 src={current.src}
                 alt={current.caption || ''}
+                w={1600}
+                q={82}
                 className="max-w-[92vw] max-h-[82vh] object-contain"
               />
             )}

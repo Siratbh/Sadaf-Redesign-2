@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
+import CdnImage from '../components/CdnImage'
 import MediaPlaceholder from '../components/MediaPlaceholder'
 import { getPage } from '../lib/content'
 import { introComponents } from '../lib/markdownComponents'
@@ -55,12 +56,16 @@ export default function About() {
               >
                 <div className="relative overflow-hidden shadow-[0_35px_60px_-15px_rgba(0,0,0,0.28)]">
                   {a.portrait_image ? (
-                    <img
+                    <CdnImage
                       src={a.portrait_image}
                       alt="Sadaf Farasat portrait"
+                      widths={[360, 540, 800, 1020]}
+                      sizes="(max-width: 1024px) 90vw, 460px"
+                      q={78}
                       width="1020"
                       height="1657"
                       loading="eager"
+                      fetchPriority="high"
                       decoding="async"
                       className="aspect-[1020/1657] w-full object-cover grayscale"
                       data-sb-field-path="portrait_image"

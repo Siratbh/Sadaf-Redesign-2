@@ -60,6 +60,16 @@
     "sort_order": 99
   },
   {
+    "slug": "a-day-in-lahore",
+    "title": "A day in Lahore ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6344.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "a-hundred-veils ",
     "title": "A Hundred Veils ",
     "year": "2018",
@@ -90,6 +100,46 @@
     "sort_order": 99
   },
   {
+    "slug": "androon-lahore ",
+    "title": "Androon Lahore",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1559.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "autumn-tree",
+    "title": "Autumn tree",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2872.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "balloons",
+    "title": "Balloons",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3746.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "bassnt",
+    "title": "Basant",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5387.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "be-like-a-tree",
     "title": "Be like a tree",
     "year": "2018",
@@ -110,6 +160,16 @@
     "sort_order": 99
   },
   {
+    "slug": "beloved",
+    "title": "Beloved",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1585.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "between-surrender-and-serenity",
     "title": "Between surrender and serenity",
     "year": "2024",
@@ -120,12 +180,42 @@
     "sort_order": 99
   },
   {
+    "slug": "birds",
+    "title": "Birds",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2743.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "both worlds ",
+    "title": "Both worlds ",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "breaking-barriers-within ",
     "title": "Breaking Barriers Within ",
     "year": "2024",
     "availability": "available",
     "featured_image": "/images/paintings/img_6597.jpg",
     "thumbnail_image": "/images/paintings/img_6597.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "celebration ",
+    "title": "Celebration ",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/545f3dcc-0e6c-47af-9d3f-9dad6ea6589b.jpeg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -150,6 +240,16 @@
     "sort_order": 99
   },
   {
+    "slug": "chaos",
+    "title": "Chaos ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2971.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "confusion ",
     "title": "Confusion",
     "year": "2019",
@@ -160,12 +260,32 @@
     "sort_order": 99
   },
   {
+    "slug": "connection ",
+    "title": "Connection ",
+    "year": "2026",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2655.jpeg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "consumed-by-rememberance",
     "title": "Consumed By Rememberance",
     "year": "2024",
     "availability": "available",
     "featured_image": "/images/paintings/consumed-by-rememberance.jpeg",
     "thumbnail_image": "/images/paintings/consumed-by-rememberance.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "covers",
+    "title": "Covers",
+    "year": "2026",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2735.jpeg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -186,6 +306,66 @@
     "availability": "sold",
     "featured_image": "/images/paintings/5ded9c63-e8b1-45ea-bb4b-70a56eece908.jpeg",
     "thumbnail_image": "/images/paintings/5ded9c63-e8b1-45ea-bb4b-70a56eece908.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "Dawn",
+    "title": "Dawn",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9749.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "daybreak",
+    "title": "Daybreak ",
+    "year": "2026",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2913.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "dervish",
+    "title": "Dervish",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_7316.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "desires",
+    "title": "Desires",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0451.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "devotion",
+    "title": "Devotion",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3153.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "dhol-walay",
+    "title": "Dhol walay ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8600.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -260,6 +440,46 @@
     "sort_order": 99
   },
   {
+    "slug": "fly-to-the-sky ",
+    "title": "Fly to the sky ",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5697.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "forget-safety",
+    "title": "Forget Safety ",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2165.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "freedom",
+    "title": "Freedom",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/0a3e8ef7-0f99-48d9-950e-a2894de2da41.jpeg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "full-moon",
+    "title": "Full Moon",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3406.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "grandeur",
     "title": "Grandeur ",
     "year": "2016",
@@ -280,12 +500,32 @@
     "sort_order": 99
   },
   {
+    "slug": "hidden",
+    "title": "Hidden ",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0929.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "hidden-truth",
     "title": "Hidden truth ",
     "year": "2015",
     "availability": "sold",
     "featured_image": "/images/paintings/img_3953.jpg",
     "thumbnail_image": "/images/paintings/img_3953.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "hope",
+    "title": "Hope",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8821.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -310,6 +550,36 @@
     "sort_order": 99
   },
   {
+    "slug": "horses",
+    "title": "Horses",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1308.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "hu",
+    "title": "Hu",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8163.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "hu",
+    "title": "Hu",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3747.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "huroof ",
     "title": "Huroof ",
     "year": "2024",
@@ -330,12 +600,42 @@
     "sort_order": 99
   },
   {
+    "slug": "illusions ",
+    "title": "Illusions ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4500.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "in-the-shelter-of-divine-love",
     "title": "In the Shelter of Divine Love",
     "year": "2024",
     "availability": "available",
     "featured_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
     "thumbnail_image": "/images/paintings/in-the-shelter-of-divine-love.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "inner-secrets",
+    "title": "Inner secrets ",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8129.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "insanity ",
+    "title": "Insanity",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6797.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -360,6 +660,16 @@
     "sort_order": 99
   },
   {
+    "slug": "Ishq ",
+    "title": "Ishq ",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8947.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "ishq-mosque",
     "title": "Ishq mosque",
     "year": "2017",
@@ -380,6 +690,26 @@
     "sort_order": 99
   },
   {
+    "slug": "Joyful ",
+    "title": "Joyful",
+    "year": "2026",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2998.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "karachi",
+    "title": "Karachi",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0682.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "kun-fayakun",
     "title": "Kun Fayakun ",
     "year": "2026",
@@ -390,12 +720,32 @@
     "sort_order": 99
   },
   {
+    "slug": "labaik",
+    "title": "Labaik",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/84933a37-9979-4f24-a028-41db4cffcffa.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "lahore",
     "title": "Lahore",
     "year": "2014",
     "availability": "sold",
     "featured_image": "/images/paintings/img_9814.jpg",
     "thumbnail_image": "/images/paintings/img_9814.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "lahore-collage",
+    "title": "Lahore collage ",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_7686.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -420,12 +770,52 @@
     "sort_order": 99
   },
   {
+    "slug": "light",
+    "title": "Light",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3149.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "light-and-shadow ",
+    "title": "Light and shadow ",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1428.jpeg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "light-and-shadow",
     "title": "Light and Shadow ",
     "year": "2016",
     "availability": "sold",
     "featured_image": "/images/paintings/img_6704.jpeg",
     "thumbnail_image": "/images/paintings/img_6704.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "light-in-darkness ",
+    "title": "Light in darkness ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4806.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "loneliness ",
+    "title": "Loneliness ",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4354.jpeg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -450,6 +840,36 @@
     "sort_order": 99
   },
   {
+    "slug": "lovers-dance",
+    "title": "Lovers dance",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3545.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "malang",
+    "title": "Malang",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_7694.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "masjid",
+    "title": "Masjid",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0406.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "masjid-e-nabawi",
     "title": "Masjid e Nabawi ",
     "year": "2016",
@@ -470,6 +890,26 @@
     "sort_order": 99
   },
   {
+    "slug": "mehfil ",
+    "title": "Mehfil ",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9305.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "mehfil-e-sema ",
+    "title": "Mehfil e sema ",
+    "year": "2024 ",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6974.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "melting-snow",
     "title": "Melting Snow ",
     "year": "2016",
@@ -480,12 +920,92 @@
     "sort_order": 99
   },
   {
+    "slug": "mirage",
+    "title": "Mirage",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2114.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "monochromatic",
+    "title": "Monochromatic ",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3653.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "moon-love",
     "title": "Moon love",
     "year": "2019",
     "availability": "sold",
     "featured_image": "/images/paintings/img_0386.jpg",
     "thumbnail_image": "/images/paintings/img_0386.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "moonlight",
+    "title": "Moonlight",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2353.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "my-garden",
+    "title": "My garden ",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_7975.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "my-garden",
+    "title": "My Garden ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1786.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "nach-ke-yaar-manawan-de",
+    "title": "Nach ke yaar manawan de ",
+    "year": "2026",
+    "availability": "available",
+    "featured_image": "/images/paintings/img_2055.jpg",
+    "thumbnail_image": "/images/paintings/img_2055.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "new-life",
+    "title": "New life",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5803.jpeg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "night ",
+    "title": "Night",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3209.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -520,6 +1040,26 @@
     "sort_order": 99
   },
   {
+    "slug": "old-lahore",
+    "title": "Old Lahore",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1751.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "one-desire",
+    "title": "One Desire",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2868.jpg",
+    "thumbnail_image": "/images/paintings/img_2868.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "one-desire",
     "title": "One Desire ",
     "year": "2017",
@@ -550,12 +1090,52 @@
     "sort_order": 99
   },
   {
+    "slug": "out-of-shell",
+    "title": "Out of shell",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3026.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "pair-1",
+    "title": "Pair 1 ",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6391.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "panels",
+    "title": "Panels",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0705.jpeg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "preachers",
     "title": "Preachers ",
     "year": "2018",
     "availability": "sold",
     "featured_image": "/images/paintings/img_5766.jpg",
     "thumbnail_image": "/images/paintings/img_5766.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "progression ",
+    "title": "Progression",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3594.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -570,6 +1150,26 @@
     "sort_order": 99
   },
   {
+    "slug": "realm ",
+    "title": "Realm ",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_7622.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "reflections",
+    "title": "Reflections ",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4320.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "restless-in-love ",
     "title": "Restless In Love ",
     "year": "2024 ",
@@ -580,12 +1180,72 @@
     "sort_order": 99
   },
   {
+    "slug": "rickshaw",
+    "title": "Rickshaw",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3547.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "rickshaw",
+    "title": "Rickshaw",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3601.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "roses",
     "title": "Roses",
     "year": "2018",
     "availability": "sold",
     "featured_image": "/images/paintings/img_3765.jpg",
     "thumbnail_image": "/images/paintings/img_3765.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "ruins",
+    "title": "Ruins",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_6373.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "sacred-rhythm",
+    "title": "Sacred Rhythm",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4656.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "scraping-soul ",
+    "title": "Scraping soul ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2969.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "secrets-at-dawn",
+    "title": "Secrets at Dawn",
+    "year": "2020",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2866.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -606,6 +1266,16 @@
     "availability": "available",
     "featured_image": "/images/paintings/seeker-beneath-the-pattern.jpeg",
     "thumbnail_image": "/images/paintings/seeker-beneath-the-pattern.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "sema",
+    "title": "Sema ",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8646.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -640,6 +1310,26 @@
     "sort_order": 99
   },
   {
+    "slug": "set-of-four",
+    "title": "Set of four",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_0004.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "shadow",
+    "title": "Shadow",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5132.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "sheesh-mahal",
     "title": "Sheesh Mahal ",
     "year": "2016",
@@ -656,6 +1346,16 @@
     "availability": "sold",
     "featured_image": "/images/paintings/img_8500.jpg",
     "thumbnail_image": "/images/paintings/img_8500.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "silent-ways",
+    "title": "Silent ways",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_4216.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -700,12 +1400,52 @@
     "sort_order": 99
   },
   {
+    "slug": "stallion ",
+    "title": "Stallion ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2096.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "Stillness",
+    "title": "Stillness",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3966.jpeg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "submit ",
     "title": "Submit ",
     "year": "2016",
     "availability": "sold",
     "featured_image": "/images/paintings/img_3049.jpeg",
     "thumbnail_image": "/images/paintings/img_3049.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "sun",
+    "title": "Sun",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2742.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "surrender ",
+    "title": "Surrender",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3320.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -780,6 +1520,26 @@
     "sort_order": 99
   },
   {
+    "slug": "the-two-worlds",
+    "title": "The two worlds",
+    "year": "2021",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3319.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "those-who-remember ",
+    "title": "Those who remember ",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3724.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "three-souls-in-surrender",
     "title": "Three Souls In Surrender",
     "year": "2024",
@@ -796,6 +1556,46 @@
     "availability": "available",
     "featured_image": "/images/paintings/img_2997.jpg",
     "thumbnail_image": "/images/paintings/img_2997.jpg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "today-and-tomorrow ",
+    "title": "Today and tomorrow",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5080.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "tonga",
+    "title": "Tonga",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_3546.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "transparent ",
+    "title": "Transparent",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_5621.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "truck",
+    "title": "Truck",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_8601.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -830,12 +1630,72 @@
     "sort_order": 99
   },
   {
+    "slug": "two-worlds",
+    "title": "Two worlds ",
+    "year": "2022",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9459.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "union ",
+    "title": "Union ",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_9953.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
     "slug": "union",
     "title": "Union ",
     "year": "2015",
     "availability": "sold",
     "featured_image": "/images/paintings/img_3970.jpeg",
     "thumbnail_image": "/images/paintings/img_3970.jpeg",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": " virtues",
+    "title": "Virtues",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2475.jpeg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "waw",
+    "title": "Waw",
+    "year": "2025",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2122.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "waw",
+    "title": "Waw",
+    "year": "2023",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_2488.jpg",
+    "thumbnail_image": "",
+    "featured": false,
+    "sort_order": 99
+  },
+  {
+    "slug": "waw-series",
+    "title": "Waw series ",
+    "year": "2024",
+    "availability": "sold",
+    "featured_image": "/images/paintings/img_1155.jpg",
+    "thumbnail_image": "",
     "featured": false,
     "sort_order": 99
   },
@@ -864,8 +1724,8 @@
     "title": "Tawhid",
     "year": "2026",
     "availability": "available",
-    "featured_image": "/images/paintings/1.png",
-    "thumbnail_image": "/images/paintings/1.png",
+    "featured_image": "/images/paintings/1.jpg",
+    "thumbnail_image": "/images/paintings/1.jpg",
     "featured": true,
     "sort_order": 1200
   }

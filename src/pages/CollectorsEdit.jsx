@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm'
 import { getCollectors, getPage } from '../lib/content'
 import { introComponents } from '../lib/markdownComponents'
 import SEOHead from '../components/SEOHead'
+import CdnImage from '../components/CdnImage'
 
 function Lightbox({ items, index, onClose, onPrev, onNext }) {
   useEffect(() => {
@@ -75,9 +76,11 @@ function Lightbox({ items, index, onClose, onPrev, onNext }) {
         className="relative max-w-[90vw] max-h-[85vh] flex flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
+        <CdnImage
           src={item.image}
           alt={item.title}
+          w={1600}
+          q={82}
           className="max-h-[75vh] w-auto object-contain select-none"
         />
 
@@ -180,11 +183,15 @@ export default function CollectorsEdit() {
                   {...(item._id ? { 'data-sb-object-id': item._id } : {})}
                 >
                   <div className="relative overflow-hidden bg-transparent">
-                    <img
+                    <CdnImage
                       src={item.image}
                       alt={item.title}
+                      widths={[400, 600, 900]}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      q={72}
                       className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
                       data-sb-field-path="image"
                     />
                     <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20 flex items-center justify-center">
