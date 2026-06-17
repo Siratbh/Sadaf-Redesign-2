@@ -156,17 +156,17 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div>
                     <label className={labelClass}>Name</label>
-                    <input type="text" required className={inputClass} value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
+                    <input type="text" name="name" required className={inputClass} value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
                   </div>
                   <div>
                     <label className={labelClass}>Email</label>
-                    <input type="email" required className={inputClass} value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
+                    <input type="email" name="email" required className={inputClass} value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
                   </div>
                 </div>
 
                 <div>
                   <label className={labelClass}>Reason</label>
-                  <select className={`${inputClass}`} value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))}>
+                  <select name="reason" className={`${inputClass}`} value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))}>
                     <option value="">General inquiry</option>
                     <option value="availability">Availability of a work</option>
                     <option value="private-viewing">Private viewing</option>
@@ -178,7 +178,7 @@ export default function Contact() {
 
                 <div>
                   <label className={labelClass}>Message</label>
-                  <textarea rows={5} required className={`${inputClass} resize-none`} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
+                  <textarea name="message" rows={5} required className={`${inputClass} resize-none`} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
                 </div>
 
                 {status === 'error' && (
