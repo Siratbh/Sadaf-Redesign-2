@@ -23,6 +23,21 @@ const decapAdminDirIndex = () => ({
   },
 })
 
+// After prerendering, animation libraries (GSAP, Lenis, Three.js) leave active timers
+// in the Node.js event loop, preventing the process from exiting naturally. This plugin
+// runs after all other closeBundle hooks and forces a clean exit so Netlify builds don't
+// hang until their 18-minute timeout.
+const forceExit = () => ({
+  name: 'force-exit',
+  apply: 'build',
+  closeBundle: {
+    order: 'post',
+    handler() {
+      process.exit(0)
+    },
+  },
+})
+
 // decode-named-character-reference/index.dom.js calls document.createElement('i') at
 // module init time. When vite-prerender-plugin executes the bundle in Node.js, that
 // line throws. This plugin replaces the module with an SSR-safe equivalent: same API,
@@ -59,6 +74,7 @@ export default defineConfig({
       prerenderScript: path.resolve(__dirname, 'src/prerender.jsx'),
     }),
     sitemapGenerator(),
+    forceExit(),
   ],
   resolve: {
     alias: {
