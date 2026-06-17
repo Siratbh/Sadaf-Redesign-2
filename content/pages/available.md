@@ -7,5 +7,5 @@ tile_hover_label: View this piece
 tile_view_label: View
 empty_state: No works currently available — please check back soon, or get in touch about commissions.
 seo_title: Available Works
-seo_description: Original paintings by Sadaf currently available for acquisition.
+seo_description: Original oil paintings by Sadaf Farasat available for acquisition. Sufi-inspired, large-scale works on canvas. Worldwide shipping. Inquire directly.
 ---

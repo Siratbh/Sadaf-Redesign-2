@@ -18,8 +18,8 @@ full_description: >-
 
   The surface carries the memory of earlier layers, colours that were painted over but continue to resonate from beneath.
 inquiry_subject: "Inquiry: Noor In The Void (2024)"
-seo_title: Noor In The Void — Sadaf Fine Art
-seo_description: Oil on canvas, 90 × 120 cm, 2024. An original painting by Sadaf.
+seo_title: Noor In The Void
+seo_description: Oil on Canvas, 60×72 Inches, 2026. A meditation on silence and darkness. Original painting by Sadaf Farasat.
 sort_order: 1
 featured: true
 type: Painting

@@ -11,8 +11,8 @@ short_description: In the arms of God
 full_description: |
   In the arms of god
 inquiry_subject: inquire about this piece
-seo_title: in the arms of god
-seo_description: in the arms of god
+seo_title: Tawhid
+seo_description: Oil on canvas, 48×48 inches, 2026. An original painting by Sadaf Farasat.
 sort_order: 1200
 featured: true
 type: Painting

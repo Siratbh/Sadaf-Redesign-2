@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="py-16 bg-white border-t border-gray-100 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 text-sm">
         <div className="col-span-1 md:col-span-1">
-           <h1 className="mb-4 font-sans text-lg font-light uppercase leading-none tracking-[0.2em] text-brand-ink sm:mb-6 sm:text-xl sm:tracking-[0.28em]">Sadaf Farasat</h1>
+           <p className="mb-4 font-sans text-lg font-light uppercase leading-none tracking-[0.2em] text-brand-ink sm:mb-6 sm:text-xl sm:tracking-[0.28em]">Sadaf Farasat</p>
            <p className="text-brand-muted leading-relaxed">
              Bringing contemporary excellence to the forefront of the modern art market.
            </p>

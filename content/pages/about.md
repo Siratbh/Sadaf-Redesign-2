@@ -1,6 +1,8 @@
 ---
 type: AboutPage
-title: 'About '
+title: 'About'
+seo_title: About the Artist
+seo_description: Sadaf Farasat is a self-taught painter rooted in Sufism and the poetry of Rumi. Painting since 2010, exhibiting in Dubai, London, Chicago, and beyond. Works in private collections worldwide.
 hero_eyebrow: About
 hero_title: About The Artist
 biography_title: Biography

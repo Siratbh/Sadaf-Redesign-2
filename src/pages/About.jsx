@@ -26,7 +26,7 @@ export default function About() {
 
   return (
     <div className="bg-brand-bg text-brand-ink" {...(a._id ? { 'data-sb-object-id': a._id } : {})}>
-      <SEOHead title={pageTitle} description={a.bio_intro} />
+      <SEOHead title={a.seo_title || pageTitle} description={a.seo_description || a.bio_intro} />
 
       {/* Hero */}
       <section className="border-b border-gray-100 bg-brand-bg pt-28 pb-16 sm:px-6 md:pt-32 md:pb-20">

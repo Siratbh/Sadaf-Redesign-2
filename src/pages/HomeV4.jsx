@@ -232,14 +232,14 @@ export default function HomeV4() {
       <section className="max-w-7xl mx-auto px-4 pt-28 pb-16 sm:px-6 md:pt-32 md:pb-20">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-16">
           <div className="max-w-2xl">
-            <Motion.h2
+            <Motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-3xl font-serif leading-tight mb-6 sm:text-4xl md:text-5xl md:mb-8"
             >
               <span data-sb-field-path="hero_headline_line1">{home.hero_headline_line1 || 'Explore the intersection'}</span>
               <span className="block md:inline" data-sb-field-path="hero_headline_line2"> {home.hero_headline_line2 || 'of spirituality and abstraction'}</span>
-            </Motion.h2>
+            </Motion.h1>
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

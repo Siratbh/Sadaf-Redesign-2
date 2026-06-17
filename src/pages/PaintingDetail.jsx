@@ -78,7 +78,11 @@ export default function PaintingDetail() {
     .filter((p) => p.slug !== painting.slug)
     .slice(0, 6)
 
-  const pageDescription = painting.seo_description || painting.short_description || painting.full_description
+  const pageDescription = painting.seo_description
+    || painting.short_description
+    || (painting.medium && painting.year
+      ? `${painting.medium}${painting.dimensions ? `, ${painting.dimensions}` : ''}, ${painting.year}. An original painting by Sadaf Farasat.`
+      : null)
   const pageImage = painting.featured_image || painting.thumbnail_image
   const availabilityLabel = painting.availability === 'available'
     ? (c.availability_available || 'Available')

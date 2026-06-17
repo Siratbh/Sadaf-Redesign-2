@@ -8,5 +8,5 @@ tile_hover_label: View work
 tile_view_label: View
 empty_state: No archived works yet.
 seo_title: Past Works
-seo_description: An archive of Sadaf's works now in private collections.
+seo_description: An archive of original oil paintings by Sadaf Farasat, now held in private collections worldwide. Works spanning over a decade of international exhibition.
 ---

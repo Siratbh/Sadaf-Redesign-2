@@ -13,6 +13,6 @@ view_exhibition_label: View exhibition
 next_badge_label: Next
 exhibition_type_fallback: Exhibition
 empty_state: No exhibitions yet. Add them through the CMS.
-seo_title: Exhibitions
-seo_description: A complete archive of solo and group exhibitions.
+seo_title: Exhibition Archive
+seo_description: A complete archive of solo and group exhibitions by Sadaf Farasat, spanning Dubai, London, Chicago, Kuala Lumpur, Singapore, and Pakistan from 2011 to present.
 ---

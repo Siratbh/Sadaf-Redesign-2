@@ -75,7 +75,7 @@ export default function Contact() {
 
   return (
     <>
-      <SEOHead title="Contact" description={contactData.intro} />
+      <SEOHead title={contactPage.seo_title || 'Contact'} description={contactPage.seo_description || contactData.intro} />
 
       <div
         className="min-h-screen bg-light-bg text-dark-text"

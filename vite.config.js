@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import decapPaintingsManifest from './vite-plugins/decap-paintings-manifest.js'
+import { vitePrerenderPlugin } from 'vite-prerender-plugin'
+import sitemapGenerator from './vite-plugins/sitemap-generator.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -21,8 +23,43 @@ const decapAdminDirIndex = () => ({
   },
 })
 
+// decode-named-character-reference/index.dom.js calls document.createElement('i') at
+// module init time. When vite-prerender-plugin executes the bundle in Node.js, that
+// line throws. This plugin replaces the module with an SSR-safe equivalent: same API,
+// same DOM path in browsers, returns false (entity not found) in Node.js.
+const ssrDecodeEntityCompat = () => ({
+  name: 'ssr-decode-entity-compat',
+  transform(_code, id) {
+    if (!id.includes('decode-named-character-reference') || !id.endsWith('index.dom.js')) return
+    return `
+const element = typeof document !== 'undefined' ? document.createElement('i') : null
+
+export function decodeNamedCharacterReference(value) {
+  if (!element) return false
+  const characterReference = '&' + value + ';'
+  element.innerHTML = characterReference
+  const character = element.textContent
+  if (character.charCodeAt(character.length - 1) === 59 && value !== 'semi') {
+    return false
+  }
+  return character === characterReference ? false : character
+}
+`
+  },
+})
+
 export default defineConfig({
-  plugins: [react(), decapAdminDirIndex(), decapPaintingsManifest()],
+  plugins: [
+    react(),
+    ssrDecodeEntityCompat(),
+    decapAdminDirIndex(),
+    decapPaintingsManifest(),
+    vitePrerenderPlugin({
+      renderTarget: '#root',
+      prerenderScript: path.resolve(__dirname, 'src/prerender.jsx'),
+    }),
+    sitemapGenerator(),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
