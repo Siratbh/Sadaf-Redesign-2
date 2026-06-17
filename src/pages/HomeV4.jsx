@@ -607,7 +607,7 @@ export default function HomeV4() {
           >
             <h2 className="text-3xl font-serif mb-6 uppercase tracking-[0.1em] sm:text-4xl md:text-6xl md:mb-8" data-sb-field-path="contact_headline">{home.contact_headline || 'Got Inspired?'}</h2>
             <p className="text-brand-muted text-base font-light mb-10 sm:text-lg md:mb-12" data-sb-field-path="contact_body">
-              {home.contact_body || 'Reserve your piece or get in touch for an exclusive appointment at our private showroom.'}
+              {home.contact_body || 'Reserve your piece or get in touch for an exclusive appointment at our studio.'}
             </p>
             <Link
               to="/contact"

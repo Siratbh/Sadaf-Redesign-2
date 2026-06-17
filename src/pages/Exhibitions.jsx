@@ -175,7 +175,7 @@ export default function Exhibitions() {
             </p>
           </div>
 
-          <div className="columns-1 gap-4 space-y-4 sm:columns-2 md:gap-6 md:space-y-6 lg:columns-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
             {pool.map((item, idx) => (
               <Motion.div
                 key={item.slug}
@@ -183,15 +183,15 @@ export default function Exhibitions() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="group cursor-pointer break-inside-avoid"
+                className="group cursor-pointer overflow-hidden"
                 onClick={() => openLightbox(idx)}
                 {...(item.objectId ? { 'data-sb-object-id': item.objectId } : {})}
               >
-                <div className="relative overflow-hidden bg-gray-100">
+                <div className="relative aspect-[4/3] overflow-hidden bg-brand-muted/10">
                   <img
                     src={item.src}
                     alt={item.caption}
-                    className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                     {...(item.fieldPath ? { 'data-sb-field-path': item.fieldPath } : {})}
                   />
