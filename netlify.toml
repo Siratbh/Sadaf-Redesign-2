@@ -29,3 +29,12 @@
   command = "npm run dev"
   targetPort = 5173
   port = 8888
+
+# Lighthouse plugin is installed via Netlify app — limit it to homepage only
+# to prevent it from auditing all 222 prerendered pages and timing out the build.
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  [plugins.inputs]
+    audits = [
+      {path = "/"}
+    ]
