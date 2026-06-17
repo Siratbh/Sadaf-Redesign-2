@@ -200,20 +200,6 @@ export default function CollectorsEdit() {
                       </span>
                     </div>
                   </div>
-                  {(item.painting_title || item.caption) && (
-                    <div className="mt-3">
-                      {item.painting_title && (
-                        <p className="text-sm font-serif italic text-brand-ink" data-sb-field-path="painting_title">
-                          {item.painting_title}
-                        </p>
-                      )}
-                      {item.caption && (
-                        <p className="text-[10px] uppercase tracking-[0.18em] text-brand-muted mt-1" data-sb-field-path="caption">
-                          {item.caption}
-                        </p>
-                      )}
-                    </div>
-                  )}
                 </Motion.div>
               ))}
             </div>

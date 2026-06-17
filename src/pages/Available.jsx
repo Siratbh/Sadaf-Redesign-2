@@ -1,5 +1,6 @@
 import { motion as Motion } from 'motion/react'
 import { Link } from 'react-router-dom'
+import { Globe } from 'lucide-react'
 import SEOHead from '../components/SEOHead'
 import CdnImage from '../components/CdnImage'
 import { getAvailablePaintings, getPage } from '../lib/content'
@@ -83,13 +84,17 @@ export default function Available() {
                     </div>
                   </Link>
 
-                  <div className="mt-4 flex justify-center">
+                  <div className="mt-4 flex flex-col items-center gap-2">
                     <Link
                       to={`/paintings/${painting.slug}`}
                       className="text-[10px] uppercase tracking-[0.2em] font-semibold text-brand-ink border-b border-brand-ink pb-1 hover:text-brand-accent hover:border-brand-accent transition-colors duration-300"
                     >
                       {p.tile_view_label || 'View'}
                     </Link>
+                    <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-brand-muted">
+                      <Globe size={11} strokeWidth={1.5} />
+                      Global Shipping
+                    </span>
                   </div>
                 </Motion.div>
               ))}

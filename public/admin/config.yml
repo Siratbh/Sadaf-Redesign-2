@@ -131,18 +131,13 @@ collections:
     slug: "{{title}}"
     identifier_field: title
     fields:
-      - label: "Title"
+      - label: "Caption"
         name: "title"
         widget: "string"
-        hint: "Label for this set of photos (e.g. 'Dubai 2024', 'Various shows'). Not shown publicly — just for your reference."
+        hint: "Short label shown in the photo lightbox (e.g. 'Opening night, Dubai 2024'). Not required to match any exhibition listing."
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Video URL", name: "video", widget: "string", required: false, hint: "Optional. MP4 or YouTube/Vimeo URL." }
       - { label: "Sort Order", name: "sort_order", widget: "number", default: 99, required: false }
-      - label: "Photos / Videos"
-        name: "gallery"
-        widget: "list"
-        fields:
-          - { label: "Image", name: "image", widget: "image", required: false }
-          - { label: "Video URL", name: "video", widget: "string", required: false }
-          - { label: "Caption", name: "caption", widget: "string", required: false }
 
   - name: "collectors"
     label: "Collectors Edit"

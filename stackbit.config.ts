@@ -112,27 +112,17 @@ export default defineStackbitConfig({
         },
 
 
-        // ─── Gallery albums (independent photo sets) ──────────────────
+        // ─── Gallery photos (individual exhibition moments) ───────────
         {
-          name: 'GalleryAlbum',
+          name: 'GalleryItem',
           type: 'data',
           labelField: 'title',
           filePath: 'content/gallery/{slug}.md',
           fields: [
-            { name: 'title', type: 'string', required: true },
+            { name: 'title', type: 'string', required: true, description: 'Caption shown in the lightbox.' },
+            { name: 'image', type: 'image' },
+            { name: 'video', type: 'string', description: 'Optional. MP4 path or YouTube / Vimeo / Cloudinary URL.' },
             { name: 'sort_order', type: 'number' },
-            {
-              name: 'gallery',
-              type: 'list',
-              items: {
-                type: 'object',
-                fields: [
-                  { name: 'image', type: 'image' },
-                  { name: 'video', type: 'string', description: 'Optional. MP4 path or YouTube / Vimeo / Cloudinary URL.' },
-                  { name: 'caption', type: 'string' },
-                ],
-              },
-            },
           ],
         },
 

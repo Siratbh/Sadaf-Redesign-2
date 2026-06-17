@@ -32,7 +32,7 @@ export function getPaintings() {
   return Object.entries(paintingFiles)
     .map(([filePath, raw]) => {
       const { data, content } = parse(raw)
-      return { ...data, body: content, _id: filePath.slice(1) }
+      return { ...data, slug: (data.slug || '').trim(), body: content, _id: filePath.slice(1) }
     })
     .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
 }
@@ -76,28 +76,19 @@ export function getPastPaintings() {
 }
 
 export function getExhibitionGallery() {
-  const albums = Object.entries(galleryFiles)
+  return Object.entries(galleryFiles)
     .map(([filePath, raw]) => {
       const { data } = parse(raw)
-      return { ...data, _id: filePath.slice(1) }
+      return {
+        image: data.image,
+        video: data.video,
+        caption: data.title || '',
+        sort_order: data.sort_order,
+        _id: filePath.slice(1),
+      }
     })
+    .filter(item => item.image || item.video)
     .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
-
-  const pool = []
-  for (const album of albums) {
-    if (!Array.isArray(album.gallery)) continue
-    for (const item of album.gallery) {
-      if (!item || (!item.image && !item.video)) continue
-      pool.push({
-        image: item.image,
-        video: item.video,
-        caption: item.caption || album.title || '',
-        sort_order: album.sort_order,
-        _id: `${album._id}::${pool.length}`,
-      })
-    }
-  }
-  return pool
 }
 
 export function getCollectors() {

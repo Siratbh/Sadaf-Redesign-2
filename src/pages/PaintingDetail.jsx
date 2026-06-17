@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion as Motion } from 'motion/react'
+import { Globe } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SEOHead from '../components/SEOHead'
@@ -166,6 +167,15 @@ export default function PaintingDetail() {
                     <div className="flex justify-between items-baseline gap-6">
                       <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted">{c.spec_label_availability || 'Availability'}</span>
                       <span className="text-sm text-brand-ink text-right" data-sb-field-path="availability">{availabilityLabel}</span>
+                    </div>
+                  )}
+                  {!isPast && (
+                    <div className="flex justify-between items-baseline gap-6">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted">Shipping</span>
+                      <span className="text-sm text-brand-ink text-right inline-flex items-center gap-1.5">
+                        <Globe size={12} strokeWidth={1.5} />
+                        Worldwide
+                      </span>
                     </div>
                   )}
                 </Motion.div>
