@@ -84,26 +84,6 @@ function Lightbox({ items, index, onClose, onPrev, onNext }) {
           className="max-h-[75vh] w-auto object-contain select-none"
         />
 
-        {(item.painting_title || item.caption) && (
-          <div className="mt-4 text-center">
-            {item.painting_title && (
-              <p className="text-white font-serif text-lg sm:text-xl italic">
-                {item.painting_title}
-              </p>
-            )}
-            {item.caption && (
-              <p className="text-white/50 text-xs uppercase tracking-[0.18em] font-sans mt-1">
-                {item.caption}
-              </p>
-            )}
-          </div>
-        )}
-
-        {items.length > 1 && (
-          <p className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-sans mt-3">
-            {index + 1} / {items.length}
-          </p>
-        )}
       </Motion.div>
     </Motion.div>
   )
