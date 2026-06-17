@@ -150,26 +150,22 @@ export default function CollectorsEdit() {
           </div>
 
           {visibleCollectors.length > 0 ? (
-            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
               {visibleCollectors.map((item, idx) => (
-                <Motion.div
+                <div
                   key={item.slug}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="break-inside-avoid cursor-pointer group"
+                  className="cursor-pointer group overflow-hidden"
                   onClick={() => openLightbox(idx)}
                   {...(item._id ? { 'data-sb-object-id': item._id } : {})}
                 >
-                  <div className="relative overflow-hidden bg-transparent">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-brand-muted/10">
                     <CdnImage
                       src={item.image}
                       alt={item.title}
                       widths={[400, 600, 900]}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 33vw"
                       q={72}
-                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       decoding="async"
                       data-sb-field-path="image"
@@ -180,7 +176,7 @@ export default function CollectorsEdit() {
                       </span>
                     </div>
                   </div>
-                </Motion.div>
+                </div>
               ))}
             </div>
           ) : (
