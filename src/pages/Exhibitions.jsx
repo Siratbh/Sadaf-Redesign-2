@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion as Motion } from 'motion/react'
 import SEOHead from '../components/SEOHead'
 import Lightbox from '../components/Lightbox'
+import CdnImage from '../components/CdnImage'
 import { getExhibitions, getPage, getExhibitionGallery } from '../lib/content'
 import { formatDateRange } from '../lib/exhibitions'
 
@@ -188,13 +189,27 @@ export default function Exhibitions() {
                 {...(item.objectId ? { 'data-sb-object-id': item.objectId } : {})}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-brand-muted/10">
-                  <img
-                    src={item.src}
-                    alt={item.caption}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                    {...(item.fieldPath ? { 'data-sb-field-path': item.fieldPath } : {})}
-                  />
+                  {item.type === 'video' ? (
+                    <video
+                      src={item.src}
+                      className="w-full h-full object-cover"
+                      muted
+                      playsInline
+                      {...(item.fieldPath ? { 'data-sb-field-path': item.fieldPath } : {})}
+                    />
+                  ) : (
+                    <CdnImage
+                      src={item.src}
+                      alt={item.caption}
+                      widths={[400, 600, 900]}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 33vw"
+                      q={72}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                      {...(item.fieldPath ? { 'data-sb-field-path': item.fieldPath } : {})}
+                    />
+                  )}
                   <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/20">
                     <span className="px-6 py-3 bg-white text-brand-ink text-[11px] font-medium uppercase tracking-[0.2em] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       View
