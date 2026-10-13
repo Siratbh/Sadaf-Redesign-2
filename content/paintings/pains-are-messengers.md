@@ -4,7 +4,7 @@ slug: "pains-are-messengers "
 year: "2026"
 medium: "Oil on canvas "
 dimensions: "30x48 inches "
-availability: available
+availability: sold
 featured_image: /images/paintings/img_3006.jpg
 thumbnail_image: /images/paintings/img_3006.jpg
 full_description: |-
